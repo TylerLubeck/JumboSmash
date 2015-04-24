@@ -1,5 +1,6 @@
 *.sqlite3
 .ropeproject/
+.*.*.sw[op]
 
 
 # Byte-compiled / optimized / DLL files
