@@ -18,11 +18,13 @@ class UserProfile(models.Model):
 
     people_i_like = models.ManyToManyField('self',
                                            symmetrical=False,
-                                           related_name='people_like_me')
+                                           related_name='people_like_me',
+                                           blank=True)
 
     people_i_dont_like = models.ManyToManyField('self',
                                                 symmetrical=False,
-                                                related_name='people_dont_like_me')
+                                                related_name='people_dont_like_me',
+                                                blank=True)
 
     def __str__(self):
         is_registered = self.user is not None
