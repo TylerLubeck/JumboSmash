@@ -24,6 +24,7 @@ class SmasherRegistrationView(RegistrationView):
 
 class IndexView(View):
     def get(self, request):
+        # TODO: Put this code in a Cache block
         people = UserProfile.objects.values('name', 'pk', 'major')
         for p in people:
             p['tokens'] = [p['name'], p['major']]
