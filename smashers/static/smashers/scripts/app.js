@@ -58,8 +58,10 @@ define("app", ["jquery", "underscore", "backbone"], function($, _, Backbone) {
     var activeUser;
     require(["smashers"], function(smashers) {
         activeUser = smashers.getSmasher();
-        console.log(activeUser);
     });
     var cards = require(["cardInterface"]);
+    require(["search"], function(search) {
+        search([{tokens: ["sam"], val: "Sammy P"}])
+    });
 
 })

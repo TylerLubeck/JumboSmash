@@ -9,7 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}User test{% endblock %}</title>
         <script type="text/javascript">
-            var people = {{ people|safe }};
+            window.people = {{ people|safe }};
             var require = {
                 baseUrl: "{% static 'smashers/scripts' %}",
                 waitSeconds: 15,
@@ -34,7 +34,7 @@
                 </header>
 
                 <div class="wrapper">
-                    <input type='text' name='smash-autocomplete' placeholder='search for a friend' id='smash-autocomplete' />
+                    <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search for a friend' id='smash-autocomplete' />
 
                     <div id="card-interface">
                         <ul id="cards"></ul>

@@ -12,7 +12,7 @@ define("cardInterface", ["smashers"], function(smashers) {
      * @return {Number}
      */
         throwOutConfidence: function (offset, element) {
-            return Math.min(Math.abs(offset) / element.offsetWidth, 1);
+            return Math.min((Math.abs(offset) + 150) / element.offsetWidth, 1);
         },
         throwOutDistance: function() {
             return 1250

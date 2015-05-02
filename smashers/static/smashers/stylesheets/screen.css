@@ -2808,10 +2808,10 @@ a:hover, a:focus {
   background: #fff;
   border-top: 2px solid #ddd;
   position: absolute;
-  top: -18px;
-  left: -18px;
-  bottom: -18px;
-  right: -18px;
+  top: -12px;
+  left: -12px;
+  bottom: -12px;
+  right: -12px;
   z-index: -1;
   border-radius: 50%;
   box-shadow: inset 0px 8px 48px #ddd;
@@ -2869,4 +2869,14 @@ ul#cards {
 /* line 150, ../sass/screen.scss */
 .smash-card .year {
   float: right;
+}
+
+/* line 153, ../sass/screen.scss */
+#smash-autocomplete {
+  background: #fff;
+  line-height: 1.7;
+  padding: 3px 6px;
+  outline: none;
+  font-size: 1.3em;
+  border: none;
 }
