@@ -48,6 +48,7 @@ a:hover, a:focus {
         margin: 10px 22px;
         display: inline-block;
         vertical-align: top;
+        position: relative;
 
         &:before {
             content: "";
