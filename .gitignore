@@ -1,3 +1,4 @@
+staticfiles/
 *.sqlite3
 .ropeproject/
 .*.*.sw[op]
