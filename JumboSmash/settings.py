@@ -39,7 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'smashers',
     'django_extensions',
-    'registration'
+    'registration',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,6 +68,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'loaders': [
+            #     'django.template.loaders.filesystem.Loader',
+            #     'django.template.loaders.app_directories.Loader',
+            # ]
         },
     },
 ]
@@ -99,7 +104,25 @@ USE_L10N = True
 USE_TZ = True
 
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.8/howto/static-files/
+import dj_database_url
+sql_path = 'sqlite:///{}/db.sqlite3'.format(BASE_DIR)
+DATABASES['default'] = dj_database_url.config(default=sql_path)
+
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+ALLOWED_HOSTS = ['*']
+
 
 STATIC_URL = '/static/'
+STATIC_ROOT = 'staticfiles'
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+ACCOUNT_ACTIVATION_DAYS = 7
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',)
+}
+
+if DEBUG:
+    EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+'
+{% block footer %}
+<script>
+console.log('correct page');
+</script>
+<script src="{% static 'smashers/dummy.js' %}"></script>
+
+{% endblock %}
