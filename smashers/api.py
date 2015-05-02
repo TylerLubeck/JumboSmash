@@ -12,7 +12,7 @@ class UserProfileResource(ModelResource):
         resource_name = 'smashers'
         queryset = UserProfile.objects.all()
         allowed_methods = ['get']
-        fields = ['class_year', 'name', 'major']
+        fields = ['class_year', 'name', 'major', 'id']
         limit = 20
 
     def get_object_list(self, request):
