@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}User test{% endblock %}</title>
         <script type="text/javascript">
+            var people = {{ people|safe }};
             var require = {
                 baseUrl: "{% static 'smashers/scripts' %}",
                 waitSeconds: 15,

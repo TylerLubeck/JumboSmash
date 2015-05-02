@@ -5,6 +5,7 @@ from registration.signals import user_activated
 from registration.backends.default.views import RegistrationView
 from .forms import SmasherRegistrationForm
 from .models import UserProfile
+import json
 
 
 def associate_profile(sender, user, request, **kwargs):
@@ -23,5 +24,11 @@ class SmasherRegistrationView(RegistrationView):
 
 class IndexView(View):
     def get(self, request):
-        return render(request, 'smashers/index.html')
-
+        people = UserProfile.objects.values('name', 'pk', 'major')
+        for p in people:
+            p['tokens'] = [p['name'], p['major']]
+        serialized_names = json.dumps(list(people))
+        context = {
+            'people': serialized_names
+        }
+        return render(request, 'smashers/index.html', context)
