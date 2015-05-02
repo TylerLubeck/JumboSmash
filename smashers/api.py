@@ -55,6 +55,7 @@ class DecisionItem(object):
 class DecisionResource(Resource):
     like = fields.BooleanField(attribute='like')
     user_id = fields.IntegerField(attribute='user_id')
+    match = fields.BooleanField(attribute='match')
 
     class Meta(CommonMeta):
         list_allowed_methods = ['post']
@@ -64,6 +65,9 @@ class DecisionResource(Resource):
 
     def get_object_list(self, request):
         return []
+
+    def detail_uri_kwargs(self, bundle_or_obj):
+        return {}
 
     def obj_create(self, bundle, **kwargs):
         print "CREATING"
@@ -77,7 +81,10 @@ class DecisionResource(Resource):
             raise
         if bundle.obj.like:
             raterprofile.people_i_like.add(rated_person)
+            match = rated_person.people_i_like.filter(pk=raterprofile.pk).exists()
+            bundle.obj.match = match
         else:
             raterprofile.people_i_dont_like.add(rated_person)
+            bundle.obj.match = False
 
         return bundle
