@@ -79,6 +79,11 @@ class DecisionResource(Resource):
             rated_person = UserProfile.objects.get(pk=bundle.obj.user_id)
         except UserProfile.DoesNotExist:
             raise Http404("Sorry, no user found")
+
+        # Remove the person in case they've already been rated
+        me.people_i_like.remove(rated_person)
+        me.people_i_dont_like.remove(rated_person)
+
         if bundle.obj.like:
             raterprofile.people_i_like.add(rated_person)
             match = rated_person.people_i_like.filter(pk=raterprofile.pk).exists()
