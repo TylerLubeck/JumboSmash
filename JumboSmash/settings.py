@@ -40,7 +40,6 @@ INSTALLED_APPS = (
     'smashers',
     'django_extensions',
     'registration',
-    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (

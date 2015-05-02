@@ -1,10 +1,15 @@
 from .models import UserProfile
+from .authorization import DecisionAuthorization
 from tastypie import fields
 from tastypie.resources import ModelResource, Resource
+from tastypie.authentication import SessionAuthentication
+from tastypie.authorization import ReadOnlyAuthorization
 
 
 class CommonMeta(object):
     always_return_data = True
+    authentication = SessionAuthentication()
+    authorization = ReadOnlyAuthorization()
 
 
 class UserProfileResource(ModelResource):
@@ -62,6 +67,7 @@ class DecisionResource(Resource):
         detail_allowed_methods = []
         object_class = DecisionItem
         resource_name = 'decision'
+        authorization = DecisionAuthorization()
 
     def get_object_list(self, request):
         return []
@@ -70,7 +76,6 @@ class DecisionResource(Resource):
         return {}
 
     def obj_create(self, bundle, **kwargs):
-        print "CREATING"
         bundle.obj = DecisionItem(initial=kwargs)
         bundle = self.full_hydrate(bundle)
         raterprofile = bundle.request.user.userprofile
@@ -88,3 +93,51 @@ class DecisionResource(Resource):
             bundle.obj.match = False
 
         return bundle
+
+
+class MatchItem(object):
+    def __init__(self, initial=None):
+        self.__dict__['_data'] = {}
+        if hasattr(initial, 'items'):
+            self.__dict__['_data'] = initial
+
+    def __getattr__(self, name):
+        return self._data.get(name, None)
+
+    def __setattr__(self, name, value):
+        self.__dict__['_data'][name] = value
+
+    def update(self, other):
+        for key in other:
+            self.__setattr__(key, other[key])
+
+    def to_dict(self):
+        return self._data
+
+
+class MatchesResource(Resource):
+    name = fields.CharField(attribute='name')
+    major = fields.CharField(attribute='major')
+    class_year = fields.IntegerField(attribute='class_year')
+    class Meta(CommonMeta):
+        list_allowed_methods = ['get']
+        detail_allowed_methods = []
+        object_class = MatchItem
+
+    def _get_matches(self, my_id, my_likes):
+        matches = []
+        for person in my_likes:
+            if person.people_i_like.filter(pk=my_id).exists():
+                matches.append(person)
+        return matches
+
+    def get_object_list(self, request):
+        my_profile = request.user.userprofile
+        my_likes = my_profile.people_i_like.all()
+        matches = self._get_matches(my_profile.pk, my_likes)
+        print matches
+        return matches
+
+    def obj_get_list(self, bundle, **kwargs):
+        return self.get_object_list(bundle.request)
+

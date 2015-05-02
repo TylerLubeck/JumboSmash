@@ -3,10 +3,8 @@ from django.shortcuts import render
 from django.views.generic import View
 from registration.signals import user_activated
 from registration.backends.default.views import RegistrationView
-from rest_framework import viewsets
 from .forms import SmasherRegistrationForm
 from .models import UserProfile
-from .serializers import UserProfileSerializer
 
 
 def associate_profile(sender, user, request, **kwargs):
@@ -27,7 +25,3 @@ class IndexView(View):
     def get(self, request):
         return render(request, 'smashers/index.html')
 
-
-class UserProfileViewSet(viewsets.ModelViewSet):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserProfileSerializer
