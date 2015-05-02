@@ -61,7 +61,7 @@ define("app", ["jquery", "underscore", "backbone"], function($, _, Backbone) {
     });
     var cards = require(["cardInterface"]);
     require(["search"], function(search) {
-        search([{tokens: ["sam"], val: "Sammy P"}])
+        search(window.people)
     });
 
 })

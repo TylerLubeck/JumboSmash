@@ -1,4 +1,4 @@
-define("search", [], function() {
+define("search", ["typeahead", "smashers", "cardInterface"], function(typeahead, smashers, cardInterface) {
 
     $searchbar = $("#smash-autocomplete");
 
@@ -14,33 +14,39 @@ define("search", [], function() {
         }
     })(window._);
 
-    function loadSmashers(smashers) {
+    function loadSmashers(people) {
         var engine = new Bloodhound({
-            local: smashers,
+            local: people,
             datumTokenizer: function(d) {
-                return Bloodhound.tokenizers.whitespace(d.val);
+                return Bloodhound.tokenizers.whitespace(d.name);
             },
             queryTokenizer: Bloodhound.tokenizers.whitespace,
             limit: 10
         });
-        engine.initialize()
+        engine.initialize(true)
 
         $searchbar.typeahead(
             {
-                hint: true,
-                minLength: 1,
+                hint: false,
+                minLength: 2,
                 highlight: true
             }, 
             {
-                displayKey: "val",
+                source: engine.ttAdapter(),
+                displayKey: "name",
                 templates: {
                     empty: "<div class='tt-empty-results'>No results found.</div>",
                     suggestion: _.compile($("#suggestion-template").html())
                 }
             }
         ).on("typeahead:selected", function(e, suggestion) {
-            console.log(suggestions)
+            console.log(suggestion)
             $searchbar.typeahead("val", "")
+            var s = smashers.getSmasher({id: suggestion.pk});
+            s.fetch().success(function() {
+                cardInterface.collection.add(s)
+            })
+            console.log(s);
         });
 
     }

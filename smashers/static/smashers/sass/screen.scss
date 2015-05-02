@@ -25,6 +25,7 @@ body {
     font-weight: 500;
     font-size: 1.05em;
     font-family: 'Raleway', Arial, sans-serif;
+    padding-top: 20px;
 }
 
 a {
@@ -44,6 +45,7 @@ a:hover, a:focus {
 }
 
 #choices {
+    margin: 10px 0;
     li {
         margin: 10px 22px;
         display: inline-block;
@@ -75,16 +77,17 @@ a:hover, a:focus {
     @include background-image(linear-gradient(top,  #f9fcf7 0%,#f5f9f0 100%));
     border: 1px solid #ddd;
     outline: none;
+    cursor: pointer;
     position: relative;
 
 
     &#like i {
-        color: #EE6146;
+        color: $sexyRed;
         font-size: 3.8em;
     }
 
     &#dislike i {
-        color: #76DFA9;
+        color: $sexyGreen;
         font-size: 2.5em;
     }
 
@@ -113,6 +116,10 @@ ul#cards {
     width: $wrapperWidth;
     margin: 0 auto;
     height: 400px;
+}
+
+#card-interface {
+    margin-top: 20px;
 }
 
 .smash-card {
@@ -157,5 +164,66 @@ ul#cards {
     outline: none;
     font-size: 1.3em;
     border: none;
+    text-align: center;
+}
 
+input.wrapper.tt-hint {
+    height: 100%;
+    font-size: 1.3rem;
+}
+
+.tt-dropdown-menu {
+    @include box-shadow(0px 1px 3px #bbb);
+    padding: 0;
+    width: 100%;
+    background: #fff;
+}
+
+[class*=tt-dataset] {
+    background: #fff;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+
+    .tt-suggestion {
+        line-height: 2em;
+        text-indent: .6em;
+        border-bottom: 1px solid #f2f2f0;
+        cursor: pointer;
+        text-align: left;
+        position: relative;
+
+        &:last-of-type { border-bottom: none; }
+        &:first-of-type { border-top: none; }
+
+        &:hover, &.tt-cursor {
+            background: #f2f2f0;
+            border-bottom-color: transparent;
+
+            .sightings-length {
+                background: #fff;
+            }
+        }
+    }
+
+    .tt-highlight {
+        text-decoration: underline;
+    }
+}
+
+.tt-empty-results {
+    line-height: 3;
+    text-indent: 0;
+    text-align: center;
+}
+
+
+nav ul {
+    margin-top: 30px;
+    li {
+        display: block;
+        text-align: center;
+        color: #444;
+    }
 }

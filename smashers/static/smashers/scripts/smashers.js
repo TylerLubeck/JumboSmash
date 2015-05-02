@@ -1,7 +1,10 @@
 define("smashers", ["sweetalert"], function(swal) {
     // /api/v1/smashers
     var Smasher = TastypieModel.extend({
-        url: '/api/v1/decision/',
+        decisionUrl: '/api/v1/decision/',
+        url: function() {
+            return "/api/v1/smashers/" + this.id + "/"
+        },
         initialize: function() {
 
         },
@@ -15,16 +18,24 @@ define("smashers", ["sweetalert"], function(swal) {
             var that = this;
             $.ajax({
                 type: 'POST',
-                url: this.url, 
+                url: this.decisionUrl, 
                 data: JSON.stringify({
                     user_id: this.id,
                     like: decision
                 }), 
                 contentType: 'application/json'
-            }).success(function() {
+            }).success(function(response) {
                 // that.swingCard.throwOut(0, -100);
                 that.swingCard.destroy();
                 that.trigger("destroy", that);
+
+                if (response.match === true) {
+                    swal({
+                       title: "Nice work! You have a match!",   
+                        text: "OOOOOH YEAHHHHH! Beat it now, meet up later..",   
+                        type: "success"  
+                    })
+                }
             }).
             error(function() {
                 swal({   

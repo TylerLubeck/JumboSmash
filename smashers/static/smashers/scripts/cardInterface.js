@@ -80,12 +80,14 @@ define("cardInterface", ["smashers"], function(smashers) {
         },
         bindStackListeners: function() {
             var that = this;
-            this.stack.on("throwoutend", function(e) {
+            this.stack.on("throwout", function(e) {
                 var id =  $(e.target).attr("model-id");
                 var model = that.collection._byId[id];
-                if (model) {
-                    (e.throwDirection == gajus.Swing.Card.DIRECTION_LEFT ? model.dislike() : model.like());
-                }
+                setTimeout(function() {
+                    if (model) {
+                        (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT ? model.dislike() : model.like());
+                    }
+                }, 300)    
             })
         },
         addCard: function(card) {
@@ -120,5 +122,7 @@ define("cardInterface", ["smashers"], function(smashers) {
     var activeSmashers = smashers.getSmashers();
     var activeSetView = new CardCollectionView({collection: activeSmashers});
     activeSmashers.getNextSwipeSet();
+
+    return activeSetView
 
 })
