@@ -1,0 +1,26 @@
+{
+  "main": "dist/swing.min.js",
+  "name": "swing",
+  "description": "A swipeable cards interface. The swipe-left/swipe-right for yes/no input. As seen in apps like Jelly and Tinder.",
+  "version": "1.1.4",
+  "license": "BSD-3-Clause",
+  "authors": [
+    "Gajus Kuizinas <gk@anuary.com>"
+  ],
+  "keywords": [
+    "swipe",
+    "cards",
+    "swipeable"
+  ],
+  "homepage": "https://github.com/gajus/swing",
+  "_release": "1.1.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "1.1.4",
+    "commit": "488763b2b385fd5f1a017d26fbd68e98099454f3"
+  },
+  "_source": "git://github.com/gajus/swing.git",
+  "_target": "~1.1.4",
+  "_originalSource": "swing",
+  "_direct": true
+}

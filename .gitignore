@@ -1,4 +1,5 @@
 staticfiles/
+JSmash/
 *.sqlite3
 .ropeproject/
 .*.*.sw[op]

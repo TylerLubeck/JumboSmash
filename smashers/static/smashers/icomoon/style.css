@@ -1,0 +1,65 @@
+@font-face {
+	font-family: 'icomoon';
+	src:url('fonts/icomoon.eot?hqq81u');
+	src:url('fonts/icomoon.eot?#iefixhqq81u') format('embedded-opentype'),
+		url('fonts/icomoon.woff?hqq81u') format('woff'),
+		url('fonts/icomoon.ttf?hqq81u') format('truetype'),
+		url('fonts/icomoon.svg?hqq81u#icomoon') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+	font-family: 'icomoon';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-compass2:before {
+	content: "\e94a";
+}
+
+.icon-cross:before {
+	content: "\ea0f";
+}
+
+.icon-remove-user:before {
+	content: "\e600";
+}
+
+.icon-emoji-flirt:before {
+	content: "\e601";
+}
+
+.icon-emoji-happy:before {
+	content: "\e602";
+}
+
+.icon-emoji-neutral:before {
+	content: "\e603";
+}
+
+.icon-emoji-sad:before {
+	content: "\e604";
+}
+
+.icon-heart-outlined:before {
+	content: "\e605";
+}
+
+.icon-heart:before {
+	content: "\e606";
+}
+
+.icon-plus:before {
+	content: "\e607";
+}
+

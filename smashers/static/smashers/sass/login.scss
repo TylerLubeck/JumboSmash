@@ -1,0 +1,24 @@
+@import "build";
+@import "compass/css3";
+
+$width: 500px;
+$height: 170px;
+
+.login-wrap {
+    @include border-radius(3px);
+    padding: 15px;
+    border: 1px solid #ddd;
+    width: $width;
+    height: $height;
+    display: block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -$width/2;
+    margin-top: -$height/2;
+    background: #fff;
+
+    .account-actions {
+        color: $tuftsBlue;
+    }
+}

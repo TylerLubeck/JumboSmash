@@ -1,38 +1,62 @@
 {% load i18n %}
+{% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-<link rel="stylesheet" href="{{ STATIC_URL }}style.css" />
-<title>{% block title %}User test{% endblock %}</title>
-</head>
-<body>
-<div id="header">
-    {% block header %}
-        <a href="{% url 'index' %}">{% trans "Home" %}</a> |
+    <head>
+        <link rel="stylesheet" href="{% static 'smashers/stylesheets/screen.css' %}" />
+        <link rel="stylesheet" href="{% static 'smashers/scripts/bower_components/sweetalert/lib/sweet-alert.css' %}" />
+        <link rel="stylesheet" href="{% static 'smashers/icomoon/style.css' %}" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>{% block title %}User test{% endblock %}</title>
+        <script type="text/javascript">
+            var require = {
+                baseUrl: "{% static 'smashers/scripts' %}",
+                waitSeconds: 15,
+                urlArgs : "bust="+ new Date().getTime()
+            };
+        </script>
+    </head>
+    <body>
+        {% block header %}
+            <!-- <a href="{% url 'index' %}">{% trans "Home" %}</a> | -->
 
-        {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
+                
+                {% trans "Logged in" %}: {{ user.username }}
+                <header>
+                    <nav class='wrapper'>
+                        <ul>
+                            <li><a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> </li>
+                            <li><a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a></li>
+                        </ul>
+                    </nav>
+                </header>
 
-            {% trans "Logged in" %}: {{ user.username }}
-            (<a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> |
-            <a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a>)
+                <div class="wrapper">
+                    <input type='text' name='smash-autocomplete' placeholder='search for a friend' id='smash-autocomplete' />
 
-        {% else %}
+                    <div id="card-interface">
+                        <ul id="cards"></ul>
+                        <ul id="choices">
+                            <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
+                            <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>
+                        </ul>
+                        
 
-            <a href="{% url 'auth_login' %}">{% trans "Log in" %}</a>
-            
-        {% endif %}
+                    </div>
+                </div>
+                
 
-        <hr />
+            {% else %}
 
-    {% endblock %}
-</div>
-<div id="content">
-    {% block content %}{% endblock %}
-</div>
-<div id="footer">
-    {% block footer %}
-    <hr />
-    {% endblock %}
-</div>
-</body>
+                {% include 'registration/login.html' %}
+                
+            {% endif %}
+
+        {% endblock %}
+
+        {% include 'templates.html' %}
+        <script src="{% static 'smashers/scripts/swingfull.js' %}"></script>
+        <script src="{% static 'smashers/scripts/require.min.js' %}" data-main="app"></script>
+    </body>
 </html>
