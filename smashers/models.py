@@ -20,7 +20,9 @@ class UserProfile(models.Model):
                                            symmetrical=False,
                                            related_name='people_like_me')
 
-    phone_number = PhoneNumberField(blank=True)
+    people_i_dont_like = models.ManyToManyField('self',
+                                                symmetrical=False,
+                                                related_name='people_dont_like_me')
 
     def __str__(self):
         is_registered = self.user is not None

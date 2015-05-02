@@ -1,13 +1,14 @@
 from django.conf.urls import include, url
-from rest_framework import routers
+from tastypie.api import Api
+from .api import UserProfileResource, DecisionResource
 import views
 
-router = routers.DefaultRouter()
-router.register(r'users', views.UserProfileViewSet)
-
+v1_api = Api(api_name='v1')
+v1_api.register(UserProfileResource())
+v1_api.register(DecisionResource())
 
 urlpatterns = [
-    url(r'^api/', include(router.urls)),
+    url(r'^api/', include(v1_api.urls)),
     url(r'^accounts/register/$',
         views.SmasherRegistrationView.as_view()),
     url(r'^accounts/', include('registration.backends.default.urls')),
