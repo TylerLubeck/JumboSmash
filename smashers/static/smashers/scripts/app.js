@@ -63,5 +63,6 @@ define("app", ["jquery", "underscore", "backbone"], function($, _, Backbone) {
     require(["search"], function(search) {
         search(window.people)
     });
+    require(["coreUI"], function(ui) { ui(); })
 
 })

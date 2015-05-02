@@ -8,7 +8,6 @@
 @import "compass/css3";
 @import "build";
 @import "login";
-@import "fontawesome";
 
 * {
     @include box-sizing(border-box);
@@ -28,6 +27,31 @@ body {
     padding-top: 20px;
 }
 
+header {
+    position: relative;
+}
+
+.header-actions {
+    @include transition(all .2s ease-in-out);
+    color: $sexyRed;
+    font-size: 1.8em;
+    position: absolute;
+    left: 0;
+    top: 0;
+    cursor: pointer;
+
+    &.active-searchbar {
+        font-size: 1.5em;
+        top: 6px;
+        left: 6px;
+    }
+
+    &:last-of-type {
+        right: 0;
+        left: auto;
+    }
+}
+
 a {
     color: #2fa0ec;
     text-decoration: none;
@@ -45,7 +69,7 @@ a:hover, a:focus {
 }
 
 #choices {
-    margin: 10px 0;
+    margin: 15px 0 -17px;
     li {
         margin: 10px 22px;
         display: inline-block;
@@ -82,12 +106,12 @@ a:hover, a:focus {
 
 
     &#like i {
-        color: $sexyRed;
+        color: $sexyGreen;
         font-size: 3.8em;
     }
 
     &#dislike i {
-        color: $sexyGreen;
+        color: $sexyRed;
         font-size: 2.5em;
     }
 
@@ -115,7 +139,7 @@ ul#cards {
     padding: 20px;
     width: $wrapperWidth;
     margin: 0 auto;
-    height: 400px;
+    height: 300px;
 }
 
 #card-interface {
@@ -132,13 +156,12 @@ ul#cards {
 
     .info-wrapper {
         @include border-radius(0 0 3px 3px);
-        border-top: 2px solid #5090cc;
+        border-top: 2px solid $sexyRed;
         background: #fff;
         position: absolute;
         bottom: 0;
         width: 100%;
-        min-height: 100px;
-        padding: 10px 3px;
+        padding: 10px;
     }
 
     .feedback-icon {
@@ -160,11 +183,15 @@ ul#cards {
 #smash-autocomplete {
     background: #fff;
     line-height: 1.7;
-    padding: 3px 6px;
     outline: none;
     font-size: 1.3em;
     border: none;
     text-align: center;
+    // display: none;
+    width: 0;
+    padding: 0;
+    // padding-left: 1em;
+
 }
 
 input.wrapper.tt-hint {

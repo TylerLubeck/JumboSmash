@@ -1,6 +1,6 @@
 define("search", ["typeahead", "smashers", "cardInterface"], function(typeahead, smashers, cardInterface) {
 
-    $searchbar = $("#smash-autocomplete");
+    var $searchbar = $("#smash-autocomplete");
 
     (function (_) {
         'use strict';
@@ -42,11 +42,12 @@ define("search", ["typeahead", "smashers", "cardInterface"], function(typeahead,
         ).on("typeahead:selected", function(e, suggestion) {
             console.log(suggestion)
             $searchbar.typeahead("val", "")
+            $searchbar.blur()
+            $searchbar.typeahead("blur");
             var s = smashers.getSmasher({id: suggestion.pk});
             s.fetch().success(function() {
                 cardInterface.collection.add(s)
             })
-            console.log(s);
         });
 
     }
