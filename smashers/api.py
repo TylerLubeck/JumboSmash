@@ -70,7 +70,6 @@ class DecisionResource(Resource):
         return {}
 
     def obj_create(self, bundle, **kwargs):
-        print "CREATING"
         bundle.obj = DecisionItem(initial=kwargs)
         bundle = self.full_hydrate(bundle)
         raterprofile = bundle.request.user.userprofile

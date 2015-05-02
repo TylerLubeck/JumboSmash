@@ -39,8 +39,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'smashers',
     'django_extensions',
-    'registration',
     'rest_framework',
+    'registration',
 )
 
 MIDDLEWARE_CLASSES = (
