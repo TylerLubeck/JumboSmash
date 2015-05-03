@@ -9,8 +9,8 @@ from .authorization import DecisionAuthorization, UserAuthorization
 from django.http import Http404
 from tastypie import fields
 from tastypie.resources import ModelResource, Resource
-from tastypie.authentication import SessionAuthentication
-from tastypie.authorization import ReadOnlyAuthorization
+from tastypie.authentication import SessionAuthentication, Authentication
+from tastypie.authorization import ReadOnlyAuthorization, Authorization
 
 
 class CommonMeta(object):
@@ -165,28 +165,34 @@ class MultipartResource(object):
 
         return super(MultipartResource, self).deserialize(request, data, format)
 
+    def put_detail(self, request, **kwargs):
+        content_type = request.META.get('CONTENT_TYPE', '')
+        is_multipart = content_type.startswith('multipart/form-data')
+        if is_multipart and not hasattr(request, '_body'):
+            request._body = ''
+        return super(MultipartResource, self).put_detail(request, **kwargs)
+
+    def patch_detail(self, request, **kwargs):
+        content_type = request.META.get('CONTENT_TYPE', '')
+        is_multipart = content_type.startswith('multipart/form-data')
+        if is_multipart and not hasattr(request, '_body'):
+            request._body = ''
+        return super(MultipartResource, self).patch_detail(request, **kwargs)
+
 
 class UserResource(MultipartResource, ModelResource):
     headshot = fields.FileField(attribute='headshot')
-    class Meta:
+    class Meta(CommonMeta):
         queryset = UserProfile.objects.all()
-        detail_allowed_methods = ['delete', 'post']
-        # authorization = UserAuthorization() #TODO: PUT THIS BACK
-        fields = ['headshot']
+        detail_allowed_methods = ['delete', 'put']
+        list_allowed_methods = []
+        authorization = UserAuthorization()
+        fields = ['headshot', 'id']
 
     def obj_delete(self, bundle, **kwargs):
         user = bundle.request.user
         super(UserResource, self).obj_delete(bundle, **kwargs)
         user.delete()
-
-    def obj_create(self, bundle, **kwargs):
-        print 'CREATING USER HEADSHOT'
-        print kwargs
-        return super(UserResource, self).obj_create(bundle, **kwargs)
-
-    def obj_update(self, bundle, **kwargs):
-        print 'GOT EM'
-        return super(UserResource, self).obj_update(bundle, **kwargs)
 
     def prepend_urls(self):
         return [
