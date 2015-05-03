@@ -3,6 +3,7 @@ Pillow==2.8.1
 Scrapy==0.24.5
 Twisted==15.1.0
 argparse==1.2.1
+boto==2.38.0
 cffi==0.9.2
 cryptography==0.8.2
 cssselect==0.9.1
@@ -13,6 +14,7 @@ django-extensions==1.5.2
 django-imagekit==3.2.6
 django-phonenumber-field==0.7.2
 django-registration-redux==1.1
+django-storages==1.1.8
 -e git+https://github.com/django-tastypie/django-tastypie.git@256ebe1de9a78dfb5d4d6e938b813cf4c5c4ac1b#egg=django_tastypie-master
 django-toolbelt==0.0.1
 enum34==1.0.4
