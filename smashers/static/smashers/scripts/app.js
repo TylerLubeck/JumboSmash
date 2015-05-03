@@ -4,12 +4,11 @@ require.config({
         "underscore"    : "bower_components/underscore/underscore-min",
         "backbone"      : "bower_components/backbone/backbone",
         "animatedModal" : "animatedModal/animatedModal.min",
-        "fileuploader"  : "fileuploader/js/jquery.fileupload",
         "sweetalert"    : "bower_components/sweetalert/lib/sweet-alert.min"
     }
 });
 
-define("app", ["jquery", "underscore", "backbone", "fileuploader"], function($, _, Backbone) {
+define("app", ["jquery", "underscore", "backbone"], function($, _, Backbone) {
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
