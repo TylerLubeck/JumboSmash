@@ -56,12 +56,8 @@
                     <div class="modal-content wrapper">
                         <p>Hi there. Welcome to senior week. We don't have a lot of time left on campus, and we should all strive to make the most of it. Upload a photo of yourself, so your classmates and potential lovers know exactly who they're tangling with.</p>
                         <!-- The file input field used as target for the file upload widget -->
-                        <input id="fileupload" type="file" name="files[]">
-                        <div id="progress" class="progress">
-                            <div class="progress-bar progress-bar-success"></div>
-                        </div>
-                        <!-- The container for the uploaded files -->
-                        <div id="files" class="files"></div>
+                        <input type="file" id="file-select" name="headshots[]"/>
+                        <button id="upload">Upload</button>
                         <nav>
                             <ul>
                                 <!-- <li><span class='center'>{% trans "Logged in" %} as {{ user.username }}</span></li> -->
@@ -87,10 +83,11 @@
                 </div>
             </div>
 
-            <div class="logged-out-content" {% if user.is_authenticated %} style="display: none" {% endif %}>
+            {% if user.is_authenticated|lower == "false" %}
+            <div class="logged-out-content">
                 {% include 'registration/login.html' %}
             </div>
-                
+            {% endif %}
 
         {% endblock %}
 

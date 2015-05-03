@@ -195,7 +195,7 @@ class UserResource(MultipartResource, ModelResource):
         queryset = UserProfile.objects.all()
         detail_allowed_methods = ['delete', 'put']
         authentication = Authentication()
-        authorization = UserAuthorization()
+        authorization = Authorization()
         fields = ['headshot', 'id']
 
     def obj_delete(self, bundle, **kwargs):

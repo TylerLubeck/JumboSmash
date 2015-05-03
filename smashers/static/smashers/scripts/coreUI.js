@@ -7,10 +7,59 @@ define("coreUI", ["smashers", "cardInterface", "upload", "sweetalert", "animated
     var $searchBarTrigger = $(".js-show-searchbar");
     var $matchList = $("#match-list");
     var $logoutButton = $("#logout");
+    var $uploadButton = $("#upload")
+    var fileSelect = document.getElementById('file-select');
     var searchBarOpen = false;
     var cardList = null;
 
     return function() {
+
+        $uploadButton.click(function(){
+            var $this = $(this);
+            $this.text("Uploading...")
+            var files = fileSelect.files;
+            console.log(files)
+            var formData = new FormData();
+            var file = files[0];
+            if (!file) {
+                return;
+            }
+            // Check the file type.
+            if (!file.type.match('image.*')) {
+                return
+            }
+
+            formData.append('headshot', file);
+            var xhr = new XMLHttpRequest();
+            xhr.open("PUT", "/api/v1/user/1514/", true)
+            xhr.onload = function () {
+                if (xhr.status === 200) {
+                    // File(s) uploaded.
+                    var response = JSON.parse(xhr.responseText);
+                    swal({
+                        type: 'success',
+                        title: 'Picture uploaded!',
+                        text: 'Nice work. Get ready for the matches to pour in.',
+                        timer: 4000
+                    })
+                    $this.html('Upload');
+
+                } 
+                else {
+                    alert('An error occurred!');
+                }
+            };
+            xhr.send(formData);
+            // Add the file to the request.
+            // $.ajax({
+            //     url: "/api/v1/user/1/",
+            //     type: "PUT",
+            //     data: FormData
+            // }).success(function(response) {
+            //     console.log(response)
+            // })
+
+        })
 
         $logoutButton.click(function() {
             $.get("/api/v1/user/logout/").success(function(response) {
