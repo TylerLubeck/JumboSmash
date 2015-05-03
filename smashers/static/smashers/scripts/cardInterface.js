@@ -75,7 +75,10 @@ define("cardInterface", ["smashers"], function(smashers) {
                     this.activeCard = this.collection.last();
                     // If there is nothing left in the collection....
                     if (!this.activeCard) {
-                        this.collection.getNextSwipeSet();
+                        this.collection.getNextSwipeSet(function() {
+                            that.$(".loader").hide();
+                        });
+                        this.$(".loader").show();
                     }
                     console.log(this.activeCard)
                 }
@@ -131,11 +134,12 @@ define("cardInterface", ["smashers"], function(smashers) {
         },
         events: {
             "click #like": function() {
-                console.log(this.activeCard.swingCard)
-                this.activeCard.swingCard.throwOut(20, 111)
+                if (this.activeCard)
+                    this.activeCard.swingCard.throwOut(20, 111)
             },
             "click #dislike": function() {
-                this.activeCard.swingCard.throwOut(-20, 111)
+                if (this.activeCard)
+                    this.activeCard.swingCard.throwOut(-20, 111)
             }
         }
 

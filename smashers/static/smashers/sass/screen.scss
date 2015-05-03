@@ -8,6 +8,8 @@
 @import "compass/css3";
 @import "build";
 @import "login";
+@import "../scripts/bower_components/spinkit/scss/spinkit";
+@import "../scripts/bower_components/spinkit/scss/spinners/4-wandering-cubes";
 
 * {
     @include box-sizing(border-box);
@@ -144,6 +146,16 @@ a:hover, a:focus {
 
 #card-interface {
     margin-top: 20px;
+    position: relative;
+
+    .loader {
+        position: absolute;
+        top: 25%;
+        left: 50%;
+        margin-left: -40px;
+        z-index: 999;
+        display: none;
+    }
 }
 
 ul.cards {
@@ -166,14 +178,13 @@ ul.cards {
     z-index: 99;
     background: #fcfcfc;
     overflow: hidden;
+    color: #444;
 
     h2 {
         font-size: 1.3em;
+        border-bottom: 1px solid #ccc;
     }
 
-    h3 {
-        color: $sexyRed;
-    }
 
     img {
         -webkit-user-select: none;  /* Chrome all / Safari all */
@@ -329,7 +340,7 @@ nav ul {
     }
 }
 
-.js-add-picture {
+#js-add-picture {
     text-align: center;
     display: block;
     position: relative;
@@ -339,12 +350,17 @@ nav ul {
 
 .modal {
     padding-top: 50px;
-}
-
-.modal .close-modal {
-    display: block;
-    text-align: center;
-    font-size: 1.6em;
     color: #fff;
-    cursor: pointer;
+
+    p {
+        margin: 20px 0;
+    }
+
+    .close-modal {
+        display: block;
+        text-align: center;
+        font-size: 1.6em;
+        color: #fff;
+        cursor: pointer;
+    }
 }

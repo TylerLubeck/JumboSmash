@@ -1,0 +1,49 @@
+/*
+ *  Usage:
+ *
+ *    <div class="sk-spinner sk-spinner-pulse"></div>
+ *
+ */
+@import "../variables";
+
+.sk-spinner-pulse {
+  &.sk-spinner {
+    width: 80px;
+    height: 80px;
+    margin: $spinkit-spinner-margin;
+    background-color: $sexyRed;
+
+    border-radius: 100%;
+    animation: sk-pulseScaleOut 1.0s infinite ease-in-out;
+    -webkit-animation: sk-pulseScaleOut 1.0s infinite ease-in-out;
+    -moz-animation: sk-pulseScaleOut 1.0s infinite ease-in-out;
+  }
+}
+
+@keyframes sk-pulseScaleOut {
+  0% {
+    transform: scale(0.0);
+  } 100% {
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+
+@-webkit-keyframes sk-pulseScaleOut {
+  0% {
+    transform: scale(0.0);
+  } 100% {
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}
+
+@-moz-keyframes sk-pulseScaleOut {
+  0% {
+    transform: scale(0.0);
+  } 100% {
+    transform: scale(1.0);
+    opacity: 0;
+  }
+}

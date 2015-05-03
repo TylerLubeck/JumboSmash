@@ -52,12 +52,15 @@ define("smashers", ["sweetalert"], function(swal) {
     var Smashers = TastypieCollection.extend({
         model: Smasher,
         url: '/api/v1/smashers',
-        getNextSwipeSet: function() {
+        getNextSwipeSet: function(callback) {
             var that = this
             this.fetch({
                 remove: false
             }).success(function() {
                 console.log(that)
+                if (callback) {
+                    callback(that);
+                }
             }).error(function() {
                 // console.log(arguments);
             }).always(function(){ 

@@ -26,23 +26,44 @@
                 
                 <header class='wrapper'>
                     <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
-                    <i id="demo01" href="#animatedModal" class='header-actions js-show-matches icon-fire'></i>
+                    <i id="show-matches" href="#animatedModal" class='header-actions js-show-matches icon-fire'></i>
                     <img id='logo' src="{% static 'smashers/jsmash.png' %}" />
                     <i class='header-actions js-show-searchbar icon-search3'></i>
-                    <a class='js-add-picture'><i class="icon-plus"></i>Add a picture of you</a>
+                    <a id='js-add-picture' href='#addPictureModal'><i class="icon-plus"></i>Add a picture of you</a>
                 </header>
+    
 
                 <div id="card-interface" class='wrapper'>
+                    <div class="sk-spinner sk-spinner-wandering-cubes loader">
+                       <div class="sk-cube1"></div>
+                       <div class="sk-cube2"></div>
+                    </div>
                     <ul class="cards"></ul>
                     <ul id="choices">
                         <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
                         <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>
                     </ul>
                 </div>
-                <!--Call your modal-->
-             
-                <!--DEMO01-->
-                <div id="animatedModal" class='modal'>
+                    
+                <div id="addPictureModal" class='animatedModal modal animated'>
+                    <div class="close-addPictureModal close-modal icon-cross"> 
+                    </div>
+                        
+                    <div class="modal-content wrapper">
+                        <p>Hi there. Welcome to senior week. We don't have a lot of time left on campus, and we should all strive to make the most of it. Upload a photo of yourself, so your classmates and potential lovers know exactly who they're tangling with.</p>
+                        <span>Add files...</span>
+                        <!-- The file input field used as target for the file upload widget -->
+                        <input id="fileupload" type="file" name="files[]" multiple>
+                        <div id="progress" class="progress">
+                            <div class="progress-bar progress-bar-success"></div>
+                        </div>
+                        <!-- The container for the uploaded files -->
+                        <div id="files" class="files"></div>
+                    </div>
+
+                </div>
+
+                <div id="animatedModal" class='animatedModal modal animated'>
                     <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
                     <div class="close-animatedModal close-modal icon-cross"> 
                     </div>
