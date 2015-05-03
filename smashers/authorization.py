@@ -10,6 +10,9 @@ class UserAuthorization(ReadOnlyAuthorization):
 
     def _is_this_me(self, bundle):
         userprofile = bundle.request.user.userprofile
+        print bundle.obj
+        print userprofile
+        print bundle.obj.pk == userprofile.pk
         if bundle.obj.pk != userprofile.pk:
             raise Unauthorized('This is not your account!')
         else:
