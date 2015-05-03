@@ -25,11 +25,13 @@ class SmasherRegistrationView(RegistrationView):
 class IndexView(View):
     def get(self, request):
         # TODO: Put this code in a Cache block
+        # TODO: Add template variable on if they have an image or not
         people = UserProfile.objects.values('name', 'pk', 'major')
         for p in people:
             p['tokens'] = [p['name'], p['major']]
         serialized_names = json.dumps(list(people))
         context = {
-            'people': serialized_names
+            'people': serialized_names,
+            'has_image': True # TODO: Compute this
         }
         return render(request, 'smashers/index.html', context)
