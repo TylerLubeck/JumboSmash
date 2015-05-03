@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'smashers',
     'django_extensions',
     'registration',
+    'imagekit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -114,6 +115,9 @@ ALLOWED_HOSTS = ['*']
 
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
+
+MEDIA_URL = '/media/'
+MEDiA_ROOT = 'mediafiles'
 
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
