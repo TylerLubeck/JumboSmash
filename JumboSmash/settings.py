@@ -133,7 +133,7 @@ if DEBUG:
     MEDiA_ROOT = 'mediafiles'
 else:
     MEDIA_URL = 'http://{}/'.format(AWS_S3_CUSTOM_DOMAIN)
-    DEFAULT_FILE_STORAGE = 'storages.backend.s3boto.S3BotoStorage'
+    DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
 ACCOUNT_ACTIVATION_DAYS = 7
