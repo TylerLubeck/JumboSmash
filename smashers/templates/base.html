@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/animate.css/3.2.0/animate.min.css">
         <link rel="stylesheet" href="{% static 'smashers/stylesheets/screen.css' %}" />
         <link rel="stylesheet" href="{% static 'smashers/scripts/bower_components/sweetalert/lib/sweet-alert.css' %}" />
         <link rel="stylesheet" href="{% static 'smashers/icomoon/style.css' %}" />
@@ -24,18 +25,31 @@
             {% if user.is_authenticated %}
                 
                 <header class='wrapper'>
-                    <input type='text' name='smash-autocomplete' class='wrapper' placeholder='swipe or search' id='smash-autocomplete' />
-                    <i class='header-actions js-show-searchbar icon-search3'></i>
+                    <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
+                    <i id="demo01" href="#animatedModal" class='header-actions js-show-matches icon-fire'></i>
                     <img id='logo' src="{% static 'smashers/jsmash.png' %}" />
-                    <i class='header-actions js-show-matches icon-fire'></i>
+                    <i class='header-actions js-show-searchbar icon-search3'></i>
+                    <a class='js-add-picture'><i class="icon-plus"></i>Add a picture of you</a>
                 </header>
 
                 <div id="card-interface" class='wrapper'>
-                    <ul id="cards"></ul>
+                    <ul class="cards"></ul>
                     <ul id="choices">
                         <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
                         <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>
                     </ul>
+                </div>
+                <!--Call your modal-->
+             
+                <!--DEMO01-->
+                <div id="animatedModal" class='modal'>
+                    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
+                    <div class="close-animatedModal close-modal icon-cross"> 
+                    </div>
+                        
+                    <div class="modal-content wrapper" id='match-list'>
+                        <ul class="cards"></ul>
+                    </div>
                 </div>
                 <nav class='wrapper'>
                     <ul>

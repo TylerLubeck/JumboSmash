@@ -47,6 +47,7 @@ header {
     left: 0;
     top: 0;
     cursor: pointer;
+    z-index: 11;
 
     &.active-searchbar {
         font-size: 1.5em;
@@ -54,9 +55,10 @@ header {
         left: 6px;
     }
 
-    &:last-of-type {
+    &:first-of-type {
         right: 0;
         left: auto;
+        z-index: 0;
     }
 }
 
@@ -140,7 +142,11 @@ a:hover, a:focus {
 
 }
 
-ul#cards {
+#card-interface {
+    margin-top: 20px;
+}
+
+ul.cards {
     position: relative;
     background: #fff;
     @include border-radius(3px);
@@ -150,22 +156,41 @@ ul#cards {
     height: 300px;
 }
 
-#card-interface {
-    margin-top: 20px;
-}
-
 .smash-card {
+    @include transition(box-shadow .2s ease-in-out);
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
+    z-index: 99;
     background: #fcfcfc;
+    overflow: hidden;
+
+    h2 {
+        font-size: 1.3em;
+    }
+
+    h3 {
+        color: $sexyRed;
+    }
+
+    img {
+        -webkit-user-select: none;  /* Chrome all / Safari all */
+        -moz-user-select: none;     /* Firefox all */
+        -ms-user-select: none;      /* IE 10+ */
+        -webkit-user-drag: none;
+        /* No support for these yet, use at own risk */
+        -o-user-select: none;
+        user-select: none;  
+    }
+
 
     .info-wrapper {
         @include border-radius(0 0 3px 3px);
-        border-top: 2px solid $sexyRed;
+        // border-top: 2px solid $sexyRed;
         background: #fff;
+        background: rgba(255,255,255,.5);
         position: absolute;
         bottom: 0;
         width: 100%;
@@ -176,16 +201,56 @@ ul#cards {
         opacity: 0;
         position: absolute;
         top: 10px;
+        font-size: 1.4em;
 
         &.icon-like {
             right: 10px;
+            color: $sexyGreen
         }
         &.icon-dislike {
             left: 10px;
+            color: $sexyRed;
         }
     }
 
-    .year { float: right; }
+    &.dragging {
+        @include box-shadow(0px 2px 10px #ccc);
+    }
+}
+
+#match-list {
+
+    width: 960px;
+    max-width: 100%;
+    display: none;
+
+    .cards {
+        background: none;
+        max-width: 100%;
+        width: 960px;
+    }
+    
+
+    li.smash-card {
+        position: relative;
+        display: inline-block;
+        vertical-align: top;
+        width: 30%;
+        margin: 20px 1.2%;
+
+    }
+}
+
+@media all and (max-width: 700px) {
+    #match-list li.smash-card {
+        width: 47%;
+    }
+}
+
+@media all and (max-width: 400px) {
+    #match-list li.smash-card {
+        width: 100%;
+    }
 }
 
 #smash-autocomplete {
@@ -197,6 +262,7 @@ ul#cards {
     text-align: center;
     // display: none;
     width: 0;
+    z-index: 11;
     padding: 0;
     // padding-left: 1em;
 
@@ -261,4 +327,24 @@ nav ul {
         text-align: center;
         color: #444;
     }
+}
+
+.js-add-picture {
+    text-align: center;
+    display: block;
+    position: relative;
+    top: 10px;
+    cursor: pointer;
+}
+
+.modal {
+    padding-top: 50px;
+}
+
+.modal .close-modal {
+    display: block;
+    text-align: center;
+    font-size: 1.6em;
+    color: #fff;
+    cursor: pointer;
 }

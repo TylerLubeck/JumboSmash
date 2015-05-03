@@ -24,6 +24,7 @@ define("cardInterface", ["smashers"], function(smashers) {
     var CardItemView = Backbone.View.extend({
         template: _.template($("#single-card").html()),
         className: "smash-card",
+        tagName: 'li',
         initialize: function() {
             this.listenTo(this.model, {
                 remove: function() {
@@ -57,8 +58,14 @@ define("cardInterface", ["smashers"], function(smashers) {
 
     var CardCollectionView = Backbone.View.extend({
         el: "#card-interface",
-        initialize: function() {
+        initialize: function(opts) {
+            var that = this;
             this.stack = gajus.Swing.Stack(stack_config);
+            _.extend(this, {draggable: true}, opts);
+
+            this.collection.each(function(smasher) {
+                that.addCard(smasher);
+            })
 
             this.listenTo(this.collection, {
                 add: function(model, collection, opts) {
@@ -92,28 +99,43 @@ define("cardInterface", ["smashers"], function(smashers) {
         },
         addCard: function(card) {
             var c = new CardItemView({model: card});
-            this.$("#cards").append(c.render().el);
+            this.$(".cards").append(c.render().el);
             c.$el.attr("model-id", card.cid);
             this.activeCard = card;
-            var swingCard = this.stack.createCard(c.el);
-            swingCard.on("dragmove", function(e) {
-                if (e.throwDirection == gajus.Swing.Card.DIRECTION_LEFT)
-                    c.updateDislikeIcon(e.throwOutConfidence);
-                else
-                    c.updateLikeIcon(e.throwOutConfidence);
-            });
-            swingCard.on("throwinend", function() {
-                c._updateFeedBackIcon(0)
-            })
-            card.swingCard = swingCard;
+            if (this.draggable === true) {
+                var swingCard = this.stack.createCard(c.el);
+                swingCard.throwIn(-100, -100)
+
+                swingCard.on("dragstart", function() {
+                    c.$el.addClass("dragging")
+                })
+                swingCard.on("dragend", function() {
+                    c.$el.removeClass("dragging")
+                })
+
+                swingCard.on("dragmove", function(e) {
+                    if (e.throwDirection == gajus.Swing.Card.DIRECTION_LEFT) {
+                        c.updateLikeIcon(0);
+                        c.updateDislikeIcon(e.throwOutConfidence);
+                    }
+                    else {
+                        c.updateLikeIcon(e.throwOutConfidence);
+                        c.updateDislikeIcon(0);
+                    }
+                });
+                swingCard.on("throwinend", function() {
+                    c._updateFeedBackIcon(0)
+                })
+                card.swingCard = swingCard;
+            }
         },
         events: {
             "click #like": function() {
                 console.log(this.activeCard.swingCard)
-                this.activeCard.swingCard.throwOut(gajus.Swing.Card.DIRECTION_RIGHT, 111)
+                this.activeCard.swingCard.throwOut(20, 111)
             },
             "click #dislike": function() {
-                this.activeCard.swingCard.throwOut(gajus.Swing.Card.DIRECTION_LEFT, 111)
+                this.activeCard.swingCard.throwOut(-20, 111)
             }
         }
 
@@ -123,6 +145,12 @@ define("cardInterface", ["smashers"], function(smashers) {
     var activeSetView = new CardCollectionView({collection: activeSmashers});
     activeSmashers.getNextSwipeSet();
 
-    return activeSetView
-
+    return {
+        activeSet: function() {
+            return activeSetView.collection;
+        },
+        getCardList: function(args, opts) {
+            return new CardCollectionView(args, opts);
+        }
+    }
 })

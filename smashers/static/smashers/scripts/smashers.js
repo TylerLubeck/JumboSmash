@@ -31,9 +31,10 @@ define("smashers", ["sweetalert"], function(swal) {
 
                 if (response.match === true) {
                     swal({
-                       title: "Nice work! You have a match!",   
-                        text: "OOOOOH YEAHHHHH! Beat it now, meet up later..",   
-                        type: "success"  
+                       title: "You and " + that.get("name") + " matched!",   
+                        text: "We sent them an email for you ;)",   
+                        type: "success" ,
+                        timer: 2300 
                     })
                 }
             }).
@@ -73,6 +74,11 @@ define("smashers", ["sweetalert"], function(swal) {
         getSmasher: function(args, opts) {
             return new Smasher(args, opts);
         },
+        getMatches: function(callback) {
+            $.getJSON("/api/v1/matches").success(function(response) {
+                callback(new Smashers(response, {parse: true}));
+            })
+        }
     }
 
 });

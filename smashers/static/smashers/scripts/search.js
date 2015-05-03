@@ -46,7 +46,7 @@ define("search", ["typeahead", "smashers", "cardInterface"], function(typeahead,
             $searchbar.typeahead("blur");
             var s = smashers.getSmasher({id: suggestion.pk});
             s.fetch().success(function() {
-                cardInterface.collection.add(s)
+                cardInterface.activeSet().add(s)
             })
         });
 
