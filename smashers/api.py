@@ -98,9 +98,9 @@ class DecisionResource(Resource):
 
             if match:
                 self._notify_users(rater, ratee)
-            else:
-                rater.people_i_dont_like.add(ratee)
-                bundle.obj.match = False
+        else:
+            rater.people_i_dont_like.add(ratee)
+            bundle.obj.match = False
 
         return bundle
 
@@ -201,6 +201,12 @@ class UserResource(MultipartResource, ModelResource):
         user = bundle.request.user
         super(UserResource, self).obj_delete(bundle, **kwargs)
         user.delete()
+
+    def obj_update(self, bundle, **kwargs):
+        retVal = super(UserResource, self).obj_update(bundle, **kwargs)
+        bundle.obj.has_headshot = True
+        bundle.obj.save()
+        return retVal
 
     def prepend_urls(self):
         return [
