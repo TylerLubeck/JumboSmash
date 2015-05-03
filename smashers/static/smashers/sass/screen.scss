@@ -35,7 +35,9 @@ header {
 #logo {
     width: 205px;
     display: block;
-    margin: 0 auto;
+    margin: auto;
+    /* position: relative; */
+    margin-top: -38px;
 }
 .header-actions {
     @include transition(all .2s ease-in-out);
