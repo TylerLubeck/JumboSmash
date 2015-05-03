@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django_extensions',
     'registration',
     'imagekit',
+    'storages',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -113,13 +114,27 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 
+#S3 Setup stuff
+if not DEBUG or True:
+    AWS_STORAGE_BUCKET_NAME = 'jumbosmash'
+    AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
+    AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
+    AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY', None)
+    if AWS_ACCESS_KEY_ID is None or AWS_SECRET_ACCESS_KEY is None:
+        raise Exception('Set your AWS secret keys!')
+
+
 STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
-
-MEDIA_URL = '/media/'
-MEDiA_ROOT = 'mediafiles'
-
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+
+if DEBUG and False:
+    MEDIA_URL = '/media/'
+    MEDiA_ROOT = 'mediafiles'
+else:
+    MEDIA_URL = 'http://{}/'.format(AWS_S3_CUSTOM_DOMAIN)
+    DEFAULT_FILE_STORAGE = 'storages.backend.s3boto.S3BotoStorage'
+
 
 ACCOUNT_ACTIVATION_DAYS = 7
 

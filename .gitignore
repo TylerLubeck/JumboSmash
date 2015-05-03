@@ -1,3 +1,4 @@
+secret_keys.txt
 staticfiles/
 JSmash/
 *.sqlite3

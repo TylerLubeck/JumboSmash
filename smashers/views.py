@@ -39,27 +39,3 @@ class IndexView(View):
         }
         return render(request, 'smashers/index.html', context)
 
-# class UploadImageView(View):
-#     @method_decorator(csrf_exempt)
-#     @method_decorator(login_required)
-#     def dispatch(self, *args, **kwargs):
-#         return super(UploadImageView, self).dispatch(*args, **kwargs)
-#
-#     def post(self, request):
-#         print request.POST, request.FILES
-#         user = request.user
-#         form = ImageUploadForm(request.POST, request.FILES)
-#         print form
-#         if form.is_valid():
-#             headshot = form.cleaned_data['headshot']
-#             if user.has_headshot:
-#                 user.headshot.delete()
-#             user.has_headshot = True
-#             user.headshot = headshot
-#             user.save()
-#             return HttpResponse(status=201)
-#         else:
-#             return HttpResponseBadRequest()
-
-
-
