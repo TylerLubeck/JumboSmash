@@ -31,6 +31,12 @@ header {
     position: relative;
 }
 
+
+#logo {
+    width: 205px;
+    display: block;
+    margin: 0 auto;
+}
 .header-actions {
     @include transition(all .2s ease-in-out);
     color: $sexyRed;

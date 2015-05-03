@@ -15,7 +15,7 @@ define("coreUI", [], function() {
                     width: 300
                 }, 200);
                 $matchButton.fadeOut("fast");
-                $searchBarTrigger.addClass("active-searchbar");
+                $searchBarTrigger.removeClass("icon-search3").addClass("active-searchbar icon-cross");
                 searchBarOpen = true;
             }
             else {
@@ -23,7 +23,7 @@ define("coreUI", [], function() {
                     width: 0
                 }, 200);
                 $matchButton.fadeIn("fast");
-                $searchBarTrigger.removeClass("active-searchbar");
+                $searchBarTrigger.removeClass("active-searchbar icon-cross").addClass("icon-search3");
                 searchBarOpen = false;
             }
         })
