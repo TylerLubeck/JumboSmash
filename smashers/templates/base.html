@@ -56,8 +56,9 @@
                     <div class="modal-content wrapper">
                         <p>Hi there. Welcome to senior week. We don't have a lot of time left on campus, and we should all strive to make the most of it. Upload a photo of yourself, so your classmates and potential lovers know exactly who they're tangling with.</p>
                         <!-- The file input field used as target for the file upload widget -->
-                        <input type="file" id="file-select" name="headshots[]"/>
+                        <input type="file" id="file-select" accept="image/*" name="headshots[]"/>
                         <button id="upload">Upload</button>
+                        <img id='output'>
                         <nav>
                             <ul>
                                 <!-- <li><span class='center'>{% trans "Logged in" %} as {{ user.username }}</span></li> -->
@@ -78,6 +79,7 @@
                     </div>
                         
                     <div class="modal-content wrapper" id='match-list'>
+                        <h2 class="placeholder">You don't have any matches yet! Fear not, and swipe on.</h2>
                         <ul class="cards"></ul>
                     </div>
                 </div>

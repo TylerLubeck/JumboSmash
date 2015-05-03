@@ -115,7 +115,7 @@ ALLOWED_HOSTS = ['*']
 
 
 #S3 Setup stuff
-if not DEBUG or True:
+if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = 'jumbosmash'
     AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
     AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID', None)
@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
-if DEBUG and False:
+if DEBUG:
     MEDIA_URL = '/media/'
     MEDiA_ROOT = 'mediafiles'
 else:

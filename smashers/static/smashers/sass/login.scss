@@ -23,6 +23,7 @@ body {
     left: 50%;
     margin-left: -200px;
     margin-top: -140px;
+    max-width: 100%;
 
 
     input {
@@ -58,5 +59,39 @@ body {
         float: left;
         width: 100%;
     }
+    .account-actions {
+        display: inline-block;
+     }
 }
 
+@media all and (max-width: 400px) {
+    .login-wrap.wrapper {
+        position: relative;
+        width: 95%;
+        top: 100px;
+        left: 0;
+        margin: 0 auto;
+
+        input {
+            width: 100%;
+            border-bottom: 1px solid $sexyRed;
+            margin: 5px 0;
+            float: none;
+        }
+
+        .choice-button {
+            @include border-radius(10px);
+            width: auto;
+            height: 50px;
+            float: right;
+            top: 0;
+            text-align: left;
+            font-size: 1.2rem;
+
+            i::before {
+                content: "Login.";
+                font-family: "Raleway";
+            }
+        }
+    }
+}

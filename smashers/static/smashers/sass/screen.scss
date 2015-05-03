@@ -38,6 +38,10 @@ header {
     position: relative;
 }
 
+h2 {
+    font-size: 1.4em;
+}
+
 
 #logo {
     width: 205px;
@@ -379,9 +383,15 @@ nav ul {
         display: block;
         text-align: center;
         color: #fff;
+        cursor: pointer;
 
         a {
             color: #fff;
+        }
+
+        &:hover, a:hover {
+            color: #fff;
+            text-decoration: underline;
         }
     }
 }
@@ -409,6 +419,10 @@ nav ul {
         font-size: 1.6em;
         color: #fff;
         cursor: pointer;
+    }
+
+    .placeholder {
+        margin-top: 200px;
     }
 }
 

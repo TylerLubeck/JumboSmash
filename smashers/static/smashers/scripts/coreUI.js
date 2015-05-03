@@ -1,4 +1,20 @@
-define("coreUI", ["smashers", "cardInterface", "upload", "sweetalert", "animatedModal"], function(smashers, cardInterface, upload, swal) {
+define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], function(smashers, cardInterface, swal) {
+
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
 
     var $searchbar = $("#smash-autocomplete");
     var $matchButton = $(".js-show-matches");
@@ -14,11 +30,21 @@ define("coreUI", ["smashers", "cardInterface", "upload", "sweetalert", "animated
 
     return function() {
 
+        fileSelect.addEventListener("change", function(e) {
+
+            var reader = new FileReader();
+            reader.onload = function(){
+              var output = document.getElementById('output');
+              output.src = reader.result;
+            };
+            reader.readAsDataURL(e.target.files[0]);
+
+        })
+
         $uploadButton.click(function(){
             var $this = $(this);
             $this.text("Uploading...")
             var files = fileSelect.files;
-            console.log(files)
             var formData = new FormData();
             var file = files[0];
             if (!file) {
@@ -32,6 +58,7 @@ define("coreUI", ["smashers", "cardInterface", "upload", "sweetalert", "animated
             formData.append('headshot', file);
             var xhr = new XMLHttpRequest();
             xhr.open("PUT", "/api/v1/user/1514/", true)
+            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
             xhr.onload = function () {
                 if (xhr.status === 200) {
                     // File(s) uploaded.

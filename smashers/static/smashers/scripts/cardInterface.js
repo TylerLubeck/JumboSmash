@@ -69,6 +69,7 @@ define("cardInterface", ["smashers"], function(smashers) {
 
             this.listenTo(this.collection, {
                 add: function(model, collection, opts) {
+                    this.$(".placeholder").hide();
                     this.addCard(model);
                 },
                 remove: function() {
@@ -79,8 +80,8 @@ define("cardInterface", ["smashers"], function(smashers) {
                             that.$(".loader").hide();
                         });
                         this.$(".loader").show();
+                        this.$(".placeholder").show();
                     }
-                    console.log(this.activeCard)
                 }
             })
 
