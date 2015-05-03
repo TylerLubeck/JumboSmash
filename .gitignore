@@ -18,6 +18,7 @@ build/
 develop-eggs/
 downloads/
 eggs/
+headshots/
 .eggs/
 lib64/
 parts/
