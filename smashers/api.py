@@ -151,6 +151,12 @@ class MatchesResource(Resource):
 
 
 class MultipartResource(object):
+    def _fix_body(self, request):
+        content_type = request.META.get('CONTENT_TYPE', '')
+        is_multipart = content_type.startswith('multipart/form-data')
+        if is_multipart and not hasattr(request, '_body'):
+            request._body = ''
+
     def deserialize(self, request, data, format=None):
         if not format:
             format = request.META.get('CONTENT_TYPE', 'application/json')
@@ -166,26 +172,29 @@ class MultipartResource(object):
         return super(MultipartResource, self).deserialize(request, data, format)
 
     def put_detail(self, request, **kwargs):
-        content_type = request.META.get('CONTENT_TYPE', '')
-        is_multipart = content_type.startswith('multipart/form-data')
-        if is_multipart and not hasattr(request, '_body'):
-            request._body = ''
+        self._fix_body(request)
         return super(MultipartResource, self).put_detail(request, **kwargs)
 
+    def put_list(self, request, **kwargs):
+        self._fix_body(request)
+        return super(MultipartResource, self).put_list(request, **kwargs)
+
     def patch_detail(self, request, **kwargs):
-        content_type = request.META.get('CONTENT_TYPE', '')
-        is_multipart = content_type.startswith('multipart/form-data')
-        if is_multipart and not hasattr(request, '_body'):
-            request._body = ''
+        self._fix_body(request)
         return super(MultipartResource, self).patch_detail(request, **kwargs)
+
+    def patch_list(self, request, **kwargs):
+        self._fix_body(request)
+        return super(MultipartResource, self).patch_list(request, **kwargs)
 
 
 class UserResource(MultipartResource, ModelResource):
     headshot = fields.FileField(attribute='headshot')
+
     class Meta(CommonMeta):
         queryset = UserProfile.objects.all()
         detail_allowed_methods = ['delete', 'put']
-        list_allowed_methods = []
+        authentication = Authentication()
         authorization = UserAuthorization()
         fields = ['headshot', 'id']
 
@@ -225,23 +234,24 @@ class UserResource(MultipartResource, ModelResource):
             if user.is_active:
                 login(request, user)
                 return self.create_response(request, {
-                    'success': True
+                    'success': True,
+                    'user_id': user.userprofile.pk
                 })
             else:
                 return self.create_response(request, {
                     'success': False,
                     'reason': 'disabled',
-                }, HttpForbidden )
+                }, HttpForbidden)
         else:
             return self.create_response(request, {
                 'success': False,
                 'reason': 'incorrect',
-            }, HttpUnauthorized )
+            }, HttpUnauthorized)
 
     def logout(self, request, **kwargs):
         self.method_check(request, allowed=['get'])
         if request.user and request.user.is_authenticated():
             logout(request)
-            return self.create_response(request, { 'success': True })
+            return self.create_response(request, {'success': True})
         else:
-            return self.create_response(request, { 'success': False }, HttpUnauthorized)
+            return self.create_response(request, {'success': False}, HttpUnauthorized)
