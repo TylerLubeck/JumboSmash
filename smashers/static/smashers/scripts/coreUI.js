@@ -1,17 +1,38 @@
-define("coreUI", ["smashers", "cardInterface", "upload", "animatedModal"], function(smashers, cardInterface, upload) {
+define("coreUI", ["smashers", "cardInterface", "upload", "sweetalert", "animatedModal"], function(smashers, cardInterface, upload, swal) {
 
     var $searchbar = $("#smash-autocomplete");
     var $matchButton = $(".js-show-matches");
     var $addPicture = $("#js-add-picture");
+    var $showProfile = $(".js-show-profile")
     var $searchBarTrigger = $(".js-show-searchbar");
     var $matchList = $("#match-list");
+    var $logoutButton = $("#logout");
     var searchBarOpen = false;
+    var cardList = null;
 
     return function() {
+
+        $logoutButton.click(function() {
+            $.get("/api/v1/user/logout/").success(function(response) {
+                swal({
+                    type: "success",
+                    title: "Successfully logged out.",
+                    text: "Get out there and go smash!"
+                });
+                setTimeout(function() {
+                    window.location.href = "/"
+                }, 4000)
+            })
+        })
+
         $matchButton.click(function() {
-            console.log("showing matches")
             smashers.getMatches(function(matches) {
-                var cardList = cardInterface.getCardList({
+                if (cardList != null) {
+                    cardList.stopListening();
+                    cardList.$(".cards").empty()
+                }
+
+                cardList = cardInterface.getCardList({
                     collection: matches, 
                     el: "#match-list",
                     draggable: false
@@ -47,9 +68,13 @@ define("coreUI", ["smashers", "cardInterface", "upload", "animatedModal"], funct
                 $matchList.removeClass("bounceInLeft").addClass("animated bounceOutRight")
             }
         });
-        console.log($addPicture)
+
         $addPicture.animatedModal({
-            modalTarget: "addPictureModal"
+            modalTarget: "updateProfileModal"
+        });
+
+        $showProfile.animatedModal({
+            modalTarget: "updateProfileModal"
         })
     }
 })

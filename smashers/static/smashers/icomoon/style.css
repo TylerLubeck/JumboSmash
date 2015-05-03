@@ -1,10 +1,10 @@
 @font-face {
 	font-family: 'icomoon';
-	src:url('fonts/icomoon.eot?-iutj4f');
-	src:url('fonts/icomoon.eot?#iefix-iutj4f') format('embedded-opentype'),
-		url('fonts/icomoon.woff?-iutj4f') format('woff'),
-		url('fonts/icomoon.ttf?-iutj4f') format('truetype'),
-		url('fonts/icomoon.svg?-iutj4f#icomoon') format('svg');
+	src:url('fonts/icomoon.eot?8pmlhz');
+	src:url('fonts/icomoon.eot?#iefix8pmlhz') format('embedded-opentype'),
+		url('fonts/icomoon.woff?8pmlhz') format('woff'),
+		url('fonts/icomoon.ttf?8pmlhz') format('truetype'),
+		url('fonts/icomoon.svg?8pmlhz#icomoon') format('svg');
 	font-weight: normal;
 	font-style: normal;
 }
@@ -31,8 +31,24 @@
 	content: "\e609";
 }
 
+.icon-location:before {
+	content: "\e947";
+}
+
+.icon-location2:before {
+	content: "\e948";
+}
+
+.icon-compass:before {
+	content: "\e949";
+}
+
 .icon-compass2:before {
 	content: "\e94a";
+}
+
+.icon-user:before {
+	content: "\e971";
 }
 
 .icon-users:before {
@@ -57,6 +73,30 @@
 
 .icon-remove-user:before {
 	content: "\e600";
+}
+
+.icon-chevron-left:before {
+	content: "\e60d";
+}
+
+.icon-chevron-right:before {
+	content: "\e60e";
+}
+
+.icon-chevron-thin-left:before {
+	content: "\e60f";
+}
+
+.icon-chevron-thin-right:before {
+	content: "\e610";
+}
+
+.icon-chevron-with-circle-left:before {
+	content: "\e60b";
+}
+
+.icon-chevron-with-circle-right:before {
+	content: "\e60c";
 }
 
 .icon-emoji-flirt:before {

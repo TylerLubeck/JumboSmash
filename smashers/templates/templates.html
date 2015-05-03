@@ -2,7 +2,7 @@
 <script type='text/template' id='single-card'>
     <i class='feedback-icon icon-like'>LIKE</i>
     <i class='feedback-icon icon-dislike'>DISLIKE</i>
-    <img draggable='false' src="{% static 'smashers/avatar.png' %}" />
+    <img draggable='false' src="<%= user_picture %>" />
     <div class='info-wrapper'>
         <h2><%= name %></h2>
         <h3><%= major %></h3>

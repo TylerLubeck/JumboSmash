@@ -1,9 +1,33 @@
 define("smashers", ["sweetalert"], function(swal) {
     // /api/v1/smashers
+
+    function getMessageGenerator() {
+        var count = 0;
+        var messages = [
+            "We sent <%= name %> an email for you ;)",
+            "Nice! Maybe you and <%= name %> will get married?",
+            "Senior week is only so long. Carpe diem!",
+            "I bet <%= name %> is as excited as you are.",
+            "Somebody get me a towel.",
+            "I'll be in my bunk.",
+            "Think how far you've come since freshman year. Show <%= name %> your skillz!"
+        ]
+
+        return function(name) {
+            count %= messages.length;
+            return _.template(messages[count++])({name: name});
+        }
+    }
+
+    var messsageGenerator = getMessageGenerator();
+
     var Smasher = TastypieModel.extend({
         decisionUrl: '/api/v1/decision/',
         url: function() {
             return "/api/v1/smashers/" + this.id + "/"
+        },
+        defaults: {
+            user_picture: "static/smashers/avatar.png"
         },
         initialize: function() {
 
@@ -29,10 +53,12 @@ define("smashers", ["sweetalert"], function(swal) {
                 that.swingCard.destroy();
                 that.trigger("destroy", that);
 
+                var firstname = that.get("name").split(" ")[0]
+
                 if (response.match === true) {
                     swal({
-                       title: "You and " + that.get("name") + " matched!",   
-                        text: "We sent them an email for you ;)",   
+                       title: "Matched!",   
+                        text: messsageGenerator(firstname),
                         type: "success" ,
                         timer: 2300 
                     })
@@ -57,12 +83,11 @@ define("smashers", ["sweetalert"], function(swal) {
             this.fetch({
                 remove: false
             }).success(function() {
-                console.log(that)
                 if (callback) {
                     callback(that);
                 }
             }).error(function() {
-                // console.log(arguments);
+                console.log(arguments);
             }).always(function(){ 
                 // console.log(arguments)
             });

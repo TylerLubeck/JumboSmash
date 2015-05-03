@@ -1,24 +1,62 @@
-@import "build";
+@import url("http://fonts.googleapis.com/css?family=Raleway:200,500,700,800");
+@import "compass/reset";
 @import "compass/css3";
+@import "build";
 
-$width: 500px;
-$height: 170px;
+body {
+    background-color: #f9fcf7; // Old browsers
+    @include filter-gradient(#f9fcf7, #f5f9f0, vertical); // IE6-9
+    @include background-image(linear-gradient(top,  #f9fcf7 0%,#f5f9f0 100%));
+    font-family: "Raleway", sans-serif;
+}
 
-.login-wrap {
+.login-wrap.wrapper { 
     @include border-radius(3px);
-    padding: 15px;
-    border: 1px solid #ddd;
-    width: $width;
-    height: $height;
-    display: block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    margin-left: -$width/2;
-    margin-top: -$height/2;
+    @include box-shadow(0px 2px 5px #888);
     background: #fff;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-top: 3px solid $sexyRed;
+    position: absolute;
+    width: 400px;
+    top: 50%;
+    left: 50%;
+    margin-left: -200px;
+    margin-top: -140px;
 
-    .account-actions {
-        color: $tuftsBlue;
+
+    input {
+        @include box-shadow(inset 0px 1px 3px #ccc);
+        @include border-radius(6px);
+        font-family: 'Raleway', sans-serif;
+        font-size: 1em;
+        display: inline-block;
+        padding: 7px 10px;
+        width: 70%;
+        border: 1px solid transparent;
+        margin: 3px 0;
+        outline: none;
+        line-height: 1.4;
+    
+
+        &:focus {
+            @include box-shadow(inset 0px 2px 5px #ccc);
+        }
+    }
+
+    .choice-button {
+        float: right;
+        font-size: 2.6em;
+        vertical-align: top;
+        color: $sexyRed;
+        position: relative;
+        top: -37px;
+        line-height: 1.8;
+    }
+
+    .inputs {
+        float: left;
+        width: 100%;
     }
 }
+

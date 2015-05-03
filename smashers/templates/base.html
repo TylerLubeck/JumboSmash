@@ -11,25 +11,28 @@
         <title>{% block title %}User test{% endblock %}</title>
         <script type="text/javascript">
             window.people = {{ people|safe }};
+            {% if user.is_authenticated %} 
+                window.authenticated = true;
+            {% endif %}
             var require = {
                 baseUrl: "{% static 'smashers/scripts' %}",
                 waitSeconds: 15,
                 urlArgs : "bust="+ new Date().getTime()
             };
+
         </script>
     </head>
     <body>
         {% block header %}
             <!-- <a href="{% url 'index' %}">{% trans "Home" %}</a> | -->
 
-            {% if user.is_authenticated %}
-                
+            <div class='logged-in-content' {% if user.is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
                 <header class='wrapper'>
                     <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
-                    <i id="show-matches" href="#animatedModal" class='header-actions js-show-matches icon-fire'></i>
+                    <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
                     <img id='logo' src="{% static 'smashers/jsmash.png' %}" />
                     <i class='header-actions js-show-searchbar icon-search3'></i>
-                    <a id='js-add-picture' href='#addPictureModal'><i class="icon-plus"></i>Add a picture of you</a>
+                    <!-- <a id='js-add-picture' href='#updateProfileModal'><i class="icon-plus"></i>Add a picture of you</a> -->
                 </header>
     
 
@@ -41,24 +44,34 @@
                     <ul class="cards"></ul>
                     <ul id="choices">
                         <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
+                        <li class='show-matches-wrapper'><button id='show-matches' href="#animatedModal"><i class='js-show-matches icon-fire'></i></button></li>
                         <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>
                     </ul>
                 </div>
-                    
-                <div id="addPictureModal" class='animatedModal modal animated'>
-                    <div class="close-addPictureModal close-modal icon-cross"> 
+
+                <div id="updateProfileModal" class='animatedModal modal animated'>
+                    <div class="close-updateProfileModal close-modal icon-cross"> 
                     </div>
                         
                     <div class="modal-content wrapper">
                         <p>Hi there. Welcome to senior week. We don't have a lot of time left on campus, and we should all strive to make the most of it. Upload a photo of yourself, so your classmates and potential lovers know exactly who they're tangling with.</p>
-                        <span>Add files...</span>
                         <!-- The file input field used as target for the file upload widget -->
-                        <input id="fileupload" type="file" name="files[]" multiple>
+                        <input id="fileupload" type="file" name="files[]">
                         <div id="progress" class="progress">
                             <div class="progress-bar progress-bar-success"></div>
                         </div>
                         <!-- The container for the uploaded files -->
                         <div id="files" class="files"></div>
+                        <nav>
+                            <ul>
+                                <!-- <li><span class='center'>{% trans "Logged in" %} as {{ user.username }}</span></li> -->
+                                <li><a class='center' id='logout'>{% trans "Log out" %}</a></li>
+                                <li><a class='center' href="{% url 'auth_password_change' %}">{% trans "Change Password" %}</a></li>
+                                <li><a class='center' href="#deactivate">{% trans "Deactivate Account" %}</a></li>
+
+                            </ul>
+                        </nav>
+
                     </div>
 
                 </div>
@@ -72,19 +85,12 @@
                         <ul class="cards"></ul>
                     </div>
                 </div>
-                <nav class='wrapper'>
-                    <ul>
-                        <li>{% trans "Logged in" %} as {{ user.username }}</li>
-                        <li><a href="{% url 'auth_logout' %}">{% trans "Log out" %}</a> </li>
-                        <li><a href="{% url 'auth_password_change' %}">{% trans "Change password" %}</a></li>
-                    </ul>
-                </nav>
+            </div>
 
-            {% else %}
-
+            <div class="logged-out-content" {% if user.is_authenticated %} style="display: none" {% endif %}>
                 {% include 'registration/login.html' %}
+            </div>
                 
-            {% endif %}
 
         {% endblock %}
 

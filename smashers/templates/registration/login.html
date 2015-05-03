@@ -1,19 +1,35 @@
+{% load staticfiles %}
 {% load i18n %}
 
 {% block content %}
-    <div class="login-wrap">
-        <form method="post" action="{% url 'auth_login' %}">
+    <link rel="stylesheet" id="login-stylesheet" href="{% static 'smashers/stylesheets/login.css' %}" />
+    <div class="wrapper login-wrap">
+      <!-- /accounts/login  = {% url 'auth_login' %}-->
           {% csrf_token %} 
           {{ form.as_p }}
+          <div class='login-inputs'>
+            <input type='text' name='username' placeholder='tufts.edu email address' />
+            <input type='password' name='password' placeholder='password' />
+            <button id='login-submit' class='choice-button'><i class="icon-chevron-thin-right"></i></button>
+            <input type="hidden" name="next" value="{{ next }}" />
+          </div>
 
-          <input type='text' name='email' placeholder='tufts.edu email address' />
-          <input type='password' name='password' placeholder='password' />
-          <input id='login' type="submit" value="{% trans 'Log in' %}" />
-          <input type="hidden" name="next" value="{{ next }}" />
-        </form>
+          <a class='account-actions' href="{% url 'auth_password_reset' %}">{% trans "Reset Password" %}</a>
+          <a class='account-actions' id='open-registration' href="#registrationModal">{% trans "Register" %}</a>! 
 
-        <a class='account-actions' href="{% url 'auth_password_reset' %}">{% trans "Reset Password" %}</a>
-        <a class='account-actions' href="{% url 'registration_register' %}">{% trans "Register" %}</a>! 
+          <div id='registrationModal' class='animatedModal modal animated'>
+            <div class="close-registrationModal close-modal icon-cross"> 
+            <div class="modal-content wrapper">
+              {% csrf_token %}
+              {{ form.as_p }}
+              <input type="text" name='username' placeholder='username'>
+              <input type="text" name='email' type='email' placeholder='email'>
+              <input type="password" name='password1' placeholder='password'>
+              <input type="password" name='password2' placeholder='confirm password'>
+              <button id='register'>Register</button>
+            </div>
+          </div>
     </div>
+
 
 {% endblock %}
