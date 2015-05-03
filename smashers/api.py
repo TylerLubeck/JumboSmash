@@ -1,5 +1,5 @@
 from .models import UserProfile
-from .authorization import DecisionAuthorization
+from .authorization import DecisionAuthorization, UserAuthorization
 from django.http import Http404
 from tastypie import fields
 from tastypie.resources import ModelResource, Resource
@@ -17,7 +17,9 @@ class UserProfileResource(ModelResource):
     class Meta(CommonMeta):
         resource_name = 'smashers'
         queryset = UserProfile.objects.all()
-        allowed_methods = ['get']
+        authorization = UserAuthorization()
+        list_allowed_methods = ['get']
+        detail_allowed_methods = ['get', 'delete']
         fields = ['class_year', 'name', 'major', 'id']
         limit = 20
 
@@ -29,8 +31,14 @@ class UserProfileResource(ModelResource):
         dont_show = list(like) + list(dont_like)
 
         # Filter out people I've already rated
-        obj_list = super(UserProfileResource, self).obj_get_list(bundle, **kwargs)
+        obj_list = super(UserProfileResource, self).obj_get_list(bundle,
+                                                                 **kwargs)
         return obj_list.order_by('?').exclude(pk__in=dont_show)
+
+    def obj_delete(self, bundle, **kwargs):
+        user = bundle.request.user
+        super(UserProfileResource, self).obj_delete(bundle, **kwargs)
+        user.delete()
 
 
 class DecisionItem(object):
@@ -74,25 +82,25 @@ class DecisionResource(Resource):
     def obj_create(self, bundle, **kwargs):
         bundle.obj = DecisionItem(initial=kwargs)
         bundle = self.full_hydrate(bundle)
-        raterprofile = bundle.request.user.userprofile
+        rater = bundle.request.user.userprofile
         try:
-            rated_person = UserProfile.objects.get(pk=bundle.obj.user_id)
+            ratee = UserProfile.objects.get(pk=bundle.obj.user_id)
         except UserProfile.DoesNotExist:
             raise Http404("Sorry, no user found")
 
         # Remove the person in case they've already been rated
-        raterprofile.people_i_like.remove(rated_person)
-        raterprofile.people_i_dont_like.remove(rated_person)
+        rater.people_i_like.remove(ratee)
+        rater.people_i_dont_like.remove(ratee)
 
         if bundle.obj.like:
-            raterprofile.people_i_like.add(rated_person)
-            match = rated_person.people_i_like.filter(pk=raterprofile.pk).exists()
+            rater.people_i_like.add(ratee)
+            match = ratee.people_i_like.filter(pk=rater.pk).exists()
             bundle.obj.match = match
 
             if match:
-                self._notify_users(raterprofile, rated_person)
+                self._notify_users(rater, ratee)
         else:
-            raterprofile.people_i_dont_like.add(rated_person)
+            rater.people_i_dont_like.add(ratee)
             bundle.obj.match = False
 
         return bundle
