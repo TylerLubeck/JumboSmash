@@ -22,6 +22,7 @@ user_activated.connect(associate_profile)
 
 class SmasherRegistrationView(RegistrationView):
     form_class = SmasherRegistrationForm
+    success_url = '/?reg=true'
 
 
 class IndexView(View):
