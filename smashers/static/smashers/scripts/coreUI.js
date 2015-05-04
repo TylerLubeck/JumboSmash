@@ -31,7 +31,9 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
                   var output = document.getElementById('output');
                   output.src = reader.result;
                 };
-                reader.readAsDataURL(e.target.files[0]);
+                if (e.target.files[0]) {
+                    reader.readAsDataURL(e.target.files[0]);
+                }
             },
             "click .js-upload": function(e) {
                 var $this = $(e.currentTarget);

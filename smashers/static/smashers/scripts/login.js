@@ -7,7 +7,7 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
         modalTarget: "registrationModal"
     });
 
-    $loginWrap.find(".inputs input").keydown(function(e) {
+    $loginWrap.find(".login-inputs input").keydown(function(e) {
         var key = e.keyCode || e.which;
         if (key === 13) {
             tryLogin();
@@ -74,7 +74,6 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
                 });
             }
         }).error(function(response) {
-            console.log(response)
             swal({
                 type: "error",
                 title: "Make sure you register!",

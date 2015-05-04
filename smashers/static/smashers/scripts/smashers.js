@@ -74,7 +74,11 @@ define("smashers", ["sweetalert"], function(swal) {
                         text: messageGenerator(firstname),
                         type: "success" ,
                         timer: 2300 
-                    })
+                    });
+                    // Sorry :(
+                    var matches = parseInt($("#num-matches").text());
+                    $("#num-matches").text(++matches)
+
                 }
             }).
             error(function() {

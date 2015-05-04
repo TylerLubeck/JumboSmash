@@ -3,7 +3,7 @@
 
 {% block content %}
     <link rel="stylesheet" id="login-stylesheet" href="{% static 'smashers/stylesheets/login.css' %}" />
-    <div class="wrapper login-wrap">
+    <div class="wrapper login-wrap clearfix">
           {% csrf_token %} 
           {{ form.as_p }}
           <div class='login-inputs'>
@@ -14,7 +14,7 @@
             <input type="hidden" name="next" value="{{ next }}" />
           </div>
 
-          <a class='account-actions' href="{% url 'auth_password_reset' %}">{% trans "Reset Password" %}</a>
+          <a class='account-actions' id='reset' href="{% url 'auth_password_reset' %}">{% trans "Reset Password" %}</a>
           <a id='open-registration' class='animated bounce choice-button button-regular' href="#registrationModal">Register <i class='icon-heart'></i></a>
 
           <div id='registrationModal' class='animatedModal modal animated no-alpha'>
