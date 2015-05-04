@@ -127,7 +127,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
                 });
                 setTimeout(function() {
                     window.location.href = "/"
-                }, 4000)
+                }, 1000)
             })
         })
 

@@ -241,9 +241,14 @@ class UserResource(MultipartResource, ModelResource):
         if user:
             if user.is_active:
                 login(request, user)
+                print user.userprofile
                 return self.create_response(request, {
                     'success': True,
-                    'user_id': user.userprofile.pk
+                    'user': {
+                        "id" : user.userprofile.pk,
+                        "name": user.userprofile.name,
+                        "has_headshot": user.userprofile.has_headshot
+                    }
                 })
             else:
                 return self.create_response(request, {

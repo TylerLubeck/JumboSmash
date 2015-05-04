@@ -67,12 +67,16 @@ define("login", ["sweetalert", "cardInterface", "smashers", "animatedModal"], fu
         }).success(function(response) {
             console.log(response);
             if (response.success === true) {
-                $(".logged-out-content").fadeOut("fast", function() {
-                    $("#login-stylesheet").remove();
-                    $(".logged-in-content").fadeIn("fast", function() {
-                        cardInterface.activeSet().getNextSwipeSet();
-                    });
-                });
+                $.get("/api/v1/smashers/" + 1514 +"/").success(function(user) {
+                    console.log(user)
+                    $(".logged-out-content").fadeOut("fast", function() {
+                        $("#login-stylesheet").remove();
+                        $(".logged-in-content").fadeIn("fast", function() {
+                            cardInterface.activeSet().getNextSwipeSet();
+                        });
+                    });    
+                })
+                
             }
         }).error(function(response) {
             swal({
