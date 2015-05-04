@@ -165,6 +165,7 @@ class MatchesResource(Resource):
     major = fields.CharField(attribute='major')
     class_year = fields.IntegerField(attribute='class_year')
     pk = fields.IntegerField(attribute='pk')
+    headshot = fields.FileField(attribute='headshot')
 
     class Meta(CommonMeta):
         list_allowed_methods = ['get']
