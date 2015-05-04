@@ -27,6 +27,10 @@ class UserProfileResource(ModelResource):
         fields = ['class_year', 'name', 'major', 'id']
         limit = 20
 
+    def obj_get(self, bundle, **kwargs):
+        profile = bundle.request.user.userprofile
+        return profile
+
     def obj_get_list(self, bundle, **kwargs):
         # Figure out who I've already rated
         profile = bundle.request.user.userprofile
@@ -143,7 +147,6 @@ class MatchesResource(Resource):
         my_profile = request.user.userprofile
         i_like = my_profile.people_i_like.all()
         like_me = my_profile.people_like_me.all()
-        print i_like & like_me
         return i_like & like_me
 
     def obj_get_list(self, bundle, **kwargs):

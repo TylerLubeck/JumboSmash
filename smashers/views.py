@@ -20,7 +20,6 @@ def associate_profile(sender, user, request, **kwargs):
 
 user_activated.connect(associate_profile)
 
-
 class SmasherRegistrationView(RegistrationView):
     form_class = SmasherRegistrationForm
 
