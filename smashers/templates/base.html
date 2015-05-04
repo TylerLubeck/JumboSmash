@@ -86,6 +86,9 @@
         {% include 'templates.html' %}
         <p class="wrapper center disclaimer">Use this app at your own risk. The owners are not liable for anything that occurs here. If you have concerns, contact us <a href="mailto:jumbosmashers@gmail.com">here.</a></p>
         <script src="{% static 'smashers/scripts/swingfull.js' %}"></script>
-        <script src="{% static 'smashers/scripts/require.min.js' %}" data-main="app"></script>
+        <script src="{% static 'smashers/scripts/require.min.js' %}"></script>
+        <script src="{% static 'smashers/scripts/app-built.js' %}"></script>
+        <script type="text/javascript">require(["app"]);</script>
+
     </body>
 </html>
