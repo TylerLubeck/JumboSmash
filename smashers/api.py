@@ -27,9 +27,6 @@ class UserProfileResource(ModelResource):
         fields = ['class_year', 'name', 'major', 'id']
         limit = 20
 
-    def obj_get(self, bundle, **kwargs):
-        return bundle.request.user.userprofile;
-
     def obj_get_list(self, bundle, **kwargs):
         # Figure out who I've already rated
         profile = bundle.request.user.userprofile

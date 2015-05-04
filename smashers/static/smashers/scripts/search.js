@@ -45,7 +45,10 @@ define("search", ["typeahead", "smashers", "cardInterface"], function(typeahead,
             $searchbar.blur()
             $searchbar.typeahead("blur");
             var s = smashers.getSmasher({id: suggestion.pk});
+            console.log(s)
+            debugger
             s.fetch().success(function() {
+                console.log(s)
                 cardInterface.activeSet().add(s)
             })
         });
