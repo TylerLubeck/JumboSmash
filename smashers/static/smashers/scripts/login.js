@@ -7,7 +7,7 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
         modalTarget: "registrationModal"
     });
 
-    $loginWrap.find("input").keydown(function(e) {
+    $loginWrap.find(".inputs input").keydown(function(e) {
         var key = e.keyCode || e.which;
         if (key === 13) {
             tryLogin();
@@ -24,7 +24,7 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
         $inputs.each(function() {
             var $this = $(this)
             name = $this.attr("name");
-            val = $this.val();
+            val = $this.val().toLowerCase().trim();
 
             // if((name == "password" || name == "username") && val === "") {
             //     flag = true;
@@ -83,15 +83,69 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
         })
     }
 
+    var failmessage = "Either we don't have your email in our database, or someone has already registered that address. Check the email address for a registration link. Search your spam folder.";
+
     var tryRegistration = function() {
-        console.log("tolo")
+        var $this = $(this);
+        var $form = $this.closest(".form");
+        console.log($form)
+        var toSend = {}
+        var flag = false;
+        $form.children("input").each(function() {
+            var $t = $(this);
+            var val = $t.val().toLowerCase().trim();
+            var name = $t.attr("name");
+            toSend[name] = val;
+            if (val === "") {
+                flag = true;
+                swal({
+                    type: "error",
+                    title: "You can't leave any fields blank.",
+                    timer: 2000
+                })
+            }
+        });
+
+        if (toSend.password1 !== toSend.password2) {
+            swal({
+                type: "error",
+                title: "Passwords don't match",
+                text: "You need to make your passwords match!",
+                timer: 2000
+            });
+            flag = true;
+        }
+
+        if (flag === false) {
+            $.post("/accounts/register/", toSend, function(response) {
+                if (response == 0) {
+                    swal({
+                        type: "error",
+                        title: "Something went wrong",
+                        text: failmessage
+                    })
+                }
+                else {
+                    swal({
+                        type: "success",
+                        title: "Nice! Check your email!",
+                        text: "Check your email for a validation link! Then you can get 'smashing' ;)"
+                    })
+                }
+            }, 'json').error(function(response){
+                swal({
+                    type: "error",
+                    title: "Something went wrong",
+                    text: failmessage
+                })
+            })
+        }
+
     }
 
     $loginButton.click(tryLogin);
 
     var $registerButton = $("#register");
-
-    console.log($registerButton)
 
     $registerButton.click(tryRegistration);
 });

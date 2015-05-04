@@ -23,11 +23,13 @@
               <p>Once you register, a validation link will be sent to your tufts.edu email address, if we recognize the email.</p>
               {% csrf_token %}
               {{ form.as_p }}
-              <input type="text" name='username' placeholder='username'>
-              <input type="text" name='email' type='email' placeholder='tufts.edu email address'>
-              <input type="password" name='password1' placeholder='password'>
-              <input type="password" name='password2' placeholder='confirm password'>
-              <button class='choice-button button-regular' id='register'>Register</button>
+              <div class="form">
+                <input tabindex='0' type="text" name='username' placeholder='username'>
+                <input tabindex='0' type="text" name='email' type='email' placeholder='tufts.edu email address'>
+                <input tabindex='0' type="password" name='password1' placeholder='password'>
+                <input tabindex='0' type="password" name='password2' placeholder='confirm password'>
+                <button class='choice-button button-regular' id='register'>Register</button>
+              </div>
             </div>
           </div>
     </div>
