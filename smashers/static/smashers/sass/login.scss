@@ -3,6 +3,12 @@
 @import "compass/css3";
 @import "build";
 
+*, *:after, *:before { -webkit-box-sizing: border-box; box-sizing: border-box; }
+.clearfix:before, .clearfix:after { content: ''; display: table; }
+.clearfix:after { clear: both; }
+
+
+
 body {
     background-color: #f9fcf7; // Old browsers
     @include filter-gradient(#f9fcf7, #f5f9f0, vertical); // IE6-9
@@ -118,6 +124,7 @@ body {
         position: relative;
         width: 95%;
         top: 100px;
+        height: auto;
         left: 0;
         margin: 0 auto;
 
@@ -136,11 +143,23 @@ body {
             top: 0;
             text-align: left;
             font-size: 1.2rem;
+        }
 
-            i::before {
-                content: "Login.";
-                font-family: "Raleway";
-            }
+        #open-registration {
+            line-height: 3rem;
+            float: left;
+            width: 45%;
+            margin-right: 10px;
+            color: $sexyGreen;
+        }
+    
+        #reset {
+            position: absolute;
+            top: 108%;
+            left: 0;
+            width: 100%;
+            display: block;
+            text-align: center;
         }
     }
 
