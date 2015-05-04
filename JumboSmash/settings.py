@@ -154,3 +154,6 @@ EMAIL_HOST_PASSWORD = os.environ.get('JUMBOSMASHERS_PW', None)
 if EMAIL_HOST_PASSWORD is None and not DEBUG:
     raise Exception ('No email password found!')
 DEFAULT_FROM_EMAIL = 'jumbosmashers@gmail.com'
+
+LOGIN_REDIRECT_URL = '/'
+
