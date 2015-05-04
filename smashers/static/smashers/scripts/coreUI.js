@@ -26,7 +26,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
             "change #file-select": function(e) {
                 var that = this;
                 var reader = new FileReader();
-                this.$(".js-upload").text("Click to finalize your picture!").show().addClass("animated bounce")
+                this.$(".js-upload").text("Click to finalize your picture!").show().removeClass("animated bounce").addClass("animated bounce")
                 reader.onload = function(){
                   var output = document.getElementById('output');
                   output.src = reader.result;

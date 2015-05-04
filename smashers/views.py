@@ -34,16 +34,16 @@ class IndexView(View):
 
         if not user.is_anonymous() and user.is_authenticated():
             profile = user.userprofile
-            i_like = len(profile.people_i_like.all())
-            like_me = len(profile.people_like_me.all())
+            i_like = profile.people_i_like.all()
+            like_me = profile.people_like_me.all()
 
             user_info = {
                 "id": profile.pk,
                 "is_authenticated": True,
                 "name": profile.name,
                 "has_headshot": profile.has_headshot,
-                "headshot": str(profile.headshot),
-                "num_matches": i_like & like_me
+                "headshot": str(profile.headshot)
+                # "num_matches": list(i_like) & list(like_me)
             }
 
         

@@ -3,6 +3,7 @@ from django.contrib.auth import authenticate, login, logout
 from tastypie.http import HttpUnauthorized, HttpForbidden
 from django.conf.urls import url
 from tastypie.utils import trailing_slash
+import json
 
 from .models import UserProfile
 from .authorization import DecisionAuthorization, UserAuthorization
@@ -26,6 +27,20 @@ class UserProfileResource(ModelResource):
         allowed_methods = ['get']
         fields = ['class_year', 'name', 'major', 'id']
         limit = 20
+        test = True
+
+    def dehydrate(self, bundle):
+        current_user = bundle.request.user.userprofile;
+        status = 0;
+        id = bundle.data["id"]
+        status = 1 if current_user.people_i_like.filter(pk=id).exists() else status
+        status = 2 if current_user.people_i_dont_like.filter(pk=id).exists() else status
+        # TODO: Add match status - need to figure out how to access bundle info
+        # if status is 1 and bundle.people_i_like.filter(pk=current_user.pk).exists():
+            # status = 3
+        bundle.data["status"] = status;
+
+        return bundle.data;
 
     def obj_get_list(self, bundle, **kwargs):
         # Figure out who I've already rated
@@ -236,8 +251,8 @@ class UserResource(MultipartResource, ModelResource):
                                 password=password)
         if user:
             profile = user.userprofile
-            i_like = len(profile.people_i_like.all())
-            like_me = len(profile.people_like_me.all())
+            i_like = profile.people_i_like.all()
+            like_me = profile.people_like_me.all()
             if user.is_active:
                 login(request, user)
                 return self.create_response(request, {
