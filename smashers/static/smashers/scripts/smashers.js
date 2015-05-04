@@ -30,7 +30,8 @@ define("smashers", ["sweetalert"], function(swal) {
         },
         defaults: {
             headshot: "static/smashers/avatar.png",
-            has_headshot: false
+            has_headshot: false,
+            num_matches: 0
         },
         parse: function(response) {
             if (!response.headshot) {
@@ -113,13 +114,14 @@ define("smashers", ["sweetalert"], function(swal) {
         },
         getMatches: function(callback) {
             $.getJSON("/api/v1/matches").success(function(response) {
-                callback(new Smashers(response, {parse: true}));
+                (callback || $.noop)(new Smashers(response, {parse: true}));
             })
         },
         // Expects a plain object, returns smasher
         setActiveUser: function(user) {
             return activeUser = new Smasher(user, {parse: true});
         },
+        // returns smasher model
         getActiveUser: function() {
             return activeUser;
         }

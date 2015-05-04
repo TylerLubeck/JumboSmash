@@ -57,7 +57,7 @@ define("app", ["jquery", "underscore", "backbone"], function($, _, Backbone) {
 
     var login = require(["login"]);
     require(["smashers"], function(smashers) {
-       if (!_.isUndefined(window.user)) {
+       if (!_.isUndefined(window.user) && !window.user.error) {
             smashers.setActiveUser(window.user);
        }
     });
@@ -65,6 +65,11 @@ define("app", ["jquery", "underscore", "backbone"], function($, _, Backbone) {
     require(["search"], function(search) {
         search(window.people)
     });
-    require(["coreUI"], function(ui) { ui(); })
+    require(["coreUI"], function(ui) { 
+        ui.init(); 
+        if (window.user && !window.user.error) {
+            ui.setNumMatches(window.user.num_matches);
+        }
+    })
 
 })

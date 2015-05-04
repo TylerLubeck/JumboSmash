@@ -1,4 +1,4 @@
-define("login", ["sweetalert", "cardInterface", "smashers", "animatedModal"], function(swal, cardInterface, smashers) {
+define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedModal"], function(swal, cardInterface, smashers, ui) {
 
     var $loginWrap = $(".login-wrap");
     var $openRegistrationButton = $("#open-registration");
@@ -67,6 +67,7 @@ define("login", ["sweetalert", "cardInterface", "smashers", "animatedModal"], fu
         }).success(function(response) {
             if (response.success === true) {
                 smashers.setActiveUser(response.user);
+                // ui.setNumMatches(response.user.num_matches)
                 $(".logged-out-content").fadeOut("fast", function() {
                     $("#login-stylesheet").remove();
                     $(".logged-in-content").fadeIn("fast", function() {

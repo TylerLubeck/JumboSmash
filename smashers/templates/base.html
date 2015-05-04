@@ -26,8 +26,7 @@
     <body>
         {% block header %}
             <!-- <a href="{% url 'index' %}">{% trans "Home" %}</a> | -->
-
-            <div class='logged-in-content' {% if user.is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
+            <div class='logged-in-content' {% if is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
                 <header class='wrapper'>
                     <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
                     <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
@@ -45,7 +44,12 @@
                     <ul class="cards"></ul>
                     <ul id="choices">
                         <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
-                        <li class='show-matches-wrapper'><button id='show-matches' href="#animatedModal"><i class='js-show-matches icon-fire'></i></button></li>
+                        <li class='show-matches-wrapper'>
+                            <button id='show-matches' href="#animatedModal">
+                                <i class='js-show-matches icon-fire'></i>
+                                <span id="num-matches"></span>
+                            </button>
+                        </li>
                         <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>
                     </ul>
                 </div>
@@ -71,7 +75,7 @@
                 </div>
             </div>
 
-            {% if user.is_authenticated|lower == "false" %}
+            {% if is_authenticated|lower == "false" %}
             <div class="logged-out-content">
                 {% include 'registration/login.html' %}
             </div>

@@ -29,24 +29,32 @@ class IndexView(View):
         # TODO: Put this code in a Cache block
         # TODO: Add template variable on if they have an image or not
         # up = UserProfile.objects.get(email__iexact=email)
-        profile = request.user.userprofile
-        user_info = {"error": "Not authenticated"}
+        user = request.user
+        user_info = {"error": "Not authenticated", "is_authenticated": False}
 
-        if profile:
+        if not user.is_anonymous() and user.is_authenticated():
+            profile = user.userprofile
+            i_like = len(profile.people_i_like.all())
+            like_me = len(profile.people_like_me.all())
+
             user_info = {
                 "id": profile.pk,
+                "is_authenticated": True,
                 "name": profile.name,
                 "has_headshot": profile.has_headshot,
-                "headshot": str(profile.headshot)
+                "headshot": str(profile.headshot),
+                "num_matches": i_like + like_me
             }
 
+        
         people = UserProfile.objects.values('name', 'pk', 'major')
         for p in people:
             p['tokens'] = [p['name'], p['major']]
         serialized_names = json.dumps(list(people))
         context = {
             'people': serialized_names,
-            'user': json.dumps(user_info)
+            'user': json.dumps(user_info),
+            'is_authenticated': user.is_authenticated()
         }
         return render(request, 'smashers/index.html', context)
 

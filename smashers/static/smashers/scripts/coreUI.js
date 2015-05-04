@@ -122,9 +122,8 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
     var searchBarOpen = false;
     var cardList = null;
 
-    return function() {
-
-        $matchButton.click(function() {
+    function init() {
+         $matchButton.click(function() {
             smashers.getMatches(function(matches) {
                 if (cardList != null) {
                     cardList.stopListening();
@@ -181,5 +180,14 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
                 $("#updateProfileModal .modal-content").html(profileView.el);
             }
         })
+
+    }
+
+
+    return {
+        init: init,
+        setNumMatches: function(num_matches) {
+            $("#num-matches").text(num_matches)
+        }
     }
 })
