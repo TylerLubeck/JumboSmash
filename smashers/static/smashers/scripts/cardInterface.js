@@ -29,7 +29,29 @@ define("cardInterface", ["smashers"], function(smashers) {
         },
         render: function() {
             this.$el.html(this.template(this.model.toJSON()))
+            this.drawExistingFeedback();
             return this;
+        },
+        drawExistingFeedback: function() {
+            var that = this;
+            if (this.model.get("status") === 1) {
+                setTimeout(function() {
+                    that.updateLikeIcon(1);
+                    that.updateDislikeIcon(0);
+                }, 400);
+            }
+            else if (this.model.get("status") === 2) {
+                setTimeout(function() {
+                    that.updateDislikeIcon(1);
+                    that.updateLikeIcon(0);
+                }, 400);
+            }
+            else {
+                this._updateFeedBackIcon(0);
+            }
+        },
+        resetFeedbackIcons: function() {
+            this.drawExistingFeedback();
         },
         _updateFeedBackIcon: function(opacity, icon) {
             var selector = ".feedback-icon";
@@ -120,7 +142,7 @@ define("cardInterface", ["smashers"], function(smashers) {
                     }
                 });
                 swingCard.on("throwinend", function() {
-                    c._updateFeedBackIcon(0)
+                    c.resetFeedbackIcons();
                 })
                 card.swingCard = swingCard;
             }

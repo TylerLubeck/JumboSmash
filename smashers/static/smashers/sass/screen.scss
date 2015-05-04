@@ -267,10 +267,18 @@ ul.cards {
     }
 
     .feedback-icon {
+        @include border-radius(7px);
+        @include transform(rotate(30deg));
         opacity: 0;
         position: absolute;
-        top: 10px;
-        font-size: 1.4em;
+        top: 40px;
+        font-size: 2.4em;
+        border: 2px solid $sexyGreen;
+        padding: 7px;
+
+        &.showing {
+            // opacity: 1;
+        }
 
         &.icon-like {
             right: 10px;
@@ -279,6 +287,8 @@ ul.cards {
         &.icon-dislike {
             left: 10px;
             color: $sexyRed;
+            @include transform(rotate(-30deg));
+            border-color: $sexyRed;
         }
     }
 
