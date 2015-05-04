@@ -1409,11 +1409,42 @@ nav ul li:hover, nav ul li a:hover {
   margin: 200px auto 0;
 }
 
-/* line 447, ../sass/screen.scss */
+/* line 443, ../sass/screen.scss */
+input[type='file'].choice-button.button-regular {
+  padding-top: 15px;
+  padding-left: 20px;
+  float: none;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* line 451, ../sass/screen.scss */
 img#output {
   max-width: 300px;
   max-height: 300px;
   overflow: hidden;
   background: #fff;
   margin: 20px 0;
+  clear: both;
+  display: block;
+}
+
+/* line 461, ../sass/screen.scss */
+.choice-button.button-regular {
+  font-family: "Raleway";
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  width: auto;
+  height: 50px;
+  top: 0;
+  text-align: left;
+  font-size: 1rem;
+  padding: 0 10px;
+  color: #EE6146;
+  float: none;
+}
+/* line 473, ../sass/screen.scss */
+.choice-button.button-regular:before {
+  display: none;
 }

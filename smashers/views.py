@@ -43,7 +43,7 @@ class IndexView(View):
                 "name": profile.name,
                 "has_headshot": profile.has_headshot,
                 "headshot": str(profile.headshot),
-                "num_matches": i_like + like_me
+                "num_matches": i_like & like_me
             }
 
         

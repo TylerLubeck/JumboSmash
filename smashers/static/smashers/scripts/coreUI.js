@@ -26,6 +26,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
             "change #file-select": function(e) {
                 var that = this;
                 var reader = new FileReader();
+                this.$(".js-upload").text("Click to finalize your picture!").addClass("animated bounce")
                 reader.onload = function(){
                   var output = document.getElementById('output');
                   output.src = reader.result;
@@ -34,13 +35,14 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
             },
             "click .js-upload": function(e) {
                 var $this = $(e.currentTarget);
-                $this.text("Uploading...")
                 var files = document.getElementById("file-select").files;
-                var formData = new FormData();
                 var file = files[0];
                 if (!file) {
+                    $this.text("Select a file first!")
                     return;
                 }
+                var formData = new FormData();
+                $this.text("Uploading...")
                 // Check the file type.
                 if (!file.type.match('image.*')) {
                     return

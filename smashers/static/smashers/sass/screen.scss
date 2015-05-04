@@ -440,8 +440,12 @@ nav ul {
     }
 }
 
-input[type='file'] {
-    // background: $sexyRed;
+input[type='file'].choice-button.button-regular {
+    padding-top: 15px;
+    padding-left: 20px;
+    float: none;
+    margin-bottom: 20px;
+    width: 100%;
 }
 
 img#output {
@@ -450,4 +454,23 @@ img#output {
     overflow: hidden;
     background: #fff;
     margin: 20px 0;
+    clear: both;
+    display: block;
+}
+
+.choice-button.button-regular {
+    font-family: "Raleway";
+    @include border-radius(10px);
+    width: auto;
+    height: 50px;
+    top: 0;
+    text-align: left;
+    font-size: 1rem;
+    padding: 0 10px;
+    color: $sexyRed;
+    float: none;
+
+    &:before {
+        display: none;
+    }
 }

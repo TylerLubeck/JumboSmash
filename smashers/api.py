@@ -235,16 +235,19 @@ class UserResource(MultipartResource, ModelResource):
             user = authenticate(username=temp_user.username,
                                 password=password)
         if user:
+            profile = user.userprofile
+            i_like = len(profile.people_i_like.all())
+            like_me = len(profile.people_like_me.all())
             if user.is_active:
                 login(request, user)
-                print user.userprofile
                 return self.create_response(request, {
                     'success': True,
                     'user': {
                         "id" : user.userprofile.pk,
                         "name": user.userprofile.name,
                         "headshot": user.userprofile.headshot,
-                        "has_headshot": user.userprofile.has_headshot
+                        "has_headshot": user.userprofile.has_headshot,
+                        "num_matches": i_like & like_me
                     }
                 })
             else:

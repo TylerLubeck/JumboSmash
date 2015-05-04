@@ -67,7 +67,8 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
         }).success(function(response) {
             if (response.success === true) {
                 smashers.setActiveUser(response.user);
-                // ui.setNumMatches(response.user.num_matches)
+                console.log(response.user)
+                ui.setNumMatches(response.user.num_matches)
                 $(".logged-out-content").fadeOut("fast", function() {
                     $("#login-stylesheet").remove();
                     $(".logged-in-content").fadeIn("fast", function() {
