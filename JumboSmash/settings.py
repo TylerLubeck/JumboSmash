@@ -31,8 +31,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
-    'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -42,6 +40,8 @@ INSTALLED_APPS = (
     'registration',
     'imagekit',
     'storages',
+    'django.contrib.auth',
+    'django.contrib.admin',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -156,4 +156,5 @@ if EMAIL_HOST_PASSWORD is None and not DEBUG:
 DEFAULT_FROM_EMAIL = 'jumbosmashers@gmail.com'
 
 LOGIN_REDIRECT_URL = '/'
+INCLUDE_AUTH_URLS = True
 
