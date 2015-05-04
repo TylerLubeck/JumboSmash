@@ -14,8 +14,9 @@
             <input type="hidden" name="next" value="{{ next }}" />
           </div>
 
-          <a class='account-actions' href="{% url 'auth_password_reset' %}">{% trans "Reset Password" %}</a> | 
-          <a class='account-actions' id='open-registration' href="#registrationModal">{% trans "Register" %}</a>! 
+          <a class='account-actions' href="{% url 'auth_password_reset' %}">{% trans "Reset Password" %}</a>
+          <span class="account-actions"> or </span>
+          <a class='account-actions' id='open-registration' href="#registrationModal">{% trans "Register" %}</a>
 
           <div id='registrationModal' class='animatedModal modal animated hidden'>
             <div class="close-registrationModal close-modal icon-cross"> 

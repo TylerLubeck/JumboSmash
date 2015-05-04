@@ -36,6 +36,7 @@ body {
 
 header {
     position: relative;
+    height: 50px;
 }
 
 h2 {
@@ -46,9 +47,11 @@ h2 {
 #logo {
     width: 205px;
     display: block;
-    margin: auto;
-    /* position: relative; */
-    margin-top: -38px;
+    position: absolute;
+    left: 50%;
+    top: 0;
+    z-index: 9;
+    margin-left: -102.5px;
 }
 .header-actions {
     @include transition(all .2s ease-in-out);
@@ -64,6 +67,10 @@ h2 {
         font-size: 1.5em;
         top: 6px;
         left: 6px;
+    }
+
+    &:last-of-type {
+        z-index: 12;
     }
 
     &:first-of-type {
@@ -91,6 +98,7 @@ a:hover, a:focus {
 
 #choices {
     margin: 15px 0 -17px;
+    padding: 0 15px;
     position: relative;
 
     li {
@@ -98,8 +106,8 @@ a:hover, a:focus {
         display: inline-block;
         vertical-align: top;
         position: relative;
-        width: 120px;
-        height: 120px;
+        width: 105px;
+        height: 105px;
 
         &:before {
             content: "";
@@ -203,7 +211,9 @@ a:hover, a:focus {
 }
 
 #card-interface {
-    margin-top: 20px;
+    @include box-shadow(0px 2px 10px #ccc);
+    @include border-radius(0 0 5px 5px);
+    padding-bottom: 30px;
     position: relative;
 
     .loader {
@@ -233,7 +243,7 @@ ul.cards {
     height: 100%;
     top: 0;
     left: 0;
-    z-index: 99;
+    z-index: 10;
     background: #fcfcfc;
     overflow: hidden;
     color: #444;
@@ -332,6 +342,11 @@ ul.cards {
     }
 }
 
+.twitter-typeahead{ 
+    display: none; 
+    z-index: 12;
+}
+
 #smash-autocomplete {
     background: #fff;
     line-height: 1.7;
@@ -339,9 +354,8 @@ ul.cards {
     font-size: 1.3em;
     border: none;
     text-align: center;
-    // display: none;
-    width: 0;
-    z-index: 11;
+    display: none;
+    z-index: 12;
     padding: 0;
     // padding-left: 1em;
 

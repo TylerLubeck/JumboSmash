@@ -141,16 +141,12 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
         });
         $searchBarTrigger.click(function() { 
             if (searchBarOpen === false) {
-                $searchbar.animate({
-                    width: 300
-                }, 200);
+                $searchbar.add(".twitter-typeahead").fadeIn("fast");
                 $searchBarTrigger.removeClass("icon-search3").addClass("active-searchbar icon-cross");
                 searchBarOpen = true;
             }
             else {
-                $searchbar.animate({
-                    width: 0
-                }, 200);
+                $searchbar.add(".twitter-typeahead").fadeOut("fast");
                 $searchBarTrigger.removeClass("active-searchbar icon-cross").addClass("icon-search3");
                 searchBarOpen = false;
             }
