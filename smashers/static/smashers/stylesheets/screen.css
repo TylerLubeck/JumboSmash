@@ -74,6 +74,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: block;
 }
 
+/* line 12, ../sass/_build.scss */
+.hidden {
+  display: none;
+}
+
 /*
  *  Usage:
  *
