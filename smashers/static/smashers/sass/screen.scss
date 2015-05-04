@@ -44,7 +44,7 @@ h2 {
 }
 
 
-#logo {
+.logo {
     width: 205px;
     display: block;
     position: absolute;
@@ -169,6 +169,14 @@ a:hover, a:focus {
     outline: none;
     cursor: pointer;
     position: relative;
+
+    &:hover {
+        background: #f2f2f0;
+    }
+
+    &:focus {
+        background: #e9e9e9;
+    }
 
     &#like:hover i {
         color: #5eba8b;
@@ -515,4 +523,9 @@ img#output {
 .disclaimer {
     color: #bbb;
     margin-top: 60px;
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    margin-left: - 150px;
+    line-height: 1.7;
 }

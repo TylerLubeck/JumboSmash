@@ -30,7 +30,7 @@
                 <header class='wrapper'>
                     <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
                     <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
-                    <img id='logo' src="{% static 'smashers/jsmash.png' %}" />
+                    <img class='logo' src="{% static 'smashers/jsmash.png' %}" />
                     <i class='header-actions js-show-searchbar icon-search3'></i>
                     <!-- <a id='js-add-picture' href='#updateProfileModal'><i class="icon-plus"></i>Add a picture of you</a> -->
                 </header>
@@ -84,7 +84,7 @@
         {% endblock %}
 
         {% include 'templates.html' %}
-        <p class="wrapper center disclaimer">Use this app at your own risk. The owners are not liable for anything that occurs here. If you have concerns, contact us <a href="mailto:jumbosmashers@gmail.com">here</a></p>
+        <p class="wrapper center disclaimer">Use this app at your own risk. The owners are not liable for anything that occurs here. If you have concerns, contact us <a href="mailto:jumbosmashers@gmail.com">here.</a></p>
         <script src="{% static 'smashers/scripts/swingfull.js' %}"></script>
         <script src="{% static 'smashers/scripts/require.min.js' %}" data-main="app"></script>
     </body>

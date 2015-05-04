@@ -126,7 +126,7 @@ body {
   font-size: 1em;
   display: inline-block;
   padding: 7px 10px;
-  width: 70%;
+  width: 100%;
   border: 1px solid transparent;
   margin: 3px 0;
   outline: none;
@@ -140,13 +140,12 @@ body {
 }
 /* line 48, ../sass/login.scss */
 .login-wrap.wrapper .choice-button {
-  float: right;
   font-size: 2.6em;
-  vertical-align: top;
   color: #EE6146;
   position: relative;
-  top: -37px;
   line-height: 1.8;
+  float: none;
+  margin-top: 10px;
 }
 /* line 57, ../sass/login.scss */
 .login-wrap.wrapper .choice-button.button-regular {
@@ -154,39 +153,63 @@ body {
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
   border-radius: 10px;
-  width: 100px;
+  min-width: 100px;
   height: 50px;
   text-align: center;
   top: 0;
   font-size: 1rem;
   padding: 0 10px;
   color: #EE6146;
-  float: none;
+  float: right;
 }
 /* line 69, ../sass/login.scss */
 .login-wrap.wrapper .choice-button.button-regular:before {
   display: none;
 }
-/* line 74, ../sass/login.scss */
+/* line 72, ../sass/login.scss */
+.login-wrap.wrapper .choice-button.button-regular i {
+  position: relative;
+  font-size: 1.2em;
+  top: 3px;
+  margin: 0 0 0 10px;
+}
+/* line 80, ../sass/login.scss */
 .login-wrap.wrapper .inputs {
   float: left;
   width: 100%;
 }
-/* line 78, ../sass/login.scss */
+/* line 84, ../sass/login.scss */
 .login-wrap.wrapper .account-actions {
   display: inline-block;
   position: relative;
-  top: 20px;
+  top: 30px;
+  font-size: .8em;
 }
-/* line 84, ../sass/login.scss */
+/* line 91, ../sass/login.scss */
 .login-wrap.wrapper .modal input {
   display: block;
   width: 100%;
   margin: 8px 0;
 }
+/* line 98, ../sass/login.scss */
+.login-wrap.wrapper .login-logo {
+  position: absolute;
+  top: -50px;
+}
+/* line 103, ../sass/login.scss */
+.login-wrap.wrapper #open-registration {
+  line-height: 3rem;
+  float: right;
+  margin-right: 10px;
+  color: #76DFA9;
+}
+/* line 110, ../sass/login.scss */
+.login-wrap.wrapper p {
+  line-height: 1.7;
+}
 
 @media all and (max-width: 400px) {
-  /* line 93, ../sass/login.scss */
+  /* line 117, ../sass/login.scss */
   .login-wrap.wrapper {
     position: relative;
     width: 95%;
@@ -194,14 +217,14 @@ body {
     left: 0;
     margin: 0 auto;
   }
-  /* line 100, ../sass/login.scss */
+  /* line 124, ../sass/login.scss */
   .login-wrap.wrapper input {
     width: 100%;
     border-bottom: 1px solid #EE6146;
     margin: 5px 0;
     float: none;
   }
-  /* line 107, ../sass/login.scss */
+  /* line 131, ../sass/login.scss */
   .login-wrap.wrapper .choice-button {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -213,7 +236,7 @@ body {
     text-align: left;
     font-size: 1.2rem;
   }
-  /* line 116, ../sass/login.scss */
+  /* line 140, ../sass/login.scss */
   .login-wrap.wrapper .choice-button i::before {
     content: "Login.";
     font-family: "Raleway";

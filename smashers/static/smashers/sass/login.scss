@@ -33,7 +33,7 @@ body {
         font-size: 1em;
         display: inline-block;
         padding: 7px 10px;
-        width: 70%;
+        width: 100%;
         border: 1px solid transparent;
         margin: 3px 0;
         outline: none;
@@ -46,28 +46,34 @@ body {
     }
 
     .choice-button {
-        float: right;
         font-size: 2.6em;
-        vertical-align: top;
         color: $sexyRed;
         position: relative;
-        top: -37px;
         line-height: 1.8;
+        float: none;
+        margin-top: 10px;
     }
+
     .choice-button.button-regular {
         font-family: "Raleway";
         @include border-radius(10px);
-        width: 100px;
+        min-width: 100px;
         height: 50px;
         text-align: center;
         top: 0;
         font-size: 1rem;
         padding: 0 10px;
         color: $sexyRed;
-        float: none;
+        float: right;
 
         &:before {
             display: none;
+        }
+        i {
+            position: relative;
+            font-size: 1.2em;
+            top: 3px;
+            margin: 0 0 0 10px;
         }
     }
 
@@ -78,7 +84,8 @@ body {
     .account-actions {
         display: inline-block;
         position: relative;
-        top: 20px;
+        top: 30px;
+        font-size: .8em;
      }
 
      .modal input {
@@ -86,6 +93,23 @@ body {
           width: 100%;
           margin: 8px 0;
      }
+
+
+    .login-logo {
+        position: absolute;
+        top: -50px;
+    }
+
+    #open-registration {
+        line-height: 3rem;
+        float: right;
+        margin-right: 10px;
+        color: $sexyGreen;
+    }
+
+    p {
+        line-height: 1.7;
+    }
 }
 
 
@@ -119,4 +143,6 @@ body {
             }
         }
     }
+
+
 }
