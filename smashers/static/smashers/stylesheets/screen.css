@@ -1510,3 +1510,9 @@ img#output {
 .choice-button.button-regular:before {
   display: none;
 }
+
+/* line 515, ../sass/screen.scss */
+.disclaimer {
+  color: #bbb;
+  margin-top: 60px;
+}

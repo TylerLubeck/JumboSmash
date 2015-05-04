@@ -57,7 +57,6 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
                     if (xhr.status === 200) {
                         // File(s) uploaded.
                         var response = JSON.parse(xhr.responseText);
-                        console.log(response);
                         that.model.set("headshot", response.headshot);
                         swal({
                             type: 'success',
@@ -141,6 +140,17 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
                     draggable: false
                 }, {add: true});
             })
+        }).animatedModal({
+            afterOpen: function() {
+                $matchList.show().addClass("animated bounceInLeft")
+                  
+            },
+            afterClose: function(){
+                $matchList.hide().removeClass("animated bounceOutRight")
+            },
+            beforeClose: function() {
+                $matchList.removeClass("bounceInLeft").addClass("animated bounceOutRight")
+            }
         });
         $searchBarTrigger.click(function() { 
             if (searchBarOpen === false) {
@@ -155,19 +165,6 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
             }
         });
 
-        $("#show-matches").animatedModal({
-            afterOpen: function() {
-                $matchList.show().addClass("animated bounceInLeft")
-                  
-            },
-            afterClose: function(){
-                $matchList.hide().removeClass("animated bounceOutRight")
-            },
-            beforeClose: function() {
-                $matchList.removeClass("bounceInLeft").addClass("animated bounceOutRight")
-            }
-        });
-
         $addPicture.animatedModal({
             modalTarget: "updateProfileModal"
         });
@@ -176,7 +173,6 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
         $showProfile.animatedModal({
             modalTarget: "updateProfileModal",
             beforeOpen: function() {
-                console.log(smashers.getActiveUser())
                 var profileView = new UserProfileView({model: smashers.getActiveUser()}).render().delegateEvents();
                 $("#updateProfileModal .modal-content").html(profileView.el);
             }
