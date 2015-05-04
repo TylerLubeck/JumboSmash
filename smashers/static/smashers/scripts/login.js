@@ -74,7 +74,6 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
                 });
             }
         }).error(function(response) {
-            console.log(response)
             swal({
                 type: "error",
                 title: "Make sure you register!",

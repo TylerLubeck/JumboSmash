@@ -26,7 +26,6 @@ define("cardInterface", ["smashers"], function(smashers) {
                     })
                 },
                 "change:headshot": function(model, collection, opts) {
-                    console.log(arguments)
                 }
             })
         },
