@@ -255,14 +255,15 @@ class UserResource(MultipartResource, ModelResource):
             like_me = profile.people_like_me.all()
             if user.is_active:
                 login(request, user)
+                headshot = user.userprofile.headshot
                 return self.create_response(request, {
                     'success': True,
                     'user': {
                         "id" : user.userprofile.pk,
                         "name": user.userprofile.name,
-                        "headshot": user.userprofile.headshot,
+                        "headshot": headshot.url if headshot else None,
                         "has_headshot": user.userprofile.has_headshot,
-                        "num_matches": i_like & like_me
+                        "num_matches": (i_like & like_me).count()
                     }
                 })
             else:

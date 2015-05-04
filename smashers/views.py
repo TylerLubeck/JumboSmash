@@ -42,11 +42,11 @@ class IndexView(View):
                 "is_authenticated": True,
                 "name": profile.name,
                 "has_headshot": profile.has_headshot,
-                "headshot": str(profile.headshot)
-                # "num_matches": list(i_like) & list(like_me)
+                "headshot": profile.headshot.url if profile.headshot else None,
+                "num_matches": (i_like & like_me).count()
             }
 
-        
+
         people = UserProfile.objects.values('name', 'pk', 'major')
         for p in people:
             p['tokens'] = [p['name'], p['major']]
@@ -57,4 +57,3 @@ class IndexView(View):
             'is_authenticated': user.is_authenticated()
         }
         return render(request, 'smashers/index.html', context)
-
