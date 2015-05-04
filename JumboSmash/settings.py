@@ -157,5 +157,6 @@ if EMAIL_HOST_PASSWORD is None and not DEBUG:
 DEFAULT_FROM_EMAIL = 'jumbosmashers@gmail.com'
 
 LOGIN_REDIRECT_URL = '/'
+LOGIN_URL = '/'
 INCLUDE_AUTH_URLS = True
 
