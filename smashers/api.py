@@ -25,22 +25,28 @@ class UserProfileResource(ModelResource):
         resource_name = 'smashers'
         queryset = UserProfile.objects.all()
         allowed_methods = ['get']
-        fields = ['class_year', 'name', 'major', 'id', "has_headshot", "headshot"]
+        fields = ['class_year', 'name', 'major',
+                  'id', "has_headshot", "headshot"]
         limit = 20
         test = True
 
     def dehydrate(self, bundle):
         current_user = bundle.request.user.userprofile
         status = 0
-        id = bundle.data["id"]
-        status = 1 if current_user.people_i_like.filter(pk=id).exists() else status
-        status = 2 if current_user.people_i_dont_like.filter(pk=id).exists() else status
-        # TODO: Add match status - need to figure out how to access bundle info
-        # if status is 1 and bundle.people_i_like.filter(pk=current_user.pk).exists():
-            # status = 3
-        bundle.data["status"] = status;
+        lookup_id = bundle.data["id"]
+        i_like = current_user.people_i_like
+        like_me = current_user.people_like_me
+        dont_like = current_user.people_i_dont_like
 
-        return bundle.data;
+        if i_like.filter(pk=lookup_id).exists():
+            status = 1
+        if dont_like.filter(pk=lookup_id).exists():
+            status = 2
+        if (i_like.all() & like_me.all()).filter(pk=lookup_id).exists():
+            status = 3
+        bundle.data["status"] = status
+
+        return bundle.data
 
     def obj_get_list(self, bundle, **kwargs):
         # Figure out who I've already rated
@@ -275,7 +281,7 @@ class UserResource(MultipartResource, ModelResource):
                 return self.create_response(request, {
                     'success': True,
                     'user': {
-                        "id" : user.userprofile.pk,
+                        "id": user.userprofile.pk,
                         "name": user.userprofile.name,
                         "headshot": headshot.url if headshot else None,
                         "has_headshot": user.userprofile.has_headshot,
@@ -299,4 +305,6 @@ class UserResource(MultipartResource, ModelResource):
             logout(request)
             return self.create_response(request, {'success': True})
         else:
-            return self.create_response(request, {'success': False}, HttpUnauthorized)
+            return self.create_response(request,
+                                        {'success': False},
+                                        HttpUnauthorized)
