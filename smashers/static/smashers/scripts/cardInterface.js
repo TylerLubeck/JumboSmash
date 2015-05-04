@@ -24,6 +24,9 @@ define("cardInterface", ["smashers"], function(smashers) {
                     this.$el.fadeOut("fast", function(){
                         that.remove();
                     })
+                },
+                "change:headshot": function(model, collection, opts) {
+                    console.log(arguments)
                 }
             })
         },

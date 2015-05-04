@@ -261,7 +261,8 @@ ul.cards {
         -webkit-user-drag: none;
         /* No support for these yet, use at own risk */
         -o-user-select: none;
-        user-select: none;  
+        user-select: none; 
+        @include border-radius(3px);
     }
 
 
@@ -303,7 +304,7 @@ ul.cards {
         &.icon-match {
             @include transform(rotate(0));
             border: none;   
-            color: #fff;
+            color: $sexyGreen;
             text-align: center;
             display: block;
             left: 50%;

@@ -1233,8 +1233,11 @@ ul.cards {
   /* No support for these yet, use at own risk */
   -o-user-select: none;
   user-select: none;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
 }
-/* line 268, ../sass/screen.scss */
+/* line 269, ../sass/screen.scss */
 .smash-card .info-wrapper {
   -moz-border-radius: 0 0 3px 3px;
   -webkit-border-radius: 0;
@@ -1246,7 +1249,7 @@ ul.cards {
   width: 100%;
   padding: 10px;
 }
-/* line 279, ../sass/screen.scss */
+/* line 280, ../sass/screen.scss */
 .smash-card .feedback-icon {
   -moz-border-radius: 7px;
   -webkit-border-radius: 7px;
@@ -1262,12 +1265,12 @@ ul.cards {
   border: 2px solid #76DFA9;
   padding: 7px;
 }
-/* line 293, ../sass/screen.scss */
+/* line 294, ../sass/screen.scss */
 .smash-card .feedback-icon.icon-like {
   right: 10px;
   color: #76DFA9;
 }
-/* line 297, ../sass/screen.scss */
+/* line 298, ../sass/screen.scss */
 .smash-card .feedback-icon.icon-dislike {
   left: 10px;
   color: #EE6146;
@@ -1277,14 +1280,14 @@ ul.cards {
   transform: rotate(-30deg);
   border-color: #EE6146;
 }
-/* line 303, ../sass/screen.scss */
+/* line 304, ../sass/screen.scss */
 .smash-card .feedback-icon.icon-match {
   -moz-transform: rotate(0);
   -ms-transform: rotate(0);
   -webkit-transform: rotate(0);
   transform: rotate(0);
   border: none;
-  color: #fff;
+  color: #76DFA9;
   text-align: center;
   display: block;
   left: 50%;
@@ -1292,26 +1295,26 @@ ul.cards {
   width: 250px;
   margin-left: -125px;
 }
-/* line 317, ../sass/screen.scss */
+/* line 318, ../sass/screen.scss */
 .smash-card.dragging {
   -moz-box-shadow: 0px 2px 10px #ccc;
   -webkit-box-shadow: 0px 2px 10px #ccc;
   box-shadow: 0px 2px 10px #ccc;
 }
 
-/* line 322, ../sass/screen.scss */
+/* line 323, ../sass/screen.scss */
 #match-list {
   width: 960px;
   max-width: 100%;
   display: none;
 }
-/* line 328, ../sass/screen.scss */
+/* line 329, ../sass/screen.scss */
 #match-list .cards {
   background: none;
   max-width: 100%;
   width: 960px;
 }
-/* line 335, ../sass/screen.scss */
+/* line 336, ../sass/screen.scss */
 #match-list li.smash-card {
   position: relative;
   display: inline-block;
@@ -1321,24 +1324,24 @@ ul.cards {
 }
 
 @media all and (max-width: 700px) {
-  /* line 346, ../sass/screen.scss */
+  /* line 347, ../sass/screen.scss */
   #match-list li.smash-card {
     width: 47%;
   }
 }
 @media all and (max-width: 400px) {
-  /* line 352, ../sass/screen.scss */
+  /* line 353, ../sass/screen.scss */
   #match-list li.smash-card {
     width: 100%;
   }
 }
-/* line 357, ../sass/screen.scss */
+/* line 358, ../sass/screen.scss */
 .twitter-typeahead {
   display: none;
   z-index: 12;
 }
 
-/* line 362, ../sass/screen.scss */
+/* line 363, ../sass/screen.scss */
 #smash-autocomplete {
   background: #fff;
   line-height: 1.7;
@@ -1351,13 +1354,13 @@ ul.cards {
   padding: 0;
 }
 
-/* line 376, ../sass/screen.scss */
+/* line 377, ../sass/screen.scss */
 input.wrapper.tt-hint {
   height: 100%;
   font-size: 1.3rem;
 }
 
-/* line 381, ../sass/screen.scss */
+/* line 382, ../sass/screen.scss */
 .tt-dropdown-menu {
   -moz-box-shadow: 0px 1px 3px #bbb;
   -webkit-box-shadow: 0px 1px 3px #bbb;
@@ -1367,7 +1370,7 @@ input.wrapper.tt-hint {
   background: #fff;
 }
 
-/* line 388, ../sass/screen.scss */
+/* line 389, ../sass/screen.scss */
 [class*=tt-dataset] {
   background: #fff;
   width: 100%;
@@ -1375,7 +1378,7 @@ input.wrapper.tt-hint {
   padding: 0;
   font-size: 1.2rem;
 }
-/* line 395, ../sass/screen.scss */
+/* line 396, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion {
   line-height: 2em;
   text-indent: .6em;
@@ -1384,57 +1387,57 @@ input.wrapper.tt-hint {
   text-align: left;
   position: relative;
 }
-/* line 403, ../sass/screen.scss */
+/* line 404, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:last-of-type {
   border-bottom: none;
 }
-/* line 404, ../sass/screen.scss */
+/* line 405, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:first-of-type {
   border-top: none;
 }
-/* line 406, ../sass/screen.scss */
+/* line 407, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:hover, [class*=tt-dataset] .tt-suggestion.tt-cursor {
   background: #f2f2f0;
   border-bottom-color: transparent;
 }
-/* line 410, ../sass/screen.scss */
+/* line 411, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:hover .sightings-length, [class*=tt-dataset] .tt-suggestion.tt-cursor .sightings-length {
   background: #fff;
 }
-/* line 416, ../sass/screen.scss */
+/* line 417, ../sass/screen.scss */
 [class*=tt-dataset] .tt-highlight {
   text-decoration: underline;
 }
 
-/* line 421, ../sass/screen.scss */
+/* line 422, ../sass/screen.scss */
 .tt-empty-results {
   line-height: 3;
   text-indent: 0;
   text-align: center;
 }
 
-/* line 428, ../sass/screen.scss */
+/* line 429, ../sass/screen.scss */
 nav ul {
   margin-top: 30px;
 }
-/* line 430, ../sass/screen.scss */
+/* line 431, ../sass/screen.scss */
 nav ul li {
   display: block;
   text-align: center;
   color: #fff;
   cursor: pointer;
 }
-/* line 436, ../sass/screen.scss */
+/* line 437, ../sass/screen.scss */
 nav ul li a {
   color: #fff;
 }
-/* line 440, ../sass/screen.scss */
+/* line 441, ../sass/screen.scss */
 nav ul li:hover, nav ul li a:hover {
   color: #fff;
   text-decoration: underline;
 }
 
-/* line 447, ../sass/screen.scss */
+/* line 448, ../sass/screen.scss */
 #js-add-picture {
   text-align: center;
   display: block;
@@ -1443,18 +1446,18 @@ nav ul li:hover, nav ul li a:hover {
   cursor: pointer;
 }
 
-/* line 455, ../sass/screen.scss */
+/* line 456, ../sass/screen.scss */
 .modal {
   padding-top: 50px;
   color: #fff;
   text-align: center;
   opacity: 0;
 }
-/* line 461, ../sass/screen.scss */
+/* line 462, ../sass/screen.scss */
 .modal p {
   margin: 20px 0;
 }
-/* line 465, ../sass/screen.scss */
+/* line 466, ../sass/screen.scss */
 .modal .close-modal {
   display: block;
   text-align: center;
@@ -1462,13 +1465,13 @@ nav ul li:hover, nav ul li a:hover {
   color: #fff;
   cursor: pointer;
 }
-/* line 473, ../sass/screen.scss */
+/* line 474, ../sass/screen.scss */
 .modal .placeholder {
   width: 85%;
   margin: 200px auto 0;
 }
 
-/* line 479, ../sass/screen.scss */
+/* line 480, ../sass/screen.scss */
 input[type='file'].choice-button.button-regular {
   padding-top: 15px;
   padding-left: 20px;
@@ -1477,7 +1480,7 @@ input[type='file'].choice-button.button-regular {
   width: 100%;
 }
 
-/* line 487, ../sass/screen.scss */
+/* line 488, ../sass/screen.scss */
 img#output {
   max-width: 300px;
   max-height: 300px;
@@ -1488,7 +1491,7 @@ img#output {
   display: block;
 }
 
-/* line 497, ../sass/screen.scss */
+/* line 498, ../sass/screen.scss */
 .choice-button.button-regular {
   font-family: "Raleway";
   -moz-border-radius: 10px;
@@ -1503,7 +1506,7 @@ img#output {
   color: #EE6146;
   float: none;
 }
-/* line 509, ../sass/screen.scss */
+/* line 510, ../sass/screen.scss */
 .choice-button.button-regular:before {
   display: none;
 }

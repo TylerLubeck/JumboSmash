@@ -37,6 +37,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
                 var $this = $(e.currentTarget);
                 var files = document.getElementById("file-select").files;
                 var file = files[0];
+                var that = this;
                 if (!file) {
                     $this.show().text("Select a file first!")
                     return;
@@ -56,6 +57,8 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
                     if (xhr.status === 200) {
                         // File(s) uploaded.
                         var response = JSON.parse(xhr.responseText);
+                        console.log(response);
+                        that.model.set("headshot", response.headshot);
                         swal({
                             type: 'success',
                             title: 'Picture uploaded!',
@@ -115,7 +118,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
 
 
     var $searchbar = $("#smash-autocomplete");
-    var $matchButton = $(".js-show-matches");
+    var $matchButton = $("#show-matches");
     var $addPicture = $("#js-add-picture");
     var $showProfile = $(".js-show-profile")
     var $searchBarTrigger = $(".js-show-searchbar");
@@ -127,7 +130,6 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
     function init() {
          $matchButton.click(function() {
             smashers.getMatches(function(matches) {
-                console.log(matches)
                 if (cardList != null) {
                     cardList.stopListening();
                     cardList.$(".cards").empty()
