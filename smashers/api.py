@@ -12,6 +12,7 @@ from tastypie import fields
 from tastypie.resources import ModelResource, Resource
 from tastypie.authentication import SessionAuthentication
 from tastypie.authorization import ReadOnlyAuthorization
+from imagekit.models import ProcessedImageField
 
 
 class CommonMeta(object):

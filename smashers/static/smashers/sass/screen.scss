@@ -269,7 +269,7 @@ ul.cards {
         @include border-radius(0 0 3px 3px);
         // border-top: 2px solid $sexyRed;
         background: #fff;
-        background: rgba(255,255,255,.5);
+        background: rgba(255,255,255,.78);
         position: absolute;
         bottom: 0;
         width: 100%;
@@ -299,6 +299,18 @@ ul.cards {
             color: $sexyRed;
             @include transform(rotate(-30deg));
             border-color: $sexyRed;
+        }
+        &.icon-match {
+            @include transform(rotate(0));
+            border: none;   
+            color: #fff;
+            text-align: center;
+            display: block;
+            left: 50%;
+            top: 20px;
+            width: 250px;
+            margin-left: -125px;
+
         }
     }
 

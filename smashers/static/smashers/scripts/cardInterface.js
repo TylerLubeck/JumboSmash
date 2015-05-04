@@ -38,11 +38,20 @@ define("cardInterface", ["smashers"], function(smashers) {
                 setTimeout(function() {
                     that.updateLikeIcon(1);
                     that.updateDislikeIcon(0);
+                    that.updateMatchIcon(0);
                 }, 400);
             }
             else if (this.model.get("status") === 2) {
                 setTimeout(function() {
                     that.updateDislikeIcon(1);
+                    that.updateLikeIcon(0);
+                    that.updateMatchIcon(0);
+                }, 400);
+            }
+            else if (this.model.get("status") === 3) {
+                setTimeout(function() {
+                    that.updateMatchIcon(1);
+                    that.updateDislikeIcon(0);
                     that.updateLikeIcon(0);
                 }, 400);
             }
@@ -67,6 +76,10 @@ define("cardInterface", ["smashers"], function(smashers) {
         updateLikeIcon: function(opacity) {
             this._updateFeedBackIcon(opacity, "like")
             return this;
+        },
+        updateMatchIcon: function(opacity) {
+            this._updateFeedBackIcon(opacity, "match")
+            return this;  
         }
     });
 
@@ -77,13 +90,16 @@ define("cardInterface", ["smashers"], function(smashers) {
             this.stack = gajus.Swing.Stack(stack_config);
             _.extend(this, {draggable: true}, opts);
 
+            if(this.collection.length > 0) {
+                this.$(".placeholder").hide();
+            }
+
             this.collection.each(function(smasher) {
                 that.addCard(smasher);
             })
 
             this.listenTo(this.collection, {
                 add: function(model, collection, opts) {
-                    this.$(".placeholder").hide();
                     this.addCard(model);
                 },
                 remove: function() {

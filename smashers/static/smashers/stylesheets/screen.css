@@ -1240,7 +1240,7 @@ ul.cards {
   -webkit-border-radius: 0;
   border-radius: 0 0 3px 3px;
   background: #fff;
-  background: rgba(255, 255, 255, 0.5);
+  background: rgba(255, 255, 255, 0.78);
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -1277,26 +1277,41 @@ ul.cards {
   transform: rotate(-30deg);
   border-color: #EE6146;
 }
-/* line 305, ../sass/screen.scss */
+/* line 303, ../sass/screen.scss */
+.smash-card .feedback-icon.icon-match {
+  -moz-transform: rotate(0);
+  -ms-transform: rotate(0);
+  -webkit-transform: rotate(0);
+  transform: rotate(0);
+  border: none;
+  color: #fff;
+  text-align: center;
+  display: block;
+  left: 50%;
+  top: 20px;
+  width: 250px;
+  margin-left: -125px;
+}
+/* line 317, ../sass/screen.scss */
 .smash-card.dragging {
   -moz-box-shadow: 0px 2px 10px #ccc;
   -webkit-box-shadow: 0px 2px 10px #ccc;
   box-shadow: 0px 2px 10px #ccc;
 }
 
-/* line 310, ../sass/screen.scss */
+/* line 322, ../sass/screen.scss */
 #match-list {
   width: 960px;
   max-width: 100%;
   display: none;
 }
-/* line 316, ../sass/screen.scss */
+/* line 328, ../sass/screen.scss */
 #match-list .cards {
   background: none;
   max-width: 100%;
   width: 960px;
 }
-/* line 323, ../sass/screen.scss */
+/* line 335, ../sass/screen.scss */
 #match-list li.smash-card {
   position: relative;
   display: inline-block;
@@ -1306,24 +1321,24 @@ ul.cards {
 }
 
 @media all and (max-width: 700px) {
-  /* line 334, ../sass/screen.scss */
+  /* line 346, ../sass/screen.scss */
   #match-list li.smash-card {
     width: 47%;
   }
 }
 @media all and (max-width: 400px) {
-  /* line 340, ../sass/screen.scss */
+  /* line 352, ../sass/screen.scss */
   #match-list li.smash-card {
     width: 100%;
   }
 }
-/* line 345, ../sass/screen.scss */
+/* line 357, ../sass/screen.scss */
 .twitter-typeahead {
   display: none;
   z-index: 12;
 }
 
-/* line 350, ../sass/screen.scss */
+/* line 362, ../sass/screen.scss */
 #smash-autocomplete {
   background: #fff;
   line-height: 1.7;
@@ -1336,13 +1351,13 @@ ul.cards {
   padding: 0;
 }
 
-/* line 364, ../sass/screen.scss */
+/* line 376, ../sass/screen.scss */
 input.wrapper.tt-hint {
   height: 100%;
   font-size: 1.3rem;
 }
 
-/* line 369, ../sass/screen.scss */
+/* line 381, ../sass/screen.scss */
 .tt-dropdown-menu {
   -moz-box-shadow: 0px 1px 3px #bbb;
   -webkit-box-shadow: 0px 1px 3px #bbb;
@@ -1352,7 +1367,7 @@ input.wrapper.tt-hint {
   background: #fff;
 }
 
-/* line 376, ../sass/screen.scss */
+/* line 388, ../sass/screen.scss */
 [class*=tt-dataset] {
   background: #fff;
   width: 100%;
@@ -1360,7 +1375,7 @@ input.wrapper.tt-hint {
   padding: 0;
   font-size: 1.2rem;
 }
-/* line 383, ../sass/screen.scss */
+/* line 395, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion {
   line-height: 2em;
   text-indent: .6em;
@@ -1369,57 +1384,57 @@ input.wrapper.tt-hint {
   text-align: left;
   position: relative;
 }
-/* line 391, ../sass/screen.scss */
+/* line 403, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:last-of-type {
   border-bottom: none;
 }
-/* line 392, ../sass/screen.scss */
+/* line 404, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:first-of-type {
   border-top: none;
 }
-/* line 394, ../sass/screen.scss */
+/* line 406, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:hover, [class*=tt-dataset] .tt-suggestion.tt-cursor {
   background: #f2f2f0;
   border-bottom-color: transparent;
 }
-/* line 398, ../sass/screen.scss */
+/* line 410, ../sass/screen.scss */
 [class*=tt-dataset] .tt-suggestion:hover .sightings-length, [class*=tt-dataset] .tt-suggestion.tt-cursor .sightings-length {
   background: #fff;
 }
-/* line 404, ../sass/screen.scss */
+/* line 416, ../sass/screen.scss */
 [class*=tt-dataset] .tt-highlight {
   text-decoration: underline;
 }
 
-/* line 409, ../sass/screen.scss */
+/* line 421, ../sass/screen.scss */
 .tt-empty-results {
   line-height: 3;
   text-indent: 0;
   text-align: center;
 }
 
-/* line 416, ../sass/screen.scss */
+/* line 428, ../sass/screen.scss */
 nav ul {
   margin-top: 30px;
 }
-/* line 418, ../sass/screen.scss */
+/* line 430, ../sass/screen.scss */
 nav ul li {
   display: block;
   text-align: center;
   color: #fff;
   cursor: pointer;
 }
-/* line 424, ../sass/screen.scss */
+/* line 436, ../sass/screen.scss */
 nav ul li a {
   color: #fff;
 }
-/* line 428, ../sass/screen.scss */
+/* line 440, ../sass/screen.scss */
 nav ul li:hover, nav ul li a:hover {
   color: #fff;
   text-decoration: underline;
 }
 
-/* line 435, ../sass/screen.scss */
+/* line 447, ../sass/screen.scss */
 #js-add-picture {
   text-align: center;
   display: block;
@@ -1428,18 +1443,18 @@ nav ul li:hover, nav ul li a:hover {
   cursor: pointer;
 }
 
-/* line 443, ../sass/screen.scss */
+/* line 455, ../sass/screen.scss */
 .modal {
   padding-top: 50px;
   color: #fff;
   text-align: center;
   opacity: 0;
 }
-/* line 449, ../sass/screen.scss */
+/* line 461, ../sass/screen.scss */
 .modal p {
   margin: 20px 0;
 }
-/* line 453, ../sass/screen.scss */
+/* line 465, ../sass/screen.scss */
 .modal .close-modal {
   display: block;
   text-align: center;
@@ -1447,13 +1462,13 @@ nav ul li:hover, nav ul li a:hover {
   color: #fff;
   cursor: pointer;
 }
-/* line 461, ../sass/screen.scss */
+/* line 473, ../sass/screen.scss */
 .modal .placeholder {
   width: 85%;
   margin: 200px auto 0;
 }
 
-/* line 467, ../sass/screen.scss */
+/* line 479, ../sass/screen.scss */
 input[type='file'].choice-button.button-regular {
   padding-top: 15px;
   padding-left: 20px;
@@ -1462,7 +1477,7 @@ input[type='file'].choice-button.button-regular {
   width: 100%;
 }
 
-/* line 475, ../sass/screen.scss */
+/* line 487, ../sass/screen.scss */
 img#output {
   max-width: 300px;
   max-height: 300px;
@@ -1473,7 +1488,7 @@ img#output {
   display: block;
 }
 
-/* line 485, ../sass/screen.scss */
+/* line 497, ../sass/screen.scss */
 .choice-button.button-regular {
   font-family: "Raleway";
   -moz-border-radius: 10px;
@@ -1488,7 +1503,7 @@ img#output {
   color: #EE6146;
   float: none;
 }
-/* line 497, ../sass/screen.scss */
+/* line 509, ../sass/screen.scss */
 .choice-button.button-regular:before {
   display: none;
 }

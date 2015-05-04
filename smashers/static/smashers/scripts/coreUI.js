@@ -127,6 +127,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
     function init() {
          $matchButton.click(function() {
             smashers.getMatches(function(matches) {
+                console.log(matches)
                 if (cardList != null) {
                     cardList.stopListening();
                     cardList.$(".cards").empty()
