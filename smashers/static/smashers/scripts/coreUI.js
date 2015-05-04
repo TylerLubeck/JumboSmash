@@ -23,12 +23,42 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
     var $searchBarTrigger = $(".js-show-searchbar");
     var $matchList = $("#match-list");
     var $logoutButton = $("#logout");
-    var $uploadButton = $("#upload")
+    var $uploadButton = $("#upload");
+    var $deactivateButton = $("#deactivate");
     var fileSelect = document.getElementById('file-select');
     var searchBarOpen = false;
     var cardList = null;
 
     return function() {
+
+        $deactivateButton.click(function() {
+            swal({
+               title: "Are you sure?",  
+               text: "You will not be able to recover this imaginary file!",
+               type: "warning",
+               showCancelButton: true,
+               confirmButtonColor: "#DD6B55",
+               confirmButtonText: "Yes, delete it!",
+               cancelButtonText: "No, cancel plx!",
+               closeOnConfirm: false,
+               closeOnCancel: false 
+           }, function(isConfirm){   
+                if (isConfirm) {     
+                    $.ajax({
+                        url:"/api/v1/user/" + 1514 + "/",
+                        type: "DELETE"
+                    }).success(function() {
+                        swal("Deleted!", "Your account has been deleted.", "success");   
+                    }).error(function(){
+                        swal("Oh no!", "Something went wrong deleting your account :(", "error");   
+                    })
+                } 
+                else {    
+                    swal("Cancelled", "Your account is safe :)", "error");   
+                } 
+            });
+
+        })
 
         fileSelect.addEventListener("change", function(e) {
 

@@ -2,15 +2,7 @@ define("cardInterface", ["smashers"], function(smashers) {
 
 
     var stack_config = {
-    /**
-     * Invoked in the event of dragmove.
-     * Returns a value between 0 and 1 indicating the completeness of the throw out condition.
-     * Ration of the absolute distance from the original card position and element width.
-     * 
-     * @param {Number} offset Distance from the dragStart.
-     * @param {HTMLElement} element Element.
-     * @return {Number}
-     */
+
         throwOutConfidence: function (offset, element) {
             return Math.min((Math.abs(offset) + 150) / element.offsetWidth, 1);
         },

@@ -1,4 +1,4 @@
-define("login", ["sweetalert", "cardInterface", "animatedModal"], function(swal, cardInterface) {
+define("login", ["sweetalert", "cardInterface", "smashers", "animatedModal"], function(swal, cardInterface, smashers) {
 
     var $loginWrap = $(".login-wrap");
     var $openRegistrationButton = $("#open-registration");
@@ -65,6 +65,7 @@ define("login", ["sweetalert", "cardInterface", "animatedModal"], function(swal,
             dataType: 'json',
             type: "POST"
         }).success(function(response) {
+            console.log(response);
             if (response.success === true) {
                 $(".logged-out-content").fadeOut("fast", function() {
                     $("#login-stylesheet").remove();

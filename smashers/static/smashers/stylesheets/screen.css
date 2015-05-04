@@ -1377,12 +1377,13 @@ nav ul li:hover, nav ul li a:hover {
   padding-top: 50px;
   color: #fff;
   text-align: center;
+  opacity: 0;
 }
-/* line 412, ../sass/screen.scss */
+/* line 413, ../sass/screen.scss */
 .modal p {
   margin: 20px 0;
 }
-/* line 416, ../sass/screen.scss */
+/* line 417, ../sass/screen.scss */
 .modal .close-modal {
   display: block;
   text-align: center;
@@ -1390,7 +1391,14 @@ nav ul li:hover, nav ul li a:hover {
   color: #fff;
   cursor: pointer;
 }
-/* line 424, ../sass/screen.scss */
+/* line 425, ../sass/screen.scss */
 .modal .placeholder {
-  margin-top: 200px;
+  width: 85%;
+  margin: 200px auto 0;
+}
+
+/* line 435, ../sass/screen.scss */
+img#output {
+  width: 300px;
+  height: 300px;
 }

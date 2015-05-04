@@ -1,6 +1,8 @@
 define("smashers", ["sweetalert"], function(swal) {
     // /api/v1/smashers
 
+    var activeUser;
+
     function getMessageGenerator() {
         var count = 0;
         var messages = [
@@ -19,7 +21,7 @@ define("smashers", ["sweetalert"], function(swal) {
         }
     }
 
-    var messsageGenerator = getMessageGenerator();
+    var messageGenerator = getMessageGenerator();
 
     var Smasher = TastypieModel.extend({
         decisionUrl: '/api/v1/decision/',
@@ -58,7 +60,7 @@ define("smashers", ["sweetalert"], function(swal) {
                 if (response.match === true) {
                     swal({
                        title: "Matched!",   
-                        text: messsageGenerator(firstname),
+                        text: messageGenerator(firstname),
                         type: "success" ,
                         timer: 2300 
                     })
@@ -106,6 +108,13 @@ define("smashers", ["sweetalert"], function(swal) {
             $.getJSON("/api/v1/matches").success(function(response) {
                 callback(new Smashers(response, {parse: true}));
             })
+        },
+        // Expects a plain object, returns smasher
+        setActiveUser: function(user) {
+            return activeUser = new Smasher(user);
+        },
+        getActiveUser: function() {
+            return activeUser;
         }
     }
 
