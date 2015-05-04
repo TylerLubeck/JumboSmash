@@ -211,12 +211,17 @@ class UserResource(MultipartResource, ModelResource):
         authorization = UserAuthorization()
         fields = ['headshot', 'id']
 
+    def dispatch(self, request_type, request, **kwargs):
+        return super(UserResource, self).dispatch('detail', request, **kwargs)
+
     def obj_delete(self, bundle, **kwargs):
+        kwargs['id'] = bundle.request.user.userprofile.pk
         user = bundle.request.user
         super(UserResource, self).obj_delete(bundle, **kwargs)
         user.delete()
 
     def obj_update(self, bundle, **kwargs):
+        kwargs['id'] = bundle.request.user.userprofile.pk
         retVal = super(UserResource, self).obj_update(bundle, **kwargs)
         bundle.obj.has_headshot = True
         bundle.obj.save()
