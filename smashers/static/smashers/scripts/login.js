@@ -74,10 +74,11 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
                 });
             }
         }).error(function(response) {
+            console.log(response)
             swal({
                 type: "error",
-                title: "Something went wrong.",
-                text: "It looks like your username or password was incorrect. Make sure you register!"
+                title: "Make sure you register!",
+                text: "It looks like your username or password was incorrect, or you forgot to register."
             })
         })
     }

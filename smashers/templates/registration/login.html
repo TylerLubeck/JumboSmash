@@ -7,15 +7,15 @@
           {% csrf_token %} 
           {{ form.as_p }}
           <div class='login-inputs'>
+            <img class='login-logo' src="{% static 'smashers/jsmash.png' %}" />
             <input type='text' name='username' placeholder='tufts.edu email address' />
             <input type='password' name='password' placeholder='password' />
-            <button id='login-submit' class='choice-button'><i class="icon-chevron-thin-right"></i></button>
+            <button id='login-submit' class='choice-button button-regular'>Login <i class='icon-chevron-with-circle-right'></i></button>
             <input type="hidden" name="next" value="{{ next }}" />
           </div>
 
           <a class='account-actions' href="{% url 'auth_password_reset' %}">{% trans "Reset Password" %}</a>
-          <span class="account-actions"> or </span>
-          <a class='account-actions' id='open-registration' href="#registrationModal">{% trans "Register" %}</a>
+          <a id='open-registration' class='animated bounce choice-button button-regular' href="#registrationModal">Register <i class='icon-heart'></i></a>
 
           <div id='registrationModal' class='animatedModal modal animated no-alpha'>
             <div class="close-registrationModal close-modal icon-cross"> </div>
