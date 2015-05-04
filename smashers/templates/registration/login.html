@@ -4,7 +4,6 @@
 {% block content %}
     <link rel="stylesheet" id="login-stylesheet" href="{% static 'smashers/stylesheets/login.css' %}" />
     <div class="wrapper login-wrap">
-      <!-- /accounts/login  = {% url 'auth_login' %}-->
           {% csrf_token %} 
           {{ form.as_p }}
           <div class='login-inputs'>
@@ -18,16 +17,17 @@
           <span class="account-actions"> or </span>
           <a class='account-actions' id='open-registration' href="#registrationModal">{% trans "Register" %}</a>
 
-          <div id='registrationModal' class='animatedModal modal animated hidden'>
-            <div class="close-registrationModal close-modal icon-cross"> 
+          <div id='registrationModal' class='animatedModal modal animated no-alpha'>
+            <div class="close-registrationModal close-modal icon-cross"> </div>
             <div class="modal-content wrapper">
+              <p>Once you register, a validation link will be sent to your tufts.edu email address, if we recognize the email.</p>
               {% csrf_token %}
               {{ form.as_p }}
               <input type="text" name='username' placeholder='username'>
-              <input type="text" name='email' type='email' placeholder='email'>
+              <input type="text" name='email' type='email' placeholder='tufts.edu email address'>
               <input type="password" name='password1' placeholder='password'>
               <input type="password" name='password2' placeholder='confirm password'>
-              <button id='register'>Register</button>
+              <button class='choice-button button-regular' id='register'>Register</button>
             </div>
           </div>
     </div>

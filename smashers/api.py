@@ -25,7 +25,7 @@ class UserProfileResource(ModelResource):
         resource_name = 'smashers'
         queryset = UserProfile.objects.all()
         allowed_methods = ['get']
-        fields = ['class_year', 'name', 'major', 'id']
+        fields = ['class_year', 'name', 'major', 'id', "has_headshot", "headshot"]
         limit = 20
         test = True
 

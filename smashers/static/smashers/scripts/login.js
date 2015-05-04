@@ -2,9 +2,6 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
 
     var $loginWrap = $(".login-wrap");
     var $openRegistrationButton = $("#open-registration");
-    var $registerButton = $("#register");
-
-    $registerButton.click(tryRegistration);
 
     $openRegistrationButton.animatedModal({
         modalTarget: "registrationModal"
@@ -86,8 +83,14 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
     }
 
     var tryRegistration = function() {
-
+        console.log("tolo")
     }
 
     $loginButton.click(tryLogin);
+
+    var $registerButton = $("#register");
+
+    console.log($registerButton)
+
+    $registerButton.click(tryRegistration);
 });

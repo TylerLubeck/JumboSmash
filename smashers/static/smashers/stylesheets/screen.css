@@ -79,6 +79,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: none;
 }
 
+/* line 16, ../sass/_build.scss */
+.no-alpha {
+  opacity: 0;
+}
+
 /*
  *  Usage:
  *

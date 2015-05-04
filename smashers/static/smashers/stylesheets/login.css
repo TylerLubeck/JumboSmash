@@ -75,6 +75,11 @@ article, aside, details, figcaption, figure, footer, header, hgroup, main, menu,
   display: none;
 }
 
+/* line 16, ../sass/_build.scss */
+.no-alpha {
+  opacity: 0;
+}
+
 /* line 6, ../sass/login.scss */
 body {
   background-color: #f9fcf7;
@@ -143,20 +148,45 @@ body {
   top: -37px;
   line-height: 1.8;
 }
-/* line 58, ../sass/login.scss */
+/* line 57, ../sass/login.scss */
+.login-wrap.wrapper .choice-button.button-regular {
+  font-family: "Raleway";
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  width: 100px;
+  height: 50px;
+  text-align: center;
+  top: 0;
+  font-size: 1rem;
+  padding: 0 10px;
+  color: #EE6146;
+  float: none;
+}
+/* line 69, ../sass/login.scss */
+.login-wrap.wrapper .choice-button.button-regular:before {
+  display: none;
+}
+/* line 74, ../sass/login.scss */
 .login-wrap.wrapper .inputs {
   float: left;
   width: 100%;
 }
-/* line 62, ../sass/login.scss */
+/* line 78, ../sass/login.scss */
 .login-wrap.wrapper .account-actions {
   display: inline-block;
   position: relative;
   top: 20px;
 }
+/* line 84, ../sass/login.scss */
+.login-wrap.wrapper .modal input {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+}
 
 @media all and (max-width: 400px) {
-  /* line 70, ../sass/login.scss */
+  /* line 93, ../sass/login.scss */
   .login-wrap.wrapper {
     position: relative;
     width: 95%;
@@ -164,14 +194,14 @@ body {
     left: 0;
     margin: 0 auto;
   }
-  /* line 77, ../sass/login.scss */
+  /* line 100, ../sass/login.scss */
   .login-wrap.wrapper input {
     width: 100%;
     border-bottom: 1px solid #EE6146;
     margin: 5px 0;
     float: none;
   }
-  /* line 84, ../sass/login.scss */
+  /* line 107, ../sass/login.scss */
   .login-wrap.wrapper .choice-button {
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
@@ -183,7 +213,7 @@ body {
     text-align: left;
     font-size: 1.2rem;
   }
-  /* line 93, ../sass/login.scss */
+  /* line 116, ../sass/login.scss */
   .login-wrap.wrapper .choice-button i::before {
     content: "Login.";
     font-family: "Raleway";

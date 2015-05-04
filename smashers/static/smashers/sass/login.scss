@@ -54,6 +54,22 @@ body {
         top: -37px;
         line-height: 1.8;
     }
+    .choice-button.button-regular {
+        font-family: "Raleway";
+        @include border-radius(10px);
+        width: 100px;
+        height: 50px;
+        text-align: center;
+        top: 0;
+        font-size: 1rem;
+        padding: 0 10px;
+        color: $sexyRed;
+        float: none;
+
+        &:before {
+            display: none;
+        }
+    }
 
     .inputs {
         float: left;
@@ -64,7 +80,14 @@ body {
         position: relative;
         top: 20px;
      }
+
+     .modal input {
+          display: block;
+          width: 100%;
+          margin: 8px 0;
+     }
 }
+
 
 @media all and (max-width: 400px) {
     .login-wrap.wrapper {
