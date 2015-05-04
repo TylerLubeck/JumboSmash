@@ -34,6 +34,9 @@ define("smashers", ["sweetalert"], function(swal) {
             num_matches: 0
         },
         parse: function(response) {
+            if (response.major){
+                response.major = response.major.split("(")[0]
+            }
             if (!response.headshot) {
                 return _.omit(response, "headshot");
             }
