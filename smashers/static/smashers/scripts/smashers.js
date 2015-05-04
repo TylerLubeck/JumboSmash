@@ -75,6 +75,7 @@ define("smashers", ["sweetalert"], function(swal) {
                         type: "success" ,
                         timer: 2300 
                     });
+                    // Sorry :(
                     var matches = parseInt($("#num-matches").text());
                     $("#num-matches").text(++matches)
 
