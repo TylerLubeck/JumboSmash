@@ -140,7 +140,7 @@ define("cardInterface", ["smashers"], function(smashers) {
 
     var activeSmashers = smashers.getSmashers();
     var activeSetView = new CardCollectionView({collection: activeSmashers});
-    if (window.authenticated === true)
+    if (!window.user.error)
         activeSmashers.getNextSwipeSet();
 
     return {

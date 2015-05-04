@@ -28,13 +28,25 @@ class IndexView(View):
     def get(self, request):
         # TODO: Put this code in a Cache block
         # TODO: Add template variable on if they have an image or not
+        # up = UserProfile.objects.get(email__iexact=email)
+        profile = request.user.userprofile
+        user_info = {"error": "Not authenticated"}
+
+        if profile:
+            user_info = {
+                "id": profile.pk,
+                "name": profile.name,
+                "has_headshot": profile.has_headshot,
+                "headshot": str(profile.headshot)
+            }
+
         people = UserProfile.objects.values('name', 'pk', 'major')
         for p in people:
             p['tokens'] = [p['name'], p['major']]
         serialized_names = json.dumps(list(people))
         context = {
             'people': serialized_names,
-            'has_image': True # TODO: Compute this
+            'user': json.dumps(user_info)
         }
         return render(request, 'smashers/index.html', context)
 

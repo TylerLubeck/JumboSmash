@@ -28,8 +28,7 @@ class UserProfileResource(ModelResource):
         limit = 20
 
     def obj_get(self, bundle, **kwargs):
-        profile = bundle.request.user.userprofile
-        return profile
+        return bundle.request.user.userprofile;
 
     def obj_get_list(self, bundle, **kwargs):
         # Figure out who I've already rated
@@ -247,6 +246,7 @@ class UserResource(MultipartResource, ModelResource):
                     'user': {
                         "id" : user.userprofile.pk,
                         "name": user.userprofile.name,
+                        "headshot": user.userprofile.headshot,
                         "has_headshot": user.userprofile.has_headshot
                     }
                 })

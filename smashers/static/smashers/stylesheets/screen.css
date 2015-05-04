@@ -1399,6 +1399,9 @@ nav ul li:hover, nav ul li a:hover {
 
 /* line 435, ../sass/screen.scss */
 img#output {
-  width: 300px;
-  height: 300px;
+  max-width: 300px;
+  max-height: 300px;
+  overflow: hidden;
+  background: #fff;
+  margin: 20px 0;
 }

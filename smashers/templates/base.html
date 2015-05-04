@@ -10,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{% block title %}User test{% endblock %}</title>
         <script type="text/javascript">
+            window.user = {{ user|safe }};
             window.people = {{ people|safe }};
             {% if user.is_authenticated %} 
                 window.authenticated = true;
@@ -54,21 +55,6 @@
                     </div>
                         
                     <div class="modal-content wrapper">
-                        <p>Hi there. Welcome to senior week. We don't have a lot of time left on campus, and we should all strive to make the most of it. Upload a photo of yourself, so your classmates and potential lovers know exactly who they're tangling with.</p>
-                        <!-- The file input field used as target for the file upload widget -->
-                        <input type="file" id="file-select" accept="image/*" name="headshots[]"/>
-                        <button id="upload">Upload</button>
-                        <img id='output'>
-                        <nav>
-                            <ul>
-                                <!-- <li><span class='center'>{% trans "Logged in" %} as {{ user.username }}</span></li> -->
-                                <li><a class='center' id='logout'>{% trans "Log out" %}</a></li>
-                                <li><a class='center' href="{% url 'auth_password_change' %}">{% trans "Change Password" %}</a></li>
-                                <li><a class='center' id='deactivate'>{% trans "Deactivate Account" %}</a></li>
-
-                            </ul>
-                        </nav>
-
                     </div>
 
                 </div>

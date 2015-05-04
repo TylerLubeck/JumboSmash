@@ -433,6 +433,9 @@ input[type='file'] {
 }
 
 img#output {
-    width: 300px;
-    height: 300px;   
+    max-width: 300px;
+    max-height: 300px;   
+    overflow: hidden;
+    background: #fff;
+    margin: 20px 0;
 }

@@ -65,18 +65,14 @@ define("login", ["sweetalert", "cardInterface", "smashers", "animatedModal"], fu
             dataType: 'json',
             type: "POST"
         }).success(function(response) {
-            console.log(response);
             if (response.success === true) {
-                $.get("/api/v1/smashers/" + 1514 +"/").success(function(user) {
-                    console.log(user)
-                    $(".logged-out-content").fadeOut("fast", function() {
-                        $("#login-stylesheet").remove();
-                        $(".logged-in-content").fadeIn("fast", function() {
-                            cardInterface.activeSet().getNextSwipeSet();
-                        });
-                    });    
-                })
-                
+                smashers.setActiveUser(response.user);
+                $(".logged-out-content").fadeOut("fast", function() {
+                    $("#login-stylesheet").remove();
+                    $(".logged-in-content").fadeIn("fast", function() {
+                        cardInterface.activeSet().getNextSwipeSet();
+                    });
+                });
             }
         }).error(function(response) {
             swal({

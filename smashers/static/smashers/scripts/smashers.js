@@ -29,7 +29,14 @@ define("smashers", ["sweetalert"], function(swal) {
             return "/api/v1/smashers/" + this.id + "/"
         },
         defaults: {
-            user_picture: "static/smashers/avatar.png"
+            headshot: "static/smashers/avatar.png",
+            has_headshot: false
+        },
+        parse: function(response) {
+            if (!response.headshot) {
+                return _.omit(response, "headshot");
+            }
+            return response;
         },
         initialize: function() {
 
@@ -111,7 +118,7 @@ define("smashers", ["sweetalert"], function(swal) {
         },
         // Expects a plain object, returns smasher
         setActiveUser: function(user) {
-            return activeUser = new Smasher(user);
+            return activeUser = new Smasher(user, {parse: true});
         },
         getActiveUser: function() {
             return activeUser;

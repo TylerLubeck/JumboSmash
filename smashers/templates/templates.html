@@ -2,7 +2,7 @@
 <script type='text/template' id='single-card'>
     <i class='feedback-icon icon-like'>LIKE</i>
     <i class='feedback-icon icon-dislike'>DISLIKE</i>
-    <img draggable='false' src="<%= user_picture %>" />
+    <img draggable='false' src="<%= headshot %>" />
     <div class='info-wrapper'>
         <h2><%= name %></h2>
         <h3><%= major %></h3>
@@ -10,4 +10,20 @@
 </script>
 <script type="text/template" id='suggestion-template'>
     <%= name %>
+</script>
+
+<script type="text/template" id='user-profile'>
+    <p>Hi there. Welcome to senior week. We don't have a lot of time left on campus, and we should all strive to make the most of it. Upload a photo of yourself, so your classmates and potential lovers know exactly who they're tangling with.</p>
+    <!-- The file input field used as target for the file upload widget -->
+    <input type="file" id="file-select" accept="image/*" name="headshots[]"/>
+    <button class="js-upload">Upload!</button>
+    <img id='output' src="<%= headshot %>">
+    <nav>
+        <ul>
+            <li><a class='center js-logout'>Log out</a></li>
+            <li><a class='center js-change-password' href="#">Change Password</a></li>
+            <li><a class='center js-deactivate-account' id='deactivate'>Deactivate Account</a></li>
+
+        </ul>
+    </nav>
 </script>

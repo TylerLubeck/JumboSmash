@@ -56,9 +56,10 @@ define("app", ["jquery", "underscore", "backbone"], function($, _, Backbone) {
     });
 
     var login = require(["login"]);
-    var activeUser;
     require(["smashers"], function(smashers) {
-        activeUser = smashers.getSmasher();
+       if (!_.isUndefined(window.user)) {
+            smashers.setActiveUser(window.user);
+       }
     });
     var cards = require(["cardInterface"]);
     require(["search"], function(search) {

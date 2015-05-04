@@ -16,120 +16,113 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
         return cookieValue;
     }
 
+    var UserProfileView = Backbone.View.extend({
+        template: _.template($("#user-profile").html()),
+        render: function() {
+            this.$el.html(this.template(this.model.toJSON()))
+            return this;
+        },
+        events: {
+            "change #file-select": function(e) {
+                var that = this;
+                var reader = new FileReader();
+                reader.onload = function(){
+                  var output = document.getElementById('output');
+                  output.src = reader.result;
+                };
+                reader.readAsDataURL(e.target.files[0]);
+            },
+            "click .js-upload": function(e) {
+                var $this = $(e.currentTarget);
+                $this.text("Uploading...")
+                var files = document.getElementById("file-select").files;
+                var formData = new FormData();
+                var file = files[0];
+                if (!file) {
+                    return;
+                }
+                // Check the file type.
+                if (!file.type.match('image.*')) {
+                    return
+                }
+
+                formData.append('headshot', file);
+                var xhr = new XMLHttpRequest();
+                xhr.open("PUT", "/api/v1/user/" + smashers.getActiveUser().id + "/", true)
+                xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // File(s) uploaded.
+                        var response = JSON.parse(xhr.responseText);
+                        swal({
+                            type: 'success',
+                            title: 'Picture uploaded!',
+                            text: 'Nice work. Get ready for the matches to pour in.',
+                            timer: 4000
+                        })
+                        $this.html('Upload');
+
+                    } 
+                    else {
+                        alert('An error occurred!');
+                    }
+                };
+                xhr.send(formData);
+            },
+            "click .js-deactivate-account": function() {
+                swal({
+                   title: "Are you sure?",  
+                   text: "You will not be able to recover this imaginary file!",
+                   type: "warning",
+                   showCancelButton: true,
+                   confirmButtonColor: "#DD6B55",
+                   confirmButtonText: "Yes, delete it!",
+                   cancelButtonText: "No, cancel plx!",
+                   closeOnConfirm: false,
+                   closeOnCancel: false 
+               }, function(isConfirm){   
+                    if (isConfirm) {     
+                        $.ajax({
+                            url:"/api/v1/user/" + smashers.getActiveUser().id + "/",
+                            type: "DELETE"
+                        }).success(function() {
+                            swal("Deleted!", "Your account has been deleted.", "success");   
+                        }).error(function(){
+                            swal("Oh no!", "Something went wrong deleting your account :(", "error");   
+                        })
+                    } 
+                    else {    
+                        swal("Cancelled", "Your account is safe :)", "error");   
+                    } 
+                });
+            },
+            "click .js-logout": function() {
+                $.get("/api/v1/user/logout/").success(function(response) {
+                    swal({
+                        type: "success",
+                        title: "Successfully logged out.",
+                        text: "Get out there and go smash!"
+                    });
+                    setTimeout(function() {
+                        window.location.href = "/"
+                    }, 1000)
+                })
+            }
+        }
+    })
+
+
     var $searchbar = $("#smash-autocomplete");
     var $matchButton = $(".js-show-matches");
     var $addPicture = $("#js-add-picture");
     var $showProfile = $(".js-show-profile")
     var $searchBarTrigger = $(".js-show-searchbar");
     var $matchList = $("#match-list");
-    var $logoutButton = $("#logout");
     var $uploadButton = $("#upload");
-    var $deactivateButton = $("#deactivate");
-    var fileSelect = document.getElementById('file-select');
     var searchBarOpen = false;
     var cardList = null;
 
     return function() {
-
-        $deactivateButton.click(function() {
-            swal({
-               title: "Are you sure?",  
-               text: "You will not be able to recover this imaginary file!",
-               type: "warning",
-               showCancelButton: true,
-               confirmButtonColor: "#DD6B55",
-               confirmButtonText: "Yes, delete it!",
-               cancelButtonText: "No, cancel plx!",
-               closeOnConfirm: false,
-               closeOnCancel: false 
-           }, function(isConfirm){   
-                if (isConfirm) {     
-                    $.ajax({
-                        url:"/api/v1/user/" + 1514 + "/",
-                        type: "DELETE"
-                    }).success(function() {
-                        swal("Deleted!", "Your account has been deleted.", "success");   
-                    }).error(function(){
-                        swal("Oh no!", "Something went wrong deleting your account :(", "error");   
-                    })
-                } 
-                else {    
-                    swal("Cancelled", "Your account is safe :)", "error");   
-                } 
-            });
-
-        })
-
-        fileSelect.addEventListener("change", function(e) {
-
-            var reader = new FileReader();
-            reader.onload = function(){
-              var output = document.getElementById('output');
-              output.src = reader.result;
-            };
-            reader.readAsDataURL(e.target.files[0]);
-
-        })
-
-        $uploadButton.click(function(){
-            var $this = $(this);
-            $this.text("Uploading...")
-            var files = fileSelect.files;
-            var formData = new FormData();
-            var file = files[0];
-            if (!file) {
-                return;
-            }
-            // Check the file type.
-            if (!file.type.match('image.*')) {
-                return
-            }
-
-            formData.append('headshot', file);
-            var xhr = new XMLHttpRequest();
-            xhr.open("PUT", "/api/v1/user/1514/", true)
-            xhr.setRequestHeader("X-CSRFToken", getCookie('csrftoken'));
-            xhr.onload = function () {
-                if (xhr.status === 200) {
-                    // File(s) uploaded.
-                    var response = JSON.parse(xhr.responseText);
-                    swal({
-                        type: 'success',
-                        title: 'Picture uploaded!',
-                        text: 'Nice work. Get ready for the matches to pour in.',
-                        timer: 4000
-                    })
-                    $this.html('Upload');
-
-                } 
-                else {
-                    alert('An error occurred!');
-                }
-            };
-            xhr.send(formData);
-            // Add the file to the request.
-            // $.ajax({
-            //     url: "/api/v1/user/1/",
-            //     type: "PUT",
-            //     data: FormData
-            // }).success(function(response) {
-            //     console.log(response)
-            // })
-
-        })
-
-        $logoutButton.click(function() {
-            $.get("/api/v1/user/logout/").success(function(response) {
-                swal({
-                    type: "success",
-                    title: "Successfully logged out.",
-                    text: "Get out there and go smash!"
-                });
-                setTimeout(function() {
-                    window.location.href = "/"
-                }, 1000)
-            })
-        })
 
         $matchButton.click(function() {
             smashers.getMatches(function(matches) {
@@ -179,8 +172,14 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
             modalTarget: "updateProfileModal"
         });
 
+
         $showProfile.animatedModal({
-            modalTarget: "updateProfileModal"
+            modalTarget: "updateProfileModal",
+            beforeOpen: function() {
+                console.log(smashers.getActiveUser())
+                var profileView = new UserProfileView({model: smashers.getActiveUser()}).render().delegateEvents();
+                $("#updateProfileModal .modal-content").html(profileView.el);
+            }
         })
     }
 })
