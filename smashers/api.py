@@ -1,17 +1,17 @@
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.conf import settings
+from django.core.mail import send_mail
 from tastypie.http import HttpUnauthorized, HttpForbidden
 from django.conf.urls import url
 from tastypie.utils import trailing_slash
-import json
-
 from .models import UserProfile
 from .authorization import DecisionAuthorization, UserAuthorization
 from django.http import Http404
 from tastypie import fields
 from tastypie.resources import ModelResource, Resource
-from tastypie.authentication import SessionAuthentication, Authentication
-from tastypie.authorization import ReadOnlyAuthorization, Authorization
+from tastypie.authentication import SessionAuthentication
+from tastypie.authorization import ReadOnlyAuthorization
 
 
 class CommonMeta(object):
@@ -30,8 +30,8 @@ class UserProfileResource(ModelResource):
         test = True
 
     def dehydrate(self, bundle):
-        current_user = bundle.request.user.userprofile;
-        status = 0;
+        current_user = bundle.request.user.userprofile
+        status = 0
         id = bundle.data["id"]
         status = 1 if current_user.people_i_like.filter(pk=id).exists() else status
         status = 2 if current_user.people_i_dont_like.filter(pk=id).exists() else status
@@ -120,6 +120,17 @@ class DecisionResource(Resource):
         return bundle
 
     def _notify_users(self, rater, ratee):
+        message = "Hi {}! Looks like {} matched with you. Look each other up!"
+        subject = "New JumboSmash Match!"
+        if not settings.DEBUG:
+            send_mail(subject,
+                      message.format(rater.name, ratee.name),
+                      'jumbosmashers@gmail.com',
+                      [rater.email])
+            send_mail(subject,
+                      message.format(ratee.name, rater.name),
+                      'jumbosmashers@gmail.com',
+                      [ratee.email])
         print '{} and {} want to smash!'.format(rater.name, ratee.name)
 
 
