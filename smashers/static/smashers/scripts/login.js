@@ -96,6 +96,7 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
                 return false;
             }
 
+
             if (val === "") {
                 flag = true;
                 swal({
@@ -113,11 +114,14 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
                 text: "You need to make your passwords match!",
                 timer: 2000
             });
-            flag = true;
+            return;
         }
+
+        console.log(toSend);
 
         if (flag === false) {
             $.post("/accounts/register/", toSend, function(response) {
+                console.log(response)
                 if (response == 0) {
                     swal({
                         type: "error",

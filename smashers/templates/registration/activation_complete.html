@@ -1,6 +1,17 @@
-{% extends "auth_base.html" %}
+{% load staticfiles %}
 {% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'smashers/stylesheets/screen.css' %}" />
+    <link rel="stylesheet" href="{% static 'smashers/stylesheets/login.css' %}" />
+</head>
+<body>
+    <div class="wrapper login-wrap">
+        <p>Activation complete! <a href='/'>Go Login</a></p>
+    </div>
+</body>
+</html>
 
-{% block content %}
-<p>{% trans "Your account is now activated." %}</p>
-{% endblock %}
