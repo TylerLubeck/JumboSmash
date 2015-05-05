@@ -127,7 +127,7 @@ class DecisionResource(Resource):
         return bundle
 
     def _notify_users(self, rater, ratee):
-        message = "Hi {}! Looks like {} matched with you. Look each other up!"
+        message = "<img src='http://www.jumbosmash.com/static/smashers/jsmash.3ad68b69fc34.png'/><br/><p>Hi {}! Looks like {} matched with you. Look each other up!</p>"
         subject = "New JumboSmash Match!"
         if not settings.DEBUG:
             send_mail(subject,

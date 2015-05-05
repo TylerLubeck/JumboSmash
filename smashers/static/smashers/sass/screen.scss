@@ -233,6 +233,15 @@ a:hover, a:focus {
         z-index: 999;
         display: none;
     }
+
+    .js-pass {
+        padding: 10px;
+        position: absolute;
+        top: 254px;
+        right: 0px;
+        cursor: pointer;
+        z-index: 99;
+    }
 }
 
 ul.cards {
@@ -256,11 +265,6 @@ ul.cards {
     background: #fcfcfc;
     overflow: hidden;
     color: #444;
-
-    .js-pass {
-        float: right;
-        cursor: pointer;
-    }
 
     h2 {
       font-size: 1.3em;

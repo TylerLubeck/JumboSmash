@@ -18,6 +18,7 @@ define("cardInterface", ["smashers"], function(smashers) {
         className: "smash-card",
         tagName: 'li',
         initialize: function() {
+            var that = this;
             this.listenTo(this.model, {
                 remove: function() {
                     var that = this;
@@ -26,6 +27,12 @@ define("cardInterface", ["smashers"], function(smashers) {
                     })
                 },
                 "change:headshot": function(model, collection, opts) {
+                },
+                "pass": function(){ 
+                    this.$el.slideUp("fast", function(){
+                        that.model.passed = true;
+                        that.model.trigger("destroy", that.model);
+                    });
                 }
             })
         },
@@ -82,15 +89,6 @@ define("cardInterface", ["smashers"], function(smashers) {
         updateMatchIcon: function(opacity) {
             this._updateFeedBackIcon(opacity, "match")
             return this;  
-        },
-        events: {
-            "click .js-pass": function() {
-                var that = this;
-                this.$el.slideUp("fast", function(){
-                    that.model.passed = true;
-                    that.model.trigger("destroy", that.model);
-                })
-            }
         }
     });
 
@@ -182,6 +180,12 @@ define("cardInterface", ["smashers"], function(smashers) {
             "click #dislike": function() {
                 if (this.activeCard)
                     this.activeCard.swingCard.throwOut(-20, 111)
+            },
+            "click .js-pass": function() {
+                var activeCard = this.activeCard;
+                if (activeCard) {
+                    activeCard.trigger("pass");
+                }
             }
         }
 
