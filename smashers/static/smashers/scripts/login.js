@@ -24,7 +24,11 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
         $inputs.each(function() {
             var $this = $(this)
             name = $this.attr("name");
-            val = $this.val().toLowerCase().trim();
+            val = $this.val()
+
+            if (name !== "password") {
+                val = val.toLowerCase().trim();
+            }
 
             if((name == "password" || name == "username") && val === "") {
                 flag = true;
@@ -80,8 +84,11 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
         var flag = false;
         $form.children("input").each(function() {
             var $t = $(this);
-            var val = $t.val().toLowerCase().trim();
+            var val = $t.val();
             var name = $t.attr("name");
+            if (name !== "password1" && name !== "password2") {
+                val = val.toLowerCase().trim()
+            }
             toSend[name] = val;
             if (val === "") {
                 flag = true;
