@@ -79,7 +79,6 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
     var tryRegistration = function() {
         var $this = $(this);
         var $form = $this.closest(".form");
-        console.log($form)
         var toSend = {}
         var flag = false;
         $form.children("input").each(function() {
@@ -90,6 +89,13 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
                 val = val.toLowerCase().trim()
             }
             toSend[name] = val;
+
+            if (name == "username" && val.indexOf(" ") !== -1) {
+                flag = true;
+                $form.prepend("<p style='color: red'>No spaces allowed in username</p>")
+                return false;
+            }
+
             if (val === "") {
                 flag = true;
                 swal({
