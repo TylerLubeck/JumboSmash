@@ -140,7 +140,7 @@ ACCOUNT_ACTIVATION_DAYS = 7
 
 TASTYPIE_DEFAULT_FORMATS = ['json']
 
-if DEBUG or True:
+if DEBUG:
     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
