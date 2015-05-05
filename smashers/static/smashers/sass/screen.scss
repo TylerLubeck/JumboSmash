@@ -257,9 +257,21 @@ ul.cards {
     overflow: hidden;
     color: #444;
 
+    .js-pass {
+        float: right;
+        cursor: pointer;
+    }
+
     h2 {
-        font-size: 1.3em;
-        border-bottom: 1px solid #ccc;
+      font-size: 1.3em;
+      border-bottom: 1px solid #ccc;
+      /* float: left; */
+      display: block;
+    }
+
+    h3 {
+        float: left;
+        position: relative;
     }
 
 

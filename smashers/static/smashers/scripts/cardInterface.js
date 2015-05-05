@@ -82,6 +82,14 @@ define("cardInterface", ["smashers"], function(smashers) {
         updateMatchIcon: function(opacity) {
             this._updateFeedBackIcon(opacity, "match")
             return this;  
+        },
+        events: {
+            "click .js-pass": function() {
+                var that = this;
+                this.$el.slideUp("fast", function(){
+                    that.model.trigger("destroy", that.model);
+                })
+            }
         }
     });
 
