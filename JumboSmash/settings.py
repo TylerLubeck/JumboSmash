@@ -26,7 +26,9 @@ SECRET_KEY = '***REMOVED***'
 debug_found = os.environ.get('DEBUG', '1')
 DEBUG = debug_found == '1'
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '*.jumbosmash.com', '*']
+
+ADMINS = ['tyler@tylerlubeck.com']
 
 
 # Application definition
@@ -112,10 +114,7 @@ DATABASES['default'] = dj_database_url.config(default=sql_path)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-ALLOWED_HOSTS = ['*']
-
-
-#S3 Setup stuff
+# S3 Setup stuff
 if not DEBUG:
     AWS_STORAGE_BUCKET_NAME = 'jumbosmash'
     AWS_S3_CUSTOM_DOMAIN = '{}.s3.amazonaws.com'.format(AWS_STORAGE_BUCKET_NAME)
@@ -153,10 +152,10 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'jumbosmashers@gmail.com'
 EMAIL_HOST_PASSWORD = os.environ.get('JUMBOSMASHERS_PW', None)
 if EMAIL_HOST_PASSWORD is None and not DEBUG:
-    raise Exception ('No email password found!')
-DEFAULT_FROM_EMAIL = 'jumbosmashers@gmail.com'
+    raise Exception('No email password found!')
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+SERVER_EMAIL = EMAIL_HOST_USER
 
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/'
 INCLUDE_AUTH_URLS = True
-
