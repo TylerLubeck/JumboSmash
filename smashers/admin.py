@@ -19,3 +19,4 @@ post_delete.connect(_clear_cache, sender=UserProfile)
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
     search_fields = ['name', 'major']
+    list_display = ('__str__', 'is_registered')

@@ -41,7 +41,10 @@ class UserProfile(models.Model):
                                                 related_name='people_dont_like_me',
                                                 blank=True)
 
+
+    def is_registered(self):
+        return self.user != None
+    is_registered.short_description = 'Registered'
+    is_registered.boolean = True
     def __str__(self):
-        is_registered = self.user is not None
-        return '{} - Registered: {}'.format(self.name,
-                                            'Yes' if is_registered else 'No')
+        return self.name
