@@ -87,6 +87,7 @@ define("cardInterface", ["smashers"], function(smashers) {
             "click .js-pass": function() {
                 var that = this;
                 this.$el.slideUp("fast", function(){
+                    that.model.passed = true;
                     that.model.trigger("destroy", that.model);
                 })
             }
