@@ -36,6 +36,10 @@
                     <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
                     <img class='logo' src="{% static 'smashers/jsmash.png' %}" />
                     <i class='header-actions js-show-searchbar icon-search3'></i>
+                    <a id='show-matches' href="#animatedModal">
+                        <span id="num-matches"></span>
+                    </a>
+
                     <!-- <a id='js-add-picture' href='#updateProfileModal'><i class="icon-plus"></i>Add a picture of you</a> -->
                 </header>
     
@@ -45,16 +49,15 @@
                        <div class="sk-cube1"></div>
                        <div class="sk-cube2"></div>
                     </div>
-                    
-                    <a class='js-pass'>Pass</a>
+
                     <ul class="cards"></ul>
 
                     <ul id="choices">
                         <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
-                        <li class='show-matches-wrapper'>
-                            <button id='show-matches' href="#animatedModal">
-                                <i class='js-show-matches icon-fire'></i>
-                                <span id="num-matches"></span>
+                        <li class=' js-pass pass-wrapper'>
+                            <button>
+                                <a href="#">Later</a>
+                                <i class='icon-chronometer'></i>
                             </button>
                         </li>
                         <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>

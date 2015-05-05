@@ -4,6 +4,36 @@
 		{
 			"icon": {
 				"paths": [
+					"M897.728 594.272c0 221.856-179.84 401.728-401.728 401.728-221.856 0-401.728-179.872-401.728-401.728 0-215.104 169.152-390.144 381.664-400.672v-69.312h-30.112c-17.76 0-32.16-14.4-32.16-32.16s14.4-32.128 32.16-32.128h96.384c17.76 0 32.16 14.368 32.16 32.128s-14.4 32.16-32.16 32.16h-34.112v68.896c216.224 6.4 389.632 183.328 389.632 401.088zM475.936 317.088v-73.312c-99.488 5.632-187.712 52.48-248.512 123.456l52.896 52.896-22.72 22.752-50.080-50.112c-40.768 57.536-65.024 127.584-65.024 203.488 0 3.392 0.48 8.032 0.48 8.032h77.824v32.16h-75.52c7.808 65.664 33.824 127.584 72.576 177.088l39.776-39.776 22.72 22.72-41.472 41.504c60.128 63.872 143.616 105.504 237.056 110.784v-87.328h32.128v87.744c95.648-3.264 181.44-44.576 243.168-109.12l-45.568-45.568 22.72-22.72 44.064 44.032c39.68-49.92 66.368-112.672 74.304-179.328h-81.6v-32.16h83.872c0.096-3.328 0.512-4.64 0.512-8.032 0-78.016-25.6-149.792-68.416-208.16l-52.736 52.736-22.72-22.72 55.232-55.2c-62.304-70.496-152.096-116.192-252.8-119.584v73.728h-32.16zM510.048 604.32h112.512c8.864 0 16.064 7.232 16.064 16.064 0 8.864-7.2 16.096-16.064 16.096h-128.576c-8.864 0-16.064-7.232-16.064-16.096v-222.944c0-8.864 7.2-16.064 16.064-16.064s16.064 7.2 16.064 16.064v206.88z"
+				],
+				"attrs": [
+					{}
+				],
+				"isMulticolor": false,
+				"tags": [
+					"chronometer",
+					"timer",
+					"clock"
+				],
+				"grid": 32
+			},
+			"attrs": [
+				{}
+			],
+			"properties": {
+				"order": 1,
+				"id": 0,
+				"prevSize": 32,
+				"code": 58897,
+				"name": "chronometer"
+			},
+			"setIdx": 0,
+			"setId": 4,
+			"iconIdx": 0
+		},
+		{
+			"icon": {
+				"paths": [
 					"M1014.88 926.496c12.192 12.192 12.192 31.968 0 44.192l-44.192 44.192c-12.224 12.192-32 12.192-44.192 0l-309.376-309.376c-3.36-3.36-5.6-7.328-7.104-11.552-63.456 46.368-141.376 74.048-226.016 74.048-212.064 0-384-171.936-384-384s171.936-384 384-384c212.064 0 384 171.936 384 384 0 84.64-27.68 162.56-74.048 226.016 4.224 1.504 8.192 3.712 11.552 7.104l309.376 309.376zM384 128c-141.376 0-256 114.624-256 256s114.624 256 256 256 256-114.624 256-256c0-141.376-114.624-256-256-256z"
 				],
 				"attrs": [
@@ -28,7 +58,7 @@
 				"code": 58890,
 				"name": "search3"
 			},
-			"setIdx": 0,
+			"setIdx": 1,
 			"setId": 3,
 			"iconIdx": 0
 		},
@@ -60,7 +90,7 @@
 				"code": 58889,
 				"name": "search2"
 			},
-			"setIdx": 1,
+			"setIdx": 2,
 			"setId": 2,
 			"iconIdx": 0
 		},
@@ -88,7 +118,7 @@
 				"ligatures": "location, map-marker",
 				"name": "location"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 71
 		},
@@ -116,7 +146,7 @@
 				"ligatures": "location2, map-marker2",
 				"name": "location2"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 72
 		},
@@ -144,7 +174,7 @@
 				"ligatures": "compass, direction",
 				"name": "compass"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 73
 		},
@@ -172,7 +202,7 @@
 				"ligatures": "compass2, direction2",
 				"name": "compass2"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 74
 		},
@@ -202,7 +232,7 @@
 				"ligatures": "user, profile2",
 				"name": "user"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 113
 		},
@@ -235,7 +265,7 @@
 				"ligatures": "users, group",
 				"name": "users"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 114
 		},
@@ -265,7 +295,7 @@
 				"ligatures": "search, magnifier",
 				"name": "search"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 134
 		},
@@ -294,7 +324,7 @@
 				"ligatures": "fire, flame",
 				"name": "fire"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 169
 		},
@@ -327,7 +357,7 @@
 				"ligatures": "man-woman, toilet",
 				"name": "man-woman"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 222
 		},
@@ -357,7 +387,7 @@
 				"ligatures": "cross, cancel",
 				"name": "cross"
 			},
-			"setIdx": 2,
+			"setIdx": 3,
 			"setId": 1,
 			"iconIdx": 271
 		},
@@ -381,7 +411,7 @@
 				"code": 58880,
 				"name": "remove-user"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 13
 		},
@@ -405,7 +435,7 @@
 				"code": 58893,
 				"name": "chevron-left"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 34
 		},
@@ -429,7 +459,7 @@
 				"code": 58894,
 				"name": "chevron-right"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 35
 		},
@@ -453,7 +483,7 @@
 				"code": 58895,
 				"name": "chevron-thin-left"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 41
 		},
@@ -477,7 +507,7 @@
 				"code": 58896,
 				"name": "chevron-thin-right"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 42
 		},
@@ -501,7 +531,7 @@
 				"code": 58891,
 				"name": "chevron-with-circle-left"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 46
 		},
@@ -525,7 +555,7 @@
 				"code": 58892,
 				"name": "chevron-with-circle-right"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 47
 		},
@@ -549,7 +579,7 @@
 				"code": 58881,
 				"name": "emoji-flirt"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 64
 		},
@@ -573,7 +603,7 @@
 				"code": 58882,
 				"name": "emoji-happy"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 155
 		},
@@ -597,7 +627,7 @@
 				"code": 58883,
 				"name": "emoji-neutral"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 156
 		},
@@ -621,7 +651,7 @@
 				"code": 58884,
 				"name": "emoji-sad"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 157
 		},
@@ -645,7 +675,7 @@
 				"code": 58885,
 				"name": "heart-outlined"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 180
 		},
@@ -669,7 +699,7 @@
 				"code": 58886,
 				"name": "heart"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 181
 		},
@@ -693,7 +723,7 @@
 				"code": 58888,
 				"name": "magnifying-glass"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 217
 		},
@@ -717,7 +747,7 @@
 				"code": 58887,
 				"name": "plus"
 			},
-			"setIdx": 3,
+			"setIdx": 4,
 			"setId": 0,
 			"iconIdx": 247
 		}

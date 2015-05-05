@@ -151,5 +151,12 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
 
     var $registerButton = $("#register");
 
+    $(".registration.form input").keydown(function(e) {
+        var key = e.keyCode || e.which;
+        if (key === 13) {
+            tryRegistration.call($registerButton);
+        }
+    })
+
     $registerButton.click(tryRegistration);
 });
