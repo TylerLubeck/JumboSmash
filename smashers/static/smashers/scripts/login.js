@@ -26,28 +26,16 @@ define("login", ["sweetalert", "cardInterface", "smashers", "coreUI", "animatedM
             name = $this.attr("name");
             val = $this.val().toLowerCase().trim();
 
-            // if((name == "password" || name == "username") && val === "") {
-            //     flag = true;
-            //     swal({
-            //         type: 'error',
-            //         timer: 4000,
-            //         title: "You forgot to fill in your " + name,
-            //         text: "You got this." 
-            //     })
-            // }
-
-            // if (name === "username") {
-            //     if (val.indexOf("tufts.edu") === -1) {
-            //         flag = true;
-            //         swal({
-            //             type: "error",
-            //             timer: 5000,
-            //             title: "Your username must be a tufts email.",
-            //             text: "If you have not registered (it's really easy!), you should do that now."
-            //         })
-            //         return false;
-            //     }
-            // }
+            if((name == "password" || name == "username") && val === "") {
+                flag = true;
+                swal({
+                    type: 'error',
+                    timer: 4000,
+                    title: "You forgot to fill in your " + name,
+                    text: "You got this." 
+                })
+                return false;
+            }
 
             toSend[name] = val;
         });

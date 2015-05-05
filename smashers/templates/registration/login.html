@@ -8,8 +8,8 @@
           {{ form.as_p }}
           <div class='login-inputs'>
             <img class='login-logo' src="{% static 'smashers/jsmash.png' %}" />
-            <input type='text' name='username' placeholder='tufts.edu email address' />
-            <input type='password' name='password' placeholder='password' />
+            <input tabindex='1' type='text' name='username' placeholder='tufts.edu email address' />
+            <input tabindex='1' type='password' name='password' placeholder='password' />
             <button id='login-submit' class='choice-button button-regular'>Login <i class='icon-chevron-with-circle-right'></i></button>
             <input type="hidden" name="next" value="{{ next }}" />
           </div>
