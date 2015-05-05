@@ -31,6 +31,7 @@ body {
     font-size: 1.05em;
     font-family: 'Raleway', Arial, sans-serif;
     padding-top: 20px;
+    padding-bottom: 100px;
     height: 100%;
 }
 
@@ -523,9 +524,5 @@ img#output {
 .disclaimer {
     color: #bbb;
     margin-top: 60px;
-    position: absolute;
-    bottom: 20px;
-    left: 50%;
-    margin-left: - 150px;
     line-height: 1.7;
 }

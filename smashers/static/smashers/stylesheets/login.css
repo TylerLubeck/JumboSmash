@@ -272,3 +272,10 @@ body {
     text-align: center;
   }
 }
+/* line 169, ../sass/login.scss */
+.disclaimer {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  margin-left: -150px;
+}
