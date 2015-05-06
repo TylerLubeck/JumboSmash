@@ -6,7 +6,6 @@ from tastypie.http import HttpUnauthorized, HttpForbidden
 from django.conf.urls import url
 from tastypie.utils import trailing_slash
 from .models import UserProfile
-from .mailer import send_email
 from .authorization import DecisionAuthorization, UserAuthorization
 from django.http import Http404
 from tastypie import fields

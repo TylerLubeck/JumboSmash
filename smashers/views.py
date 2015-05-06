@@ -33,7 +33,8 @@ class TestView(View):
             print "Not for u"
             return render(request, 'registration/login.html')
 
-        # url = 'http://api.genderize.io/?name='
+
+        # # url = 'http://api.genderize.io/?name='
         users = list(User.objects.all())
         for user in users:
             if user and user.is_active is False and user.email is not None and not hasattr(user, "userprofile"):
