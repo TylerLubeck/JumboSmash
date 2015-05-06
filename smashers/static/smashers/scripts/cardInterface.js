@@ -118,10 +118,12 @@ define("cardInterface", ["smashers"], function(smashers) {
                     // If there is nothing left in the collection....
                     if (!this.activeCard) {
                         this.collection.getNextSwipeSet(function() {
+                            if (that.collection.length === 0) {
+                                that.$(".placeholder").show();
+                            }
                             that.$(".loader").hide();
                         });
                         this.$(".loader").show();
-                        this.$(".placeholder").show();
                     }
                 }
             })
