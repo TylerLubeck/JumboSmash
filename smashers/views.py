@@ -7,8 +7,10 @@ from django.utils.decorators import method_decorator
 from registration.signals import user_activated
 from registration.backends.default.views import RegistrationView
 from .forms import SmasherRegistrationForm, ImageUploadForm
+from django.contrib.auth.models import User
 from .models import UserProfile
 import json
+import urllib, urllib2
 
 
 def associate_profile(sender, user, request, **kwargs):
@@ -24,6 +26,44 @@ class SmasherRegistrationView(RegistrationView):
     form_class = SmasherRegistrationForm
     success_url = '/?reg=true'
 
+
+class TestView(View):
+    def get(self, request):
+        if not request.user.is_superuser:
+            print "Not for u"
+            return render(request, 'registration/login.html')
+
+        # url = 'http://api.genderize.io/?name='
+        users = list(User.objects.all())
+        for user in users:
+            if user and user.is_active is False and user.email is not None and not hasattr(user, "userprofile"):
+                profile = UserProfile.objects.filter(email__iexact=user.email);
+                if len(profile) > 0:
+                    profile = profile[0];
+                    user.is_active = True;
+                    user.userprofile = profile
+                    profile.user_id = user.id;
+                    profile.save()
+                    user.save();
+
+        # for profile in users:
+        #     arr = profile.name.split(" ")
+        #     if arr:
+        #         firstname = arr[0];
+        #         req = urllib2.Request(url + firstname)
+        #         req.add_header("Accept-Language", "en-US")
+        #         req.add_header("Accept-Encoding", "gzip")
+        #         req.add_header("Connection", "Keep-Alive")
+        #         req.add_header("Content-Type", "application/x-www-form-urlencoded")
+        #         res = urllib2.urlopen(req)
+        #         blob = json.loads(res.read());
+        #         print blob
+        #         print blob.get("gender")
+        #         print blob.get("count")
+        #         # gender = blob.get("gender", None) if int(blob.get("probabality", 0)) > .95 else None;
+        #         # print gender
+
+        return render(request, 'registration/login.html')
 
 class IndexView(View):
     def get(self, request):

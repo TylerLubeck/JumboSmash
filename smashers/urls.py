@@ -19,4 +19,5 @@ urlpatterns = [
     #     views.UploadImageView.as_view(),
     #     name='image_upload'),
     url(r'^$', views.IndexView.as_view(), name='index'),
+    url(r'^dev/', views.TestView.as_view(), name='genderize')
 ]
