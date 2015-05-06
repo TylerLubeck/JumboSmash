@@ -6,6 +6,7 @@ from tastypie.http import HttpUnauthorized, HttpForbidden
 from django.conf.urls import url
 from tastypie.utils import trailing_slash
 from .models import UserProfile
+from .mailer import send_email
 from .authorization import DecisionAuthorization, UserAuthorization
 from django.http import Http404
 from tastypie import fields
@@ -141,8 +142,14 @@ class DecisionResource(Resource):
 
     def _notify_users(self, rater, ratee):
         message = "Hi {}! Looks like {} matched with you. Look each other up!"
-        subject = "New JumboSmash Match!"
+        subject = "New JumboSmash Match with {}!"
+        print rater.email, ratee.email, subject
         if not settings.DEBUG:
+            # send_email([rater.email], subject.format(ratee.name), "Look each other up!")
+            # if (rater.email is ratee.email):
+                # return
+            # send_email([ratee.email], subject.format(rater.name), "Look each other up!")
+
             send_mail(subject,
                       message.format(rater.name, ratee.name),
                       'jumbosmashers@gmail.com',
