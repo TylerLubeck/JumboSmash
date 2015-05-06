@@ -122,11 +122,17 @@ class DecisionResource(Resource):
 
         if bundle.obj.like:
             rater.people_i_like.add(ratee)
+            print "after add"
             match = ratee.people_i_like.filter(pk=rater.pk).exists()
+            print "after filter"
             bundle.obj.match = match
+            print "after match set"
 
             if match:
+                print "about to notify"
                 self._notify_users(rater, ratee)
+                print "after notify"
+
         else:
             rater.people_i_dont_like.add(ratee)
             bundle.obj.match = False

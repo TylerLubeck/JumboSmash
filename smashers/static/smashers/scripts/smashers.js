@@ -61,7 +61,7 @@ define("smashers", ["sweetalert"], function(swal) {
                     like: decision
                 }), 
                 contentType: 'application/json'
-            }).success(function(response) {
+            }).always(function(response) {
                 // that.swingCard.throwOut(0, -100);
                 that.swingCard.destroy();
                 that.trigger("destroy", that);
@@ -80,15 +80,15 @@ define("smashers", ["sweetalert"], function(swal) {
                     $("#num-matches").text(++matches)
 
                 }
-            }).
-            error(function() {
-                swal({   
-                    title: "Error!",   
-                    text: "Something went wrong! Beat it.",   
-                    type: "error"
-                });
-            }).
-            always(function() {})
+            })
+            // error(function() {
+            //     swal({   
+            //         title: "Error!",   
+            //         text: "Something went wrong! Beat it.",   
+            //         type: "error"
+            //     });
+            // }).
+            // always(function() {})
         }
     })
 
