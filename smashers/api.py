@@ -122,17 +122,11 @@ class DecisionResource(Resource):
 
         if bundle.obj.like:
             rater.people_i_like.add(ratee)
-            print "after add"
             match = ratee.people_i_like.filter(pk=rater.pk).exists()
-            print "after filter"
             bundle.obj.match = match
-            print "after match set"
 
             if match:
-                print "about to notify"
                 self._notify_users(rater, ratee)
-                print "after notify"
-
         else:
             rater.people_i_dont_like.add(ratee)
             bundle.obj.match = False
@@ -141,14 +135,8 @@ class DecisionResource(Resource):
 
     def _notify_users(self, rater, ratee):
         message = "Hi {}! Looks like {} matched with you. Look each other up!"
-        subject = "New JumboSmash Match with {}!"
-        print rater.email, ratee.email, subject
+        subject = "New JumboSmash Match!"
         if not settings.DEBUG:
-            # send_email([rater.email], subject.format(ratee.name), "Look each other up!")
-            # if (rater.email is ratee.email):
-                # return
-            # send_email([ratee.email], subject.format(rater.name), "Look each other up!")
-
             send_mail(subject,
                       message.format(rater.name, ratee.name),
                       'jumbosmashers@gmail.com',
