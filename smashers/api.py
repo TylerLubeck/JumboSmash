@@ -59,11 +59,11 @@ class UserProfileResource(ModelResource):
         # Filter out people I've already rated
         obj_list = super(UserProfileResource, self).obj_get_list(bundle,
                                                                  **kwargs)
+        u = obj_list.order_by('?').exclude(pk__in=dont_show)#.filter(lambda profile: hasattr(profile, "user"))
         userfilter = []
-        for p in obj_list:
+        for p in u:
             if p.user:
                 userfilter.append(p);
-        u = obj_list.order_by('?').exclude(pk__in=dont_show)#.filter(lambda profile: hasattr(profile, "user"))
         # print userfilter
         # print type(u)
         return userfilter

@@ -99,7 +99,7 @@ define("smashers", ["sweetalert"], function(swal) {
             var that = this
             this.fetch({
                 remove: false
-            }).success(function() {
+            }).success(function(response) {
                 if (callback) {
                     callback(that);
                 }

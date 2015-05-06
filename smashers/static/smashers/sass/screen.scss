@@ -275,6 +275,17 @@ a:hover, a:focus {
         position: relative;
         top: 2px;
     }
+
+    .placeholder {
+        color: $sexyRed;
+        position: absolute;
+        z-index: 7;
+        top: 20%;
+        width: 90%;
+        display: block;
+        text-align: center;
+        margin-left: 5%;
+    }
 }
 
 ul.cards {

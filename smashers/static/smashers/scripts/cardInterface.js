@@ -109,6 +109,8 @@ define("cardInterface", ["smashers"], function(smashers) {
 
             this.listenTo(this.collection, {
                 add: function(model, collection, opts) {
+                    this.$(".placeholder").hide();
+                    this.$(".loader").hide();
                     this.addCard(model);
                 },
                 remove: function() {
