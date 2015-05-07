@@ -179,6 +179,7 @@ class MatchesResource(Resource):
         list_allowed_methods = ['get']
         detail_allowed_methods = []
         object_class = MatchItem
+        limit = 0
 
     def get_object_list(self, request):
         my_profile = request.user.userprofile
