@@ -28,79 +28,78 @@
         </script>
     </head>
     <body>
-        {% block header %}
-            <!-- <a href="{% url 'index' %}">{% trans "Home" %}</a> | -->
-            <div class='logged-in-content' {% if is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
-                <header class='wrapper'>
-                    <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
-                    <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
-                    <img class='logo' src="{% static 'smashers/jsmash.png' %}" />
-                    <i class='header-actions js-show-searchbar icon-search3'></i>
-                    <a id='show-matches' href="#animatedModal">
-                        <span id="num-matches"></span>
-                    </a>
 
-                    <!-- <a id='js-add-picture' href='#updateProfileModal'><i class="icon-plus"></i>Add a picture of you</a> -->
-                </header>
-    
+        <div class="wrapper login-wrap">
+            <p>We're upgrading our databases, because you guys had SO MANY matches  that we just couldn't handle it anymore. Stay tuned kids. We will be back in no time.</p>
+        </div>
+        <!-- <div class='logged-in-content' {% if is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
+            <header class='wrapper'>
+                <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
+                <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
+                <img class='logo' src="{% static 'smashers/jsmash.png' %}" />
+                <i class='header-actions js-show-searchbar icon-search3'></i>
+                <a id='show-matches' href="#animatedModal">
+                    <span id="num-matches"></span>
+                </a>
 
-                <div id="card-interface" class='wrapper'>
-                    <div class="sk-spinner sk-spinner-wandering-cubes loader">
-                       <div class="sk-cube1"></div>
-                       <div class="sk-cube2"></div>
-                    </div>
+            </header>
 
-                    <p class="placeholder">You've swiped on everyone! Check back as more users get signed up!</p>
 
+            <div id="card-interface" class='wrapper'>
+                <div class="sk-spinner sk-spinner-wandering-cubes loader">
+                   <div class="sk-cube1"></div>
+                   <div class="sk-cube2"></div>
+                </div>
+
+                <p class="placeholder">You've swiped on everyone! Check back as more users get signed up!</p>
+
+                <ul class="cards"></ul>
+
+                <ul id="choices">
+                    <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
+                    <li class=' js-pass pass-wrapper'>
+                        <button>
+                            <a href="#">Later</a>
+                            <i class='icon-chronometer'></i>
+                        </button>
+                    </li>
+                    <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>
+                </ul>
+            </div>
+
+            <div id="updateProfileModal" class='animatedModal modal animated'>
+                <div class="close-updateProfileModal close-modal icon-cross"> 
+                </div>
+                    
+                <div class="modal-content wrapper">
+                </div>
+
+            </div>
+
+            <div id="animatedModal" class='animatedModal modal animated'>
+                <div class="close-animatedModal close-modal icon-cross"> 
+                </div>
+                    
+                <div class="modal-content wrapper" id='match-list'>
+                    <h2 class="placeholder">You don't have any matches yet! Fear not, and swipe on.</h2>
                     <ul class="cards"></ul>
-
-                    <ul id="choices">
-                        <li><button class='choice-button' id="dislike"><i class='icon-cross'></i></button></li>
-                        <li class=' js-pass pass-wrapper'>
-                            <button>
-                                <a href="#">Later</a>
-                                <i class='icon-chronometer'></i>
-                            </button>
-                        </li>
-                        <li><button class='choice-button' id="like"><i class='icon-heart'></i></button></li>
-                    </ul>
-                </div>
-
-                <div id="updateProfileModal" class='animatedModal modal animated'>
-                    <div class="close-updateProfileModal close-modal icon-cross"> 
-                    </div>
-                        
-                    <div class="modal-content wrapper">
-                    </div>
-
-                </div>
-
-                <div id="animatedModal" class='animatedModal modal animated'>
-                    <!--THIS IS IMPORTANT! to close the modal, the class name has to match the name given on the ID  class="close-animatedModal" -->
-                    <div class="close-animatedModal close-modal icon-cross"> 
-                    </div>
-                        
-                    <div class="modal-content wrapper" id='match-list'>
-                        <h2 class="placeholder">You don't have any matches yet! Fear not, and swipe on.</h2>
-                        <ul class="cards"></ul>
-                    </div>
                 </div>
             </div>
+        </div>
 
-            {% if is_authenticated|lower == "false" %}
-            <div class="logged-out-content">
-                {% include 'registration/login.html' %}
-            </div>
-            {% endif %}
+        {% if is_authenticated|lower == "false" %}
+        <div class="logged-out-content">
+            {% include 'registration/login.html' %}
+        </div>
+        {% endif %}
 
-        {% endblock %}
 
         {% include 'templates.html' %}
         <p class="wrapper center disclaimer">Use this app at your own risk. The owners are not liable for anything that occurs here. If you have concerns, contact us <a href="mailto:jumbosmashers@gmail.com">here.</a></p>
         <script src="{% static 'smashers/scripts/swingfull.js' %}"></script>
         <script src="{% static 'smashers/scripts/require.min.js' %}"></script>
         <script src="{% static 'smashers/scripts/app-built.js' %}"></script>
-        <script type="text/javascript">require(["app"]);</script>
+        <script type="text/javascript">require(["app"]);</script> -->
 
     </body>
 </html>

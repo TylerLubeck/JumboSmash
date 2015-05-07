@@ -1654,3 +1654,117 @@ img#output {
   margin-top: 60px;
   line-height: 1.7;
 }
+
+/* line 590, ../sass/screen.scss */
+.login-wrap.wrapper {
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  -moz-box-shadow: 0px 2px 5px #888;
+  -webkit-box-shadow: 0px 2px 5px #888;
+  box-shadow: 0px 2px 5px #888;
+  background: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-top: 3px solid #EE6146;
+  position: absolute;
+  width: 400px;
+  top: 50%;
+  left: 50%;
+  margin-left: -200px;
+  margin-top: -140px;
+  max-width: 100%;
+}
+/* line 606, ../sass/screen.scss */
+.login-wrap.wrapper input {
+  -moz-box-shadow: inset 0px 1px 3px #ccc;
+  -webkit-box-shadow: inset 0px 1px 3px #ccc;
+  box-shadow: inset 0px 1px 3px #ccc;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  border-radius: 6px;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1em;
+  display: inline-block;
+  padding: 7px 10px;
+  width: 100%;
+  border: 1px solid transparent;
+  margin: 3px 0;
+  outline: none;
+  line-height: 1.4;
+}
+/* line 620, ../sass/screen.scss */
+.login-wrap.wrapper input:focus {
+  -moz-box-shadow: inset 0px 2px 5px #ccc;
+  -webkit-box-shadow: inset 0px 2px 5px #ccc;
+  box-shadow: inset 0px 2px 5px #ccc;
+}
+/* line 625, ../sass/screen.scss */
+.login-wrap.wrapper .choice-button {
+  font-size: 2.6em;
+  color: #EE6146;
+  position: relative;
+  line-height: 1.8;
+  float: none;
+  margin-top: 10px;
+}
+/* line 634, ../sass/screen.scss */
+.login-wrap.wrapper .choice-button.button-regular {
+  font-family: "Raleway";
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  min-width: 100px;
+  height: 50px;
+  text-align: center;
+  top: 0;
+  font-size: 1rem;
+  padding: 0 10px;
+  color: #EE6146;
+  float: right;
+}
+/* line 646, ../sass/screen.scss */
+.login-wrap.wrapper .choice-button.button-regular:before {
+  display: none;
+}
+/* line 649, ../sass/screen.scss */
+.login-wrap.wrapper .choice-button.button-regular i {
+  position: relative;
+  font-size: 1.2em;
+  top: 3px;
+  margin: 0 0 0 10px;
+}
+/* line 657, ../sass/screen.scss */
+.login-wrap.wrapper .inputs {
+  float: left;
+  width: 100%;
+}
+/* line 661, ../sass/screen.scss */
+.login-wrap.wrapper .account-actions {
+  display: inline-block;
+  position: relative;
+  top: 30px;
+  font-size: .8em;
+}
+/* line 668, ../sass/screen.scss */
+.login-wrap.wrapper .modal input {
+  display: block;
+  width: 100%;
+  margin: 8px 0;
+}
+/* line 675, ../sass/screen.scss */
+.login-wrap.wrapper .login-logo {
+  position: absolute;
+  top: -50px;
+}
+/* line 680, ../sass/screen.scss */
+.login-wrap.wrapper #open-registration {
+  line-height: 3rem;
+  float: right;
+  margin-right: 10px;
+  color: #76DFA9;
+}
+/* line 687, ../sass/screen.scss */
+.login-wrap.wrapper p {
+  line-height: 1.7;
+}
