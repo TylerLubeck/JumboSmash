@@ -30,7 +30,7 @@
     <body>
 
         <!-- <div class="wrapper login-wrap">
-            <p>We're upgrading our databases, because you guys had SO MANY matches  that we just couldn't handle it anymore. Stay tuned kids. We will be back in no time.</p>
+            <p>We're upgrading our databases, because you guys had SO MANY matches that we just couldn't handle it anymore. Stay tuned kids. We will be back in no time.</p>
         </div> -->
         <div class='logged-in-content' {% if is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
             <header class='wrapper'>
@@ -38,8 +38,8 @@
                 <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
                 <img class='logo' src="{% static 'smashers/jsmash.png' %}" />
                 <i class='header-actions js-show-searchbar icon-search3'></i>
-                <a id='show-matches' href="#animatedModal">
-                    <span id="num-matches"></span>
+                <a id='show-matches'>
+                    <span class="num-matches"></span>
                 </a>
 
             </header>
@@ -68,21 +68,23 @@
             </div>
 
             <div id="updateProfileModal" class='animatedModal modal animated'>
-                <div class="close-updateProfileModal close-modal icon-cross"> 
+                <div class="close-updateProfileModal close-modal icon-cross"> </div>
+                <ul id="profile-tabs" class='wrapper'>
+                    <li rel='profile-wrapper' class='tab-showing'>Edit Profile</li>
+                    <li rel='match-list'>See Matches (<span class='num-matches'></span>)</li>
+                </ul>
+                
+                <div id='match-list' class='hidden profileTabItem'>
+                    <h2 class="placeholder">You don't have any matches yet! Fear not, and swipe on.</h2>
+                    <ul class="cards"></ul>
                 </div>
-                    
-                <div class="modal-content wrapper">
+                <div class="modal-content wrapper profileTabItem" id="profile-wrapper">
                 </div>
 
             </div>
 
             <div id="animatedModal" class='animatedModal modal animated'>
                 <div class="close-animatedModal close-modal icon-cross"> 
-                </div>
-                    
-                <div class="modal-content wrapper" id='match-list'>
-                    <h2 class="placeholder">You don't have any matches yet! Fear not, and swipe on.</h2>
-                    <ul class="cards"></ul>
                 </div>
             </div>
         </div>

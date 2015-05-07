@@ -129,31 +129,10 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
     var cardList = null;
 
     function init() {
-         $matchButton.click(function() {
-            smashers.getMatches(function(matches) {
-                if (cardList != null) {
-                    cardList.stopListening();
-                    cardList.$(".cards").empty()
-                }
+        //  $matchButton.click(function() {
 
-                cardList = cardInterface.getCardList({
-                    collection: matches, 
-                    el: "#match-list",
-                    draggable: false
-                }, {add: true});
-            })
-        }).animatedModal({
-            afterOpen: function() {
-                $matchList.show().addClass("animated bounceInLeft")
-                  
-            },
-            afterClose: function(){
-                $matchList.hide().removeClass("animated bounceOutRight")
-            },
-            beforeClose: function() {
-                $matchList.removeClass("bounceInLeft").addClass("animated bounceOutRight")
-            }
-        });
+        // }).animatedModal({
+        // });
         $searchBarTrigger.click(function() { 
             if (searchBarOpen === false) {
                 $searchbar.add(".twitter-typeahead").fadeIn("fast");
@@ -172,13 +151,48 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
         });
 
 
-        $showProfile.animatedModal({
+        $showProfile.add("#show-matches").animatedModal({
             modalTarget: "updateProfileModal",
             beforeOpen: function() {
                 var profileView = new UserProfileView({model: smashers.getActiveUser()}).render().delegateEvents();
-                $("#updateProfileModal .modal-content").html(profileView.el);
+                $("#profile-wrapper").html(profileView.el);
+                smashers.getMatches(function(matches) {
+                    if (cardList != null) {
+                        cardList.stopListening();
+                        cardList.$(".cards").empty()
+                    }
+
+                    cardList = cardInterface.getCardList({
+                        collection: matches, 
+                        el: "#match-list",
+                        draggable: false
+                    }, {add: true});
+                })
+            },
+            afterOpen: function() {
+                // $matchList.show().addClass("animated bounceInLeft")
+                  
+            },
+            afterClose: function(){
+                // $matchList.hide().removeClass("animated bounceOutRight")
+            },
+            beforeClose: function() {
+                // $matchList.removeClass("bounceInLeft").addClass("animated bounceOutRight")
             }
+        });
+
+        $("#profile-tabs").find("li[rel]").click(function() {
+            var $this = $(this);
+            $(".tab-showing").not($this).removeClass("tab-showing")
+            $this.addClass("tab-showing");
+            var rel = $this.attr("rel");
+            var $target = $("#" + rel);
+            $(".profileTabItem").not($target).fadeOut("fast", function() {
+                $target.fadeIn("fast")
+            })
         })
+
+        
 
     }
 
@@ -186,7 +200,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
     return {
         init: init,
         setNumMatches: function(num_matches) {
-            $("#num-matches").text(num_matches)
+            $(".num-matches").text(num_matches)
         }
     }
 })

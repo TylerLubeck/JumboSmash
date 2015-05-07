@@ -144,7 +144,7 @@ a:hover, a:focus {
             }
 
             #num-matches {
-                width: 20px;
+                min-width: 20px;
                 position: absolute;
                 color: $sexyRed;
                 font-size: 1rem;
@@ -174,6 +174,7 @@ a:hover, a:focus {
     text-align: center;
     height: 25px;
     line-height: 20px;
+    cursor: pointer;
 }
 
 #choices button, .choice-button {
@@ -552,6 +553,7 @@ input[type='file'].choice-button.button-regular {
     float: none;
     margin-bottom: 20px;
     width: 100%;
+    @include box-shadow(none);
 }
 
 img#output {
@@ -686,5 +688,29 @@ img#output {
 
     p {
         line-height: 1.7;
+    }
+}
+
+#profile-tabs {
+    display: block;
+    
+    li {
+          width: 49%;
+          border: 1px solid #fff;
+          display: inline-block;
+          margin: 20px -3px 0;
+          @include border-radius(5px 0 0 5px);
+          cursor: pointer;
+
+          &:hover, &.tab-showing {
+            background: #fff;
+            color: #39BEB9;
+          }
+
+          &:last-of-type {
+            @include border-radius(0 5px 5px 0);
+          }
+
+
     }
 }
