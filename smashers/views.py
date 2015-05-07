@@ -78,6 +78,8 @@ class IndexView(View):
             profile = user.userprofile
             i_like = profile.people_i_like.all()
             like_me = profile.people_like_me.all()
+            print i_like
+            print like_me
 
             user_info = {
                 "id": profile.pk,
