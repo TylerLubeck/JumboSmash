@@ -29,10 +29,10 @@
     </head>
     <body>
 
-        <div class="wrapper login-wrap">
+        <!-- <div class="wrapper login-wrap">
             <p>We're upgrading our databases, because you guys had SO MANY matches  that we just couldn't handle it anymore. Stay tuned kids. We will be back in no time.</p>
-        </div>
-        <!-- <div class='logged-in-content' {% if is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
+        </div> -->
+        <div class='logged-in-content' {% if is_authenticated|lower == 'false' %} style="display: none" {% endif %}>
             <header class='wrapper'>
                 <input type='text' name='smash-autocomplete' class='wrapper' placeholder='search' id='smash-autocomplete' />
                 <i href='#updateProfileModal' class='header-actions js-show-profile icon-user'></i>
@@ -99,7 +99,7 @@
         <script src="{% static 'smashers/scripts/swingfull.js' %}"></script>
         <script src="{% static 'smashers/scripts/require.min.js' %}"></script>
         <script src="{% static 'smashers/scripts/app-built.js' %}"></script>
-        <script type="text/javascript">require(["app"]);</script> -->
+        <script type="text/javascript">require(["app"]);</script>
 
     </body>
 </html>
