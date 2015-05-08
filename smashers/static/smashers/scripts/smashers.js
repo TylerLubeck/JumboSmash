@@ -64,7 +64,6 @@ define("smashers", ["sweetalert"], function(swal) {
             }).always(function(response) {
                 // that.swingCard.throwOut(0, -100);
                 that.swingCard.destroy();
-                that.trigger("destroy", that);
 
                 var firstname = that.get("name").split(" ")[0]
 

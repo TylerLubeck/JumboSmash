@@ -140,6 +140,7 @@ define("cardInterface", ["smashers"], function(smashers) {
                 setTimeout(function() {
                     if (model) {
                         (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT ? model.dislike() : model.like());
+                        model.trigger("destroy", model);
                     }
                 }, 300)    
             })
