@@ -140,14 +140,12 @@ define("cardInterface", ["smashers"], function(smashers) {
                 setTimeout(function() {
                     if (model) {
                         (e.throwDirection === gajus.Swing.Card.DIRECTION_LEFT ? model.dislike() : model.like());
-                        model.trigger("destroy", model);
                     }
                 }, 300)    
             })
         },
         addCard: function(card) {
             var c = new CardItemView({model: card});
-            console.log(this.collection.reverse)
             if (this.collection.reverse === true) {
                 this.$(".cards").prepend(c.render().el);
             }
