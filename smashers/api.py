@@ -124,7 +124,8 @@ class DecisionResource(Resource):
             rater.people_i_like.add(ratee)
             match = ratee.people_i_like.filter(pk=rater.pk).exists()
             bundle.obj.match = match
-
+            rater.save();
+            
             if match:
                 self._notify_users(rater, ratee)
         else:
