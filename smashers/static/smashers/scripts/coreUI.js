@@ -173,7 +173,7 @@ define("coreUI", ["smashers", "cardInterface", "sweetalert", "animatedModal"], f
             },
             afterOpen: function() {
                 // $matchList.show().addClass("animated bounceInLeft")
-                  
+                $(window).trigger("resize");
             },
             afterClose: function(){
                 // $matchList.hide().removeClass("animated bounceOutRight")

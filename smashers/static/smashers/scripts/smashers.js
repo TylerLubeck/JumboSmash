@@ -122,6 +122,7 @@ define("smashers", ["sweetalert"], function(swal) {
         getMatches: function(callback) {
             $.getJSON("/api/v1/matches").success(function(response) {
                 var s = new Smashers(response, {parse: true});
+                s.reverse = true;
                 (callback || $.noop)(s);
             })
         },
