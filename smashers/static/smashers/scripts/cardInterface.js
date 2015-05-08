@@ -146,7 +146,13 @@ define("cardInterface", ["smashers"], function(smashers) {
         },
         addCard: function(card) {
             var c = new CardItemView({model: card});
-            this.$(".cards").append(c.render().el);
+            console.log(this.collection.reverse)
+            if (this.collection.reverse === true) {
+                this.$(".cards").prepend(c.render().el);
+            }
+            else {
+                this.$(".cards").append(c.render().el);
+            }
             c.$el.attr("model-id", card.cid);
             this.activeCard = card;
             if (this.draggable === true) {

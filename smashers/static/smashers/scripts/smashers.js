@@ -121,7 +121,8 @@ define("smashers", ["sweetalert"], function(swal) {
         },
         getMatches: function(callback) {
             $.getJSON("/api/v1/matches").success(function(response) {
-                (callback || $.noop)(new Smashers(response, {parse: true}));
+                var s = new Smashers(response, {parse: true});
+                (callback || $.noop)(s);
             })
         },
         // Expects a plain object, returns smasher
