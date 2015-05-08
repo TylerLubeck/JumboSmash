@@ -62,7 +62,7 @@ class UserProfileResource(ModelResource):
         u = obj_list.order_by('?').exclude(pk__in=dont_show)#.filter(lambda profile: hasattr(profile, "user"))
         userfilter = []
         for p in u:
-            if p.user:
+            if p.user and p.user.is_active:
                 userfilter.append(p);
         # print userfilter
         # print type(u)
