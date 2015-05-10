@@ -1,0 +1,11 @@
+Hi {{ user.name }},
+
+It looks like you have some matches on JumboSmash! With Senior Gala later today, this could be your lucky night.
+
+Your matches:
+{% for match in matches %}
+{{ match.name }}
+{% endfor %}
+
+Get out there and smash!
+-The JumboSmash Team
