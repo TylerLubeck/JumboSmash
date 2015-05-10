@@ -6,7 +6,7 @@ from email.mime.multipart import MIMEMultipart
 import sys
  
 #Global varialbes
-PASSWORD = "***REMOVED***"
+PASSWORD = "perfectlyvalidpassword"
 EMAIL_SENDER  =  'jumbosmashers@gmail.com'
 GMAIL_SMTP = "smtp.gmail.com"
 GMAIL_SMTP_PORT = 587

@@ -12,7 +12,10 @@ class Command(BaseCommand):
         messages_to_send = []
         for up in UserProfile.objects.all():
             if up.user is not None:
-                messages_to_send.append(self._email_matches(up))
+                data = self._email_matches(up)
+                if data is not None:
+                    print data
+                    messages_to_send.append(data)
 
         send_mass_mail(messages_to_send, fail_silently=False)
 
