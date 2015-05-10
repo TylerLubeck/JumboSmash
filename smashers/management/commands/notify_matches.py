@@ -11,7 +11,6 @@ class Command(BaseCommand):
         for up in UserProfile.objects.all():
             if up.user is not None:
                 self._email_matches(up)
-                break
 
     def _email_matches(self, user_profile):
         matches = user_profile.people_i_like.all() & user_profile.people_like_me.all()
