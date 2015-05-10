@@ -3,7 +3,7 @@ from smashers.models import UserProfile
 from django.core.mail import send_mail
 from django.template.loader import get_template
 from django.template import Context
-import smptlib
+import smtplib
 
 class Command(BaseCommand):
     help = 'Loads the seniors from the json returned by the scraper'
