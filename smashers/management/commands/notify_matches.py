@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand
 from smashers.models import UserProfile
-from django.core.mail import send_mail
+from django.core.mail import send_mass_mail
 from django.template.loader import get_template
 from django.template import Context
 import smtplib
@@ -9,9 +9,12 @@ class Command(BaseCommand):
     help = 'Loads the seniors from the json returned by the scraper'
 
     def handle(self, *args, **options):
+        messages_to_send = []
         for up in UserProfile.objects.all():
             if up.user is not None:
-                self._email_matches(up)
+                messages_to_send.append(self._email_matches(up))
+
+        send_mass_mail(messages_to_send, fail_silently=False)
 
     def _email_matches(self, user_profile):
         matches = user_profile.people_i_like.all() & user_profile.people_like_me.all()
@@ -30,12 +33,7 @@ class Command(BaseCommand):
         plaintext = get_template('matches_found.txt')
         text_content = plaintext.render(d)
 
-        print 'Emailing {}'.format(user_profile.name)
-        try:
-            send_mail(title,
-                    text_content,
-                    'jumbosmashers2@gmail.com',
-                    [user_profile.email],
-                    fail_silently=False)
-        except smptlib.SMTPException:
-            print 'Failed to email {}'.format(user_profile.name)
+        return (title,
+                text_content,
+                'jumbosmashers2@gmail.com',
+                [user_profile.email])
